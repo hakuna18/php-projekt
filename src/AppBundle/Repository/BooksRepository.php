@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class BooksRepository extends EntityRepository
 {
+    // example usage: findBy('[rR]owling')
+    public function findByStr($str)
+    {
+        $criteria = array('title' => '*' . trim($str) . '*');
+        $result = $this->findBy($criteria);
+
+        return $result;
+    }
 }

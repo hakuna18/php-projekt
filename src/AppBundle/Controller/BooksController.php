@@ -36,4 +36,14 @@ class BooksController extends Controller
             ['books' => $this->booksRepository->findAll()]
         );
     }
+
+    /**
+     * @Route("/?search={query}", name="books_search")
+     */
+    public function search($query) {
+        return $this->render(
+            'books/index.html.twig',
+            ['books' => $this->booksRepository->findByStr($query)]
+        );
+    }
 }

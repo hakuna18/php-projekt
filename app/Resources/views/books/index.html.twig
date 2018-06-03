@@ -12,36 +12,22 @@
 
     {% if books is defined and books|length %}
         <table class="table table-striped">
-            {# <thead>
-                <tr>
-                    <th>{{ 'label.id'|trans }}</th>
-                    <th>{{ 'label.url'|trans }}</th>
-                    <th scope="col">
-                        {{ 'label.actions'|trans }}
-                    </th>
-                </tr>
-            </thead> #}
             <tbody>
+                <input name="search" id="search" value="123"/>
+                <div class="btn-group" role="group" aria-label="{{ 'label.actions'|trans }}">  
+                    <a href="{{ path('books_search', {"query": "yyy" }) }}" class="btn btn-primary" title="{{ 'action.view'|trans }}">
+                        search
+                    </a>
+                </div>
                 {% for book in books %}
                     <tr>
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
-                        {# <td>{{ book.genre }}</td> #}
-                        {# <td>
-                            <div class="btn-group" role="group" aria-label="{{ 'label.actions'|trans }}">
-                                <a href="{{ path('bookmarks_view', {'id': books.id}) }}" class="btn btn-primary" title="{{ 'action.view'|trans }}">
-
-                                    {{ 'action.view'|trans }}
-                                </a>
-                            </div>
-                        </td> #}
+                        <td style="border-bottom:1px solid black">{{ book.genre }}</td>
                     </tr>             
                 {% endfor %}
             </tbody>
         </table>
-        {# <div class="navigation text-center">
-            {{ pagerfanta(bookmarks, 'twitter_bootstrap3_translated', { routeName: ('bookmarks_index_paginated') }) }}
-        </div> #}
     {% else %}
         <div class="alert alert-warning" role="alert">
             {{ 'message.empty_list'|trans }}
