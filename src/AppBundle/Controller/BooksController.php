@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Repository\BooksRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BooksController extends Controller
 {
@@ -29,11 +30,19 @@ class BooksController extends Controller
     /**
      * @Route("/", name="books_catalogue")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
+        $query = $request->request->get('form')['search'];
+
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
+
         return $this->render(
             'books/index.html.twig',
-            ['books' => $this->booksRepository->findAll()]
+            [
+                'books' => $this->booksRepository->findByPattern($query),
+                'form' => $form->createView()
+            ]
         );
     }
 }

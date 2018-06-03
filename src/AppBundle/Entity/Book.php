@@ -165,4 +165,42 @@ class Book
     {
         return $this->genre;
     }
+
+    /**
+     * URI to the cover.
+     *
+     * @var string $coverURI
+     *
+     * @ORM\Column(
+     *     name="CoverURI",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $coverURI;
+
+    /**
+     * Set cover URI
+     *
+     * @param string $coverURI
+     *
+     * @return Book
+     */
+    public function setCoverURI($uri)
+    {
+        $this->coverURI = $uri;
+
+        return $this;
+    }
+
+    /**
+     * Get cover URI
+     *
+     * @return string
+     */
+    public function getCoverURI()
+    {
+        return $this->coverURI;
+    }
 }

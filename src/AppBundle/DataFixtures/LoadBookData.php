@@ -26,16 +26,19 @@ class LoadBookData extends Fixture
                 'title' => 'Kolor magii',
                 'author' => 'T. Prachett',
                 'genre' => 'fantasy',
+                'coverURI' => 'swiat-dysku-kolor-magii-terry-pratchett.jpg'
             ],
             [
                 'title' => 'Harry Potter: Kamien filozoficzny',
                 'author' => 'J.K.Rowling',
                 'genre' => 'fantasy',
+                'coverURI' => 'kamien-filozoficzny.jpg'
             ],
             [
                 'title' => 'Solaris',
                 'author' => 'Sanislaw Lem',
                 'genre' => 'Sci-Fi',
+                'coverURI' => 'solaris.jpg'
             ],
         ];
 
@@ -44,6 +47,7 @@ class LoadBookData extends Fixture
             $book->setTitle($item['title']);
             $book->setAuthor($item['author']);
             $book->setGenre($item['genre']);
+            $book->setCoverURI($item['coverURI']);
      
             $manager->persist($book);
         }

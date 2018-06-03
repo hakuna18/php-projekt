@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class BooksRepository extends EntityRepository
 {
+    // Looks for books with title/author/genre mathching given regex pattern.
+    public function findByPattern($pattern) {
+        $pattern = '*' . strtoupper(trim($pattern)) . '*';
+        $books = $this->findAll();
+        $result = array();
+        foreach($books as $book) {
+            if(preg_match($pattern, strtoupper($book->getTitle()))
+            || preg_match($pattern, strtoupper($book->getAuthor()))
+            || preg_match($pattern, strtoupper($book->getGenre()))
+            )
+                array_push($result, $book);
+        }
+        return $result;
+    }
 }
