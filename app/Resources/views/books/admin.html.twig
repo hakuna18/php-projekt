@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {# {{ 'title.books'|trans }} #}
+    {{ 'Katalog' }}
+{% endblock %}
+
+{% block body %}
+
+    {# <h1>{{ 'title.books'|trans }}</h1> #}
+    <h1>{{ 'Katalog' }}</h1>
+    
+    {% if books is defined and books|length %}
+        <table class="table table-striped">
+            <tbody>
+                    <tr>
+                        <th style="padding-bottom:20px">{{ 'Tytul' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Autor' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Gatunek' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Wydawnictwo' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Rok wydania' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Calkowita ilosc egzemplarzy' }}</th>
+                        <th style="padding-bottom:20px">{{ 'Ilosc dostepnych egzemplarzy' }}</th>
+                    </tr>
+                {% for book in books %}
+                    
+                    <tr>
+                       
+                        <td style="border-bottom:1px solid black">{{ book.title }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.author }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.genre }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.publisher }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.year }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.totalAvailable }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
+
+                    </tr>             
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'message.empty_list'|trans }}
+        </div>
+    {% endif %}
+
+{% endblock %}
