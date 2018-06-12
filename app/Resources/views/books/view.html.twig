@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.books'|trans }}
+{% endblock %}
+
+{% block body %}
+<dl>
+  <dt>Tytuł</dt>
+  <dd>{{ book.title }}</dd>
+  <dt>Autor</dt>
+  <dd>{{ book.author }}</dd>
+  <dt>Gatunek</dt>
+  <dd>{{ book.genre }}</dd>
+</dl>
+
+{% endblock %}
