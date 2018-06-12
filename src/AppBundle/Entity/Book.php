@@ -203,4 +203,156 @@ class Book
     {
         return $this->coverURI;
     }
+
+    /**
+     * Publisher.
+     *
+     * @var string $publisher
+     *
+     * @ORM\Column(
+     *     name="publisher",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $publisher;
+
+    /**
+     * Set publisher
+     *
+     * @param string $publisher
+     *
+     * @return Book
+     */
+    public function setPublisher($publisher)
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * Get publisher
+     *
+     * @return string
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Year.
+     *
+     * @var integer $year
+     *
+     * @ORM\Column(
+     *     name="year",
+     *     type="integer",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $year;
+
+    /**
+     * Set year
+     *
+     * @param integer $year
+     *
+     * @return Book
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return integer
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+     /**
+     * Total available count
+     *
+     * @var integer $totalAvailable
+     *
+     * @ORM\Column(
+     *     name="TotalAvailable",
+     *     type="integer",
+     *     nullable=false,
+     *     options={"unsigned"=true}
+     * )
+     */
+    protected $totalAvailable;
+
+     /**
+     * Set total available count
+     *
+     * @param integer $totalAvailable
+     *
+     * @return Book
+     */
+    public function setTotalAvailable($count)
+    {
+        $this->totalAvailable = $count;
+
+        return $this;
+    }
+
+    /**
+     * Get total available count
+     *
+     * @return integer
+     */
+    public function getTotalAvailable()
+    {
+        return $this->totalAvailable;
+    }
+
+     /**
+     * Currently available count
+     *
+     * @var integer $currentlyAvailable
+     *
+     * @ORM\Column(
+     *     name="CurrentlyAvailable",
+     *     type="integer",
+     *     nullable=false,
+     *     options={"unsigned"=true}
+     * )
+     */
+    protected $currentlyAvailable;
+
+     /**
+     * Set currently available count
+     *
+     * @param integer $totatAvailable
+     *
+     * @return Book
+     */
+    public function setCurrentlyAvailable($count)
+    {
+        $this->currentlyAvailable = $count;
+
+        return $this;
+    }
+
+    /**
+     * Get currently available count
+     *
+     * @return integer
+     */
+    public function getCurrentlyAvailable()
+    {
+        return $this->currentlyAvailable;
+    }
 }

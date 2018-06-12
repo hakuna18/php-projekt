@@ -45,4 +45,18 @@ class BooksController extends Controller
             ]
         );
     }
+
+     /**
+     * @Route("/admin", name="admin_panel")
+     */
+    public function adminAction(Request $request) {
+        $books = $this->booksRepository->findAll();
+
+        return $this->render(
+            'books/admin.html.twig',
+            [
+                'books' => $books
+            ]
+        );
+    }
 }
