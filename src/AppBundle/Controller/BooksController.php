@@ -9,6 +9,8 @@ use AppBundle\Repository\BooksRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use AppBundle\Entity\Book;
+use AppBundle\Form\BookType;
 
 
 class BooksController extends Controller
@@ -96,6 +98,43 @@ class BooksController extends Controller
             'books/admin.html.twig',
             [
                 'books' => $books
+            ]
+        );
+    }
+
+    /**
+     * Add action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/add",
+     *     name="books_add",
+     * )
+     * @Method({"GET", "POST"})
+     */
+    public function addAction(Request $request)
+    {
+        $book = new Book();
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->booksRepository->save($book);
+            $this->addFlash('success', 'message.created_successfully');
+
+            return $this->redirectToRoute('books_catalogue');
+        }
+
+        return $this->render(
+            'books/add.html.twig',
+            [
+                'book' => $book,
+                'form' => $form->createView(),
             ]
         );
     }

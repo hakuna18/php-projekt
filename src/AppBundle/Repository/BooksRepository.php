@@ -3,6 +3,9 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use AppBundle\Entity\Book;
 
 /**
  * BooksRepository
@@ -13,7 +16,7 @@ use Doctrine\ORM\EntityRepository;
 class BooksRepository extends EntityRepository
 {
     // Looks for books with title/author/genre mathching given regex pattern.
-    public function findByPattern($pattern) {
+    public function findByPattern($pattern, $page = 1) {
         $pattern = '*' . strtoupper(trim($pattern)) . '*';
         $books = $this->findAll();
         $result = array();
@@ -24,6 +27,46 @@ class BooksRepository extends EntityRepository
             )
                 array_push($result, $book);
         }
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryAll(), false));
+        $paginator->setMaxPerPage(Book::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
         return $result;
+    }
+     /**
+     * Query all entities.
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    protected function queryAll()
+    {
+        return $this->createQueryBuilder('book');
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param \AppBundle\Entity\Book $book Book entity
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Book $book)
+    {
+        $this->_em->persist($book);
+        $this->_em->flush($book);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param \AppBundle\Entity\Book $book Book entity
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Book $book)
+    {
+        $this->_em->remove($book);
+        $this->_em->flush();
     }
 }

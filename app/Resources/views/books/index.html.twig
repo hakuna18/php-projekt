@@ -22,12 +22,19 @@
                 {% for book in books %}
                     <tr>
                         <td>
+                            <a href={{ path('book_view', {'id': book.id}) }}>
                             <img src="{{ 'images/' ~ book.coverURI }}" width=100 height=150>
+                            </a>
                         </td>
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
-                    </tr>             
+                        <td> <form action={{ path('book_view', {'id': book.id}) }}>
+                            <input type="submit" value="{{ 'book.details'|trans }}" /> 
+                        </td>
+                    </tr>       
+                   
+</form>      
                 {% endfor %}
             </tbody>
         </table>
@@ -36,5 +43,9 @@
             {{ 'message.empty_list'|trans }}
         </div>
     {% endif %}
-
+    {# ... #}
+    <div class="navigation text-center">
+            {{ pagerfanta(books, 'twitter_bootstrap3_translated', { routeName: ('books_catalogue_paginated') }) }}
+        </div>
+    {# ... #}
 {% endblock %}

@@ -34,6 +34,20 @@
                 <source>Catalog</source>
                 <target>Katalog</target>
             </trans-unit>
+             <trans-unit id="title.book_add">
+                <source>title.book_add</source>
+                <target>Dodaj nową książkę</target>
+            </trans-unit>
+             <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="book.details">
+                <source>book.details</source>
+                <target>Szczegóły</target>
+            </trans-unit>
+            
+
         </body>
     </file>
 </xliff>
