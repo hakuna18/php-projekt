@@ -1,26 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {# {{ 'title.books'|trans }} #}
-    {{ 'Katalog' }}
+    {{ 'Catalog'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    {# <h1>{{ 'title.books'|trans }}</h1> #}
-    <h1>{{ 'Katalog' }}</h1>
+    <h1>{{ 'Catalog'|trans }}</h1>
     
     {% if books is defined and books|length %}
         <table class="table table-striped">
             <tbody>
                     <tr>
-                        <th style="padding-bottom:20px">{{ 'Tytul' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Autor' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Gatunek' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Wydawnictwo' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Rok wydania' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Calkowita ilosc egzemplarzy' }}</th>
-                        <th style="padding-bottom:20px">{{ 'Ilosc dostepnych egzemplarzy' }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.author'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.genre'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.publisher'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.year'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.totalAvailable'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.currentlyAvailable'|trans }}</th>
                     </tr>
                 {% for book in books %}
                     

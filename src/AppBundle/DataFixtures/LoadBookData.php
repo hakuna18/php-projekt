@@ -27,7 +27,7 @@ class LoadBookData extends Fixture
                 'author' => 'T. Prachett',
                 'genre' => 'fantasy',
                 'coverURI' => 'swiat-dysku-kolor-magii-terry-pratchett.jpg',
-                'publisher' => 'Pr?szy?ski i S-ka',
+                'publisher' => 'Prószyński i S-ka',
                 'year' => 1994,
                 'totalAvailable' => 10
             ],

@@ -33,14 +33,21 @@ class BooksController extends Controller
     /**
      * Index action.
      *
+     * @param integer $page Current page number
+     * 
      * @Route(
      *     "/",
+     *     defaults={"page": 1},
      *     name="books_catalogue",
      * )
-     *
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="books_catalogue_paginated",
+     *)
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request, $page) {
         $query = $request->request->get('form')['search'];
 
         $form = $this->createFormBuilder(null)
