@@ -7,7 +7,12 @@
 
 {% block body %}
 
-    {# <h1>{{ 'title.books'|trans }}</h1> #}
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h1>{{ 'Katalog' }}</h1>
 
     {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}
@@ -27,6 +32,10 @@
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('make_reservation', { 'id': book.id }) }}">Zarezerwuj</a>
+                        </td>
                     </tr>             
                 {% endfor %}
             </tbody>

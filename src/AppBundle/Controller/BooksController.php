@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Repository\BooksRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+
+use AppBundle\Repository\BooksRepository;
+use AppBundle\Service\BooksManager;
 
 
 class BooksController extends Controller
@@ -20,14 +22,18 @@ class BooksController extends Controller
      */
     protected $booksRepository = null;
 
+    protected $booksManager = null;
+
     /**
      * BooksController constructor.
      *
      * @param \AppBundle\Repository\BooksRepository $booksRepository Books repository
+     * @param \AppBundle\Service\BooksManager $booksManager Books manager service
      */
-    public function __construct(BooksRepository $booksRepository)
+    public function __construct(BooksRepository $booksRepository, BooksManager $booksManager)
     {
         $this->booksRepository = $booksRepository;
+        $this->booksManager = $booksManager;
     }
 
     /**
@@ -91,5 +97,23 @@ class BooksController extends Controller
                 'books' => $books
             ]
         );
+    }
+
+     /**
+     * @Route("/reservation/{id}", name="make_reservation")
+     */
+    public function makeReservationAction($id) {
+        $user = $this->getUser();
+        if ($user) {
+            $book = $this->booksRepository->findOneById($id);
+            $reservation = $this->booksManager->makeReservation($book, $user);
+            if ($reservation) {
+                $this->addFlash(
+                    'notice',
+                    'Rezerwacja dokonana!'
+                );
+            }
+        }
+        return $this->redirectToRoute('books_catalogue');
     }
 }
