@@ -28,36 +28,32 @@
                     <tr>
                         <td>
                             <a href={{ path('book_view', {'id': book.id}) }}>
-                            <img src="{{ 'images/' ~ book.coverURI }}" width=100 height=150>
+                                <img src="{{ 'images/' ~ book.coverURI }}" width=100 height=150>
                             </a>
                         </td>
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('book_view', {'id': book.id}) }}">{{ 'book.details'|trans }}</a>
+                        </td>
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                             {% if booksManager.hasReservation(book, app.user) %}
                                 <td style="border-bottom:1px solid black">
-                                    <form action={{ path('cancel_reservation', { 'id': book.id }) }}>
-                                        <input type="submit" value="{{ 'book.cancel_reservation'|trans }}"></input>
-                                    </form> 
+                                    <a href="{{ path('cancel_reservation', { 'bookId': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
                                 </td>
                             {% elseif booksManager.canMakeReservation(book, app.user) %}
-                            <td style="border-bottom:1px solid black">
-                                <a href="{{ path('make_reservation', { 'id': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
-                            </td>
+                                <td style="border-bottom:1px solid black">
+                                    <a href="{{ path('make_reservation', { 'bookId': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
+                                </td>
                             {% endif %}
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
                             <td style="border-bottom:1px solid black">
-                                <a href="{{ path('checkout', { 'id': book.id }) }}">{{ 'book.checkout'|trans }}</a>
+                                <a href="{{ path('reservations_checkouts', { 'id': book.id }) }}">{{ 'book.reservations_and_checkouts'|trans }}</a>
                             </td>
-                        {% endif %}           
-                        <td>
-                            <form action={{ path('book_view', {'id': book.id}) }}>
-                                <input type="submit" value="{{ 'book.details'|trans }}" />
-                            </form> 
-                        </td>
+                        {% endif %}
                     </tr>                      
                 {% endfor %}
             </tbody>

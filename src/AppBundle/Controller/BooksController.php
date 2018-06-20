@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use AppBundle\Entity\Book;
-use AppBundle\Form\BookType;
 
+use AppBundle\Entity\Book;
+use AppBundle\Entity\Checkout;
+use AppBundle\Entity\Reservation;
+use AppBundle\Form\BookType;
 use AppBundle\Repository\BooksRepository;
 use AppBundle\Service\BooksManager;
 
@@ -26,15 +28,22 @@ class BooksController extends Controller
 
     protected $booksManager = null;
 
+    protected $checkoutsRepository = null;
+
+    protected $reservationsRepository = null;
+
+
     /**
      * BooksController constructor.
      *
      * @param \AppBundle\Repository\BooksRepository $booksRepository Books repository
      * @param \AppBundle\Service\BooksManager $booksManager Books manager service
      */
-    public function __construct(BooksRepository $booksRepository, BooksManager $booksManager)
+    public function __construct(BooksManager $booksManager)
     {
-        $this->booksRepository = $booksRepository;
+        $this->booksRepository = $booksManager->getRepository(Book::class);
+        $this->checkoutRepository = $booksManager->getRepository(Checkout::class);
+        $this->reservationsRepository = $booksManager->getRepository(Reservation::class);
         $this->booksManager = $booksManager;
     }
 
@@ -110,13 +119,15 @@ class BooksController extends Controller
     }
 
      /**
-     * @Route("/reservation/{id}", name="make_reservation")
+     * @Route("/reservation/make/{bookId}", name="make_reservation")
      */
-    public function makeReservationAction($id) {
-        $user = $this->getUser();
-        if ($user) {
-            $book = $this->booksRepository->findOneById($id);
-            $reservation = $this->booksManager->makeReservation($book, $user);
+    public function makeReservationAction(Request $request, $bookId) {
+        $userId = $request->query->get('userId');
+        if (!$userId) {
+            $userId = $this->getUser()->getId();
+        }
+        if ($bookId) {
+            $reservation = $this->booksManager->makeReservation($bookId, $userId);
             if ($reservation) {
                 $this->addFlash(
                     'notice',
@@ -128,26 +139,50 @@ class BooksController extends Controller
     }
 
      /**
-     * @Route("/reservation/cancel/{id}", name="cancel_reservation")
+     * @Route("/reservation/cancel/{bookId}", name="cancel_reservation")
      */
-    public function cancelReservationAction($id) {
-        $book = $this->booksRepository->findOneById($id);
-        $user = $this->getUser();
-        if ($this->booksManager->cancelReservation($book, $user)) {
+    public function cancelReservationAction(Request $request, $bookId) {
+        $userId = $request->query->get('userId');
+        if (!$userId) {
+            $userId = $this->getUser()->getId();
+        }
+        if ($this->booksManager->cancelReservation($bookId, $userId)) {
             $this->addFlash(
                 'notice',
                 'Rezerwacja anulowana!'
             );
         }
-        return $this->redirectToRoute('books_catalogue');
+        return $this->redirect($request->headers->get('referer'));
     }
 
     /**
-     * @Route("/admin/checkout/{id}", name="checkout")
+     * @Route("/reservation/checkout/{id}", name="checkout")
      */
-    public function checkoutAction($id) {
-        // TODO
-        return $this->redirectToRoute('books_catalogue');
+    public function checkoutAction(Request $request, Reservation $reservation) {
+        if ($this->booksManager->checkoutBook($reservation)) {
+            $this->addFlash(
+                'notice',
+                'Wypozyczono!'
+            );
+        }  
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
+     * @Route("/admin/reservations/{id}", name="reservations_checkouts")
+     */
+    public function reservationsAndCheckoutsAction($id) {
+        $book = $this->booksRepository->findOneById($id);
+        $reservations = $this->reservationsRepository->findByBookID($id);
+
+        return $this->render(
+            'books/reservations_checkouts.html.twig',
+            [
+                'book' => $book,
+                'reservations' => $reservations,
+                'booksManager' => $this->booksManager
+            ]
+        );
     }
 
     /**

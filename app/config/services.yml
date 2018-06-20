@@ -34,9 +34,6 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
     # app/config/services.yml
-    AppBundle\Repository\BooksRepository:
-        factory: 'doctrine.orm.entity_manager:getRepository'
-        arguments: ['AppBundle\Entity\Book']
 
     app.books_manager:
         class: AppBundle\Service\BooksManager

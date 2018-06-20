@@ -46,8 +46,18 @@
                 <source>book.details</source>
                 <target>Szczegóły</target>
             </trans-unit>
-            
-
+            <trans-unit id="book.make_reservation">
+                <source>book.make_reservation</source>
+                <target>Zarezerwuj</target>
+            </trans-unit>
+            <trans-unit id="book.cancel_reservation">
+                <source>book.cancel_reservation</source>
+                <target>Anuluj rezerwacje</target>
+            </trans-unit>
+            <trans-unit id="book.reservations_and_checkouts">
+                <source>book.reservations_and_checkouts</source>
+                <target>Rezerwacje i wypożyczenia</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

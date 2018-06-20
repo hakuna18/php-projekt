@@ -1,0 +1,60 @@
+{% include 'books/view.html.twig' %}
+
+{% block body %}
+
+<h2>{{ 'book.reservations_and_checkouts'|trans }}</h2>
+
+<h3>{{ 'book.reservations'|trans }}</h3>
+{% if reservations is defined and reservations|length %}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
+            </tr>
+            {% for reservation in reservations %}          
+                <tr>    
+                    <td style="border-bottom:1px solid black">{{ reservation.userID }}</td>
+                    <td style="border-bottom:1px solid black">{{ reservation.ReservationDate|date('Y-m-d') }}</td>
+                    {% if booksManager.reservationExpired(reservation) %}
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('cancel_reservation', { 'bookId': book.id, 'userId': reservation.userID }) }}">{{'book.cancel_reservation'|trans}}</a>
+                        </td>
+                    {% elseif booksManager.canCheckout(reservation.bookID, reservation.userID) %}
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('checkout', { 'id': reservation.id }) }}">{{'book.checkout'|trans}}</a>
+                        </td>
+                    {% endif %}
+                </tr>             
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        {{ 'message.empty_list'|trans }}
+    </div>
+{% endif %}
+
+<h3>{{ 'book.checkouts'|trans }}</h3>
+{% if checkouts is defined and checkouts|length %}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'checkout.date'|trans }}</th>
+            </tr>
+            {% for checkout in checkouts %}          
+                <tr>    
+                    <td style="border-bottom:1px solid black">{{ checkout.userID }}</td>
+                    <td style="border-bottom:1px solid black">{{ checkout.CheckoutDate|date('Y-m-d') }}</td>
+                </tr>             
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        {{ 'message.empty_list'|trans }}
+    </div>
+{% endif %}
+
+{% endblock %}

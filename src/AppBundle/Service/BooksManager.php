@@ -3,6 +3,7 @@
 // src/AppBundle/Service/BooksManager.php
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Book;
 use AppBundle\Entity\Checkout;
 use AppBundle\Entity\Reservation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,14 +23,18 @@ class BooksManager
         $this->entityManager = $em;
     }
 
-    public function makeReservation($book, $user) {
-        $availableCount = $book->getCurrentlyAvailable();
-        if ($availableCount > 0) {
-            $book->setCurrentlyAvailable($availableCount - 1);
+    public function getRepository($entityClass) {
+        return $this->entityManager->getRepository($entityClass);
+    }
+
+    public function makeReservation($bookId, $userId) {
+        $book = $this->getRepository(Book::class)->findOneById($bookId);
+        if ($this->canMakeReservation($book, $userId)) {
+            $book->setCurrentlyAvailable($book->getCurrentlyAvailable() - 1);
             
             $reservation = new Reservation();
-            $reservation->setUserID($user->getId());
-            $reservation->setBookID($book->getId());
+            $reservation->setUserID($userId);
+            $reservation->setBookID($bookId);
             $reservation->setReservationDate(new DateTime('now'));
 
             $this->entityManager->persist($reservation);
@@ -40,27 +45,34 @@ class BooksManager
         return null;
     }
 
-    public function hasReservation($book, $user) {
+    public function hasReservation($bookId, $userId) {
         $reservationsRepo = $this->entityManager->getRepository(Reservation::class);
         $reservation = $reservationsRepo->findBy(array(
-            'bookID' => $book->getId(),
-            'userID' => $user->getId()
+            'bookID' => $bookId,
+            'userID' => $userId
         ));
         return $reservation != null;
     }
 
-    public function canMakeReservation($book, $user) {
-        return !$this->hasReservation($book, $user) && $book->getCurrentlyAvailable() > 0;
+    public function reservationExpired($reservation) {
+        return time() - $reservation->getReservationDate()->getTimestamp() > 3600 * 24 * 3; // 3 dni
     }
 
-    public function cancelReservation($book, $user) {
+    public function canMakeReservation($book, $userId) {
+        return !$this->hasReservation($book->getId(), $userId) && $book->getCurrentlyAvailable() > 0;
+    }
+
+    public function cancelReservation($bookId, $userId) {
         $reservationsRepo = $this->entityManager->getRepository(Reservation::class);
         $reservation = $reservationsRepo->findBy(array(
-            'bookID' => $book->getId(),
-            'userID' => $user->getId()
+            'bookID' => $bookId,
+            'userID' => $userId
         )); 
         if ($reservation) {
+            // zaktualizuj tabele ksiazki
+            $book = $this->getRepository(Book::class)->findOneById($bookId);
             $book->setCurrentlyAvailable($book->getCurrentlyAvailable() + 1);
+            // usun rezerwacje
             $this->entityManager->remove($reservation[0]);
             $this->entityManager->flush();
             return true;
@@ -68,8 +80,14 @@ class BooksManager
         return false;
     }
 
-    public function lendBook($book, $user) {
-        
+    public function canCheckout($bookId, $userId) {
+        return $this->hasReservation($bookId, $userId);
+    }
+
+    public function checkoutBook($reservation) {
+        $this->entityManager->remove($reservation);
+        $this->entityManager->flush();
+        return true;
     }
 
     public function returnBook($book, $user) {
