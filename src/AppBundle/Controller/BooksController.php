@@ -57,7 +57,8 @@ class BooksController extends Controller
             'books/index.html.twig',
             [
                 'books' => $this->booksRepository->findByPattern($query),
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'booksManager' => $this->booksManager
             ]
         );
     }
@@ -114,6 +115,29 @@ class BooksController extends Controller
                 );
             }
         }
+        return $this->redirectToRoute('books_catalogue');
+    }
+
+     /**
+     * @Route("/reservation/cancel/{id}", name="cancel_reservation")
+     */
+    public function cancelReservationAction($id) {
+        $book = $this->booksRepository->findOneById($id);
+        $user = $this->getUser();
+        if ($this->booksManager->cancelReservation($book, $user)) {
+            $this->addFlash(
+                'notice',
+                'Rezerwacja anulowana!'
+            );
+        }
+        return $this->redirectToRoute('books_catalogue');
+    }
+
+    /**
+     * @Route("/admin/checkout/{id}", name="checkout")
+     */
+    public function checkoutAction($id) {
+        // TODO
         return $this->redirectToRoute('books_catalogue');
     }
 }

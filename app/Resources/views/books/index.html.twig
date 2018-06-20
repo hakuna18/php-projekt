@@ -34,8 +34,19 @@
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
+                            {% if booksManager.hasReservation(book, app.user) %}
+                                <td style="border-bottom:1px solid black">
+                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{ 'book.cancel_reservation'|trans }}</a>
+                                </td>
+                            {% elseif booksManager.canMakeReservation(book, app.user) %}
                             <td style="border-bottom:1px solid black">
-                                <a href="{{ path('make_reservation', { 'id': book.id }) }}">Zarezerwuj</a>
+                                <a href="{{ path('make_reservation', { 'id': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
+                            </td>
+                            {% endif %}
+                        {% endif %}
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <td style="border-bottom:1px solid black">
+                                <a href="{{ path('checkout', { 'id': book.id }) }}">{{ 'book.checkout'|trans }}</a>
                             </td>
                         {% endif %}
 

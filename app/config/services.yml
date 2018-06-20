@@ -38,6 +38,6 @@ services:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\Book']
 
-    AppBundle\Service\BooksManager:
+    app.books_manager:
         class: AppBundle\Service\BooksManager
         arguments: ['@doctrine.orm.entity_manager']
