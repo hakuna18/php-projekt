@@ -5,6 +5,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Book.
@@ -14,6 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  * )
  * @ORM\Entity(
  *     repositoryClass="AppBundle\Repository\BooksRepository"
+ * )
+ * @UniqueEntity(
+ *     fields={"name"}
  * )
  */
 class Book
@@ -61,6 +66,12 @@ class Book
      *     type="string",
      *     length=128,
      *     nullable=false,
+     * )
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="128",
      * )
      */
     protected $title;

@@ -32,6 +32,7 @@ security:
         - { path: ^/register, role: ROLE_ADMIN }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/add, role: ROLE_ADMIN }
         
             # activate different ways to authenticate
 

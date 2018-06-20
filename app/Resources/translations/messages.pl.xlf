@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="book.title">
+                <source>book.title</source>
+                <target>Tytuł</target>
+            </trans-unit>
+             <trans-unit id="book.author">
+                <source>book.author</source>
+                <target>Autor</target>
+            </trans-unit>
+             <trans-unit id="book.genre">
+                <source>book.genre</source>
+                <target>Gatunek</target>
+            </trans-unit>
+             <trans-unit id="book.publisher">
+                <source>book.publisher</source>
+                <target>Wydawnictwo</target>
+            </trans-unit>
+             <trans-unit id="book.year">
+                <source>book.year</source>
+                <target>Rok wydania</target>
+            </trans-unit>
+             <trans-unit id="book.totalAvailable">
+                <source>book.totalAvailable</source>
+                <target>Ilość wszystkich egzemplarzy</target>
+            </trans-unit>
+             <trans-unit id="book.currentlyAvailable">
+                <source>book.currentlyAvailable</source>
+                <target>Ilość dostępnych egzemplarzy</target>
+            </trans-unit>
+             <trans-unit id="Catalog">
+                <source>Catalog</source>
+                <target>Katalog</target>
+            </trans-unit>
+             <trans-unit id="title.book_add">
+                <source>title.book_add</source>
+                <target>Dodaj nową książkę</target>
+            </trans-unit>
+             <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="book.details">
+                <source>book.details</source>
+                <target>Szczegóły</target>
+            </trans-unit>
+            
+
+        </body>
+    </file>
+</xliff>

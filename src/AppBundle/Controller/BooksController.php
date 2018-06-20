@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use AppBundle\Entity\Book;
+use AppBundle\Form\BookType;
 
 use AppBundle\Repository\BooksRepository;
 use AppBundle\Service\BooksManager;
@@ -39,14 +41,21 @@ class BooksController extends Controller
     /**
      * Index action.
      *
+     * @param integer $page Current page number
+     * 
      * @Route(
      *     "/",
+     *     defaults={"page": 1},
      *     name="books_catalogue",
      * )
-     *
+     * @Route(
+     *     "/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="books_catalogue_paginated",
+     *)
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request, $page) {
         $query = $request->request->get('form')['search'];
 
         $form = $this->createFormBuilder(null)
@@ -139,5 +148,42 @@ class BooksController extends Controller
     public function checkoutAction($id) {
         // TODO
         return $this->redirectToRoute('books_catalogue');
+    }
+
+    /**
+     * Add action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/add",
+     *     name="books_add",
+     * )
+     * @Method({"GET", "POST"})
+     */
+    public function addAction(Request $request)
+    {
+        $book = new Book();
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->booksRepository->save($book);
+            $this->addFlash('success', 'message.created_successfully');
+
+            return $this->redirectToRoute('books_catalogue');
+        }
+
+        return $this->render(
+            'books/add.html.twig',
+            [
+                'book' => $book,
+                'form' => $form->createView(),
+            ]
+        );
     }
 }

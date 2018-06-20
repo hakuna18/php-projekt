@@ -27,7 +27,7 @@ class UsersController extends Controller
     // }
 
     /**
-     * @Route("/", name="users")
+     * @Route("/users", name="users")
      */
     public function indexAction(Request $request)
     {

@@ -27,7 +27,9 @@
                 {% for book in books %}
                     <tr>
                         <td>
+                            <a href={{ path('book_view', {'id': book.id}) }}>
                             <img src="{{ 'images/' ~ book.coverURI }}" width=100 height=150>
+                            </a>
                         </td>
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
@@ -36,7 +38,9 @@
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                             {% if booksManager.hasReservation(book, app.user) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{ 'book.cancel_reservation'|trans }}</a>
+                                    <form action={{ path('cancel_reservation', { 'id': book.id }) }}>
+                                        <input type="submit" value="{{ 'book.cancel_reservation'|trans }}"></input>
+                                    </form> 
                                 </td>
                             {% elseif booksManager.canMakeReservation(book, app.user) %}
                             <td style="border-bottom:1px solid black">
@@ -48,9 +52,13 @@
                             <td style="border-bottom:1px solid black">
                                 <a href="{{ path('checkout', { 'id': book.id }) }}">{{ 'book.checkout'|trans }}</a>
                             </td>
-                        {% endif %}
-
-                    </tr>             
+                        {% endif %}           
+                        <td>
+                            <form action={{ path('book_view', {'id': book.id}) }}>
+                                <input type="submit" value="{{ 'book.details'|trans }}" />
+                            </form> 
+                        </td>
+                    </tr>                      
                 {% endfor %}
             </tbody>
         </table>
@@ -59,5 +67,9 @@
             {{ 'message.empty_list'|trans }}
         </div>
     {% endif %}
-
+    {# ... #}
+    <div class="navigation text-center">
+            {{ pagerfanta(books, 'twitter_bootstrap3_translated', { routeName: ('books_catalogue_paginated') }) }}
+        </div>
+    {# ... #}
 {% endblock %}
