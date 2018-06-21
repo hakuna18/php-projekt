@@ -58,6 +58,48 @@
                 <source>book.reservations_and_checkouts</source>
                 <target>Rezerwacje i wypożyczenia</target>
             </trans-unit>
+            <trans-unit id="book.reservations">
+                <source>book.reservations</source>
+                <target>Rezerwacje</target>
+            </trans-unit>
+            <trans-unit id="book.checkouts">
+                <source>book.checkouts</source>
+                <target>Wypożyczenia</target>
+            </trans-unit>
+            <trans-unit id="message.empty_list">
+                <source>message.empty_list</source>
+                <target>Brak wyników</target>
+            </trans-unit>
+            <trans-unit id="Managing">
+                <source>Managing</source>
+                <target>Zarządzanie</target>
+            </trans-unit>
+             <trans-unit id="Users">
+                <source>Users</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="user.name">
+                <source>user.name</source>
+                <target>Imię</target>
+            </trans-unit>
+            <trans-unit id="user.surname">
+                <source>user.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+            <trans-unit id="user.email">
+                <source>Usersuser.email</source>
+                <target>Adres e-mail</target>
+            </trans-unit>
+            <trans-unit id="user.reservations">
+                <source>user.reservations</source>
+                <target>Rezerwacje użytkownika</target>
+            </trans-unit>
+            <trans-unit id="user.loans">
+                <source>user.loans</source>
+                <target>Wypożyczenia użytkownika</target>
+            </trans-unit>
+        
+        
         </body>
     </file>
 </xliff>

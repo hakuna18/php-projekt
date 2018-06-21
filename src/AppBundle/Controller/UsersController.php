@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Repository\UsersRepository;
+use FOS\UserBundle\Doctrine\UserManager;
 
 class UsersController extends Controller
 {
@@ -31,9 +32,10 @@ class UsersController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
         return $this->render(
             'users/index.html.twig',
-            ['users' => $this->usersRepository->findAll()]
+            ['users' => $userManager->findUsers()]
         );
     }
 
@@ -43,7 +45,7 @@ class UsersController extends Controller
     public function search($query) {
         return $this->render(
             'users/index.html.twig',
-            ['users' => $this->usersRepository->findByStr($query)]
+            ['users' => $userManager->findUsers()->findByStr($query)]
         );
     }
 }

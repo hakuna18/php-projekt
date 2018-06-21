@@ -5,6 +5,8 @@
 namespace UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -26,11 +28,114 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * User constructor.
-     */
     public function __construct()
     {
-        parent::__construct();
+        $this->reservations = new ArrayCollection();
+        $this->$loans = new ArrayCollection();
     }
+
+    /**
+     * Name.
+     *
+     * @var string $name
+     *
+     * @ORM\Column(
+     *     name="name",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="128",
+     * )
+     */
+    protected $name;
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+     /**
+     * Surname.
+     *
+     * @var string $surname
+     *
+     * @ORM\Column(
+     *     name="surname",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $surname;
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Reservations.
+     *
+     * @ORM\OneToMany(
+     * targetEntity="AppBundle\Entity\Reservation", 
+     * mappedBy="users"
+     * )
+     */
+    private $reservations;
+
+    // /**
+    //  * Loans.
+    //  *
+    //  * @ORM\OneToMany(
+    //  * targetEntity="AppBundle\Entity\Loan", 
+    //  * mappedBy="users"
+    //  * )
+    //  */
+    // private $loans;
+
+    
 }
