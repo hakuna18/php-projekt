@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.books'|trans }}
+    {{ 'book.preview'|trans }}
 {% endblock %}
 
 {% block body %}
 <dl>
   <dt>
       <img src="{{ 'images/' ~ book.coverURI }}" width=100 height=150>
+    
   </dt>
   <dt>{{ 'book.title'|trans }}</dt>
   <dd>{{ book.title }}</dd>
@@ -20,7 +21,8 @@
   <dt>{{ 'book.year'|trans }}</dt>
   <dd>{{ book.year }}</dd>
   
-</dl>
-{{ 'book.description' }}
 
+<dt> {{ 'book.description'|trans }} </dt>
+<dd> {{ book.description }} </dd>
+</dl>
 {% endblock %}

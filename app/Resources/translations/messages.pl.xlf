@@ -102,6 +102,23 @@
                 <source>book.description</source>
                 <target>Opis</target>
             </trans-unit>
+            <trans-unit id="form.login">
+                <source>form.login</source>
+                <target>Zaloguj</target>
+            </trans-unit>
+            <trans-unit id="form.logout">
+                <source>form.logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="form.search">
+                <source>form.search</source>
+                <target>Wyszukaj</target>
+            </trans-unit>
+            <trans-unit id="book.preview">
+                <source>book.preview</source>
+                <target>Podgląd książki</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
