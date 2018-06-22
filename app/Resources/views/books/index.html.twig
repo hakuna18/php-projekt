@@ -9,7 +9,7 @@
 
     {% for message in app.flashes('notice') %}
         <div class="flash-notice">
-            {{ message }}
+            {{ message|trans }}
         </div>
     {% endfor %}
 
@@ -39,19 +39,19 @@
                             <a href="{{ path('book_view', {'id': book.id}) }}">{{ 'book.details'|trans }}</a>
                         </td>
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
-                            {% if booksManager.hasReservation(book, app.user) %}
+                            {% if booksManager.hasReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('cancel_reservation', { 'bookId': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
                                 </td>
-                            {% elseif booksManager.canMakeReservation(book, app.user) %}
+                            {% elseif booksManager.canMakeReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('make_reservation', { 'bookId': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
+                                    <a href="{{ path('make_reservation', { 'id': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
                                 </td>
                             {% endif %}
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
                             <td style="border-bottom:1px solid black">
-                                <a href="{{ path('reservations_checkouts', { 'id': book.id }) }}">{{ 'book.reservations_and_checkouts'|trans }}</a>
+                                <a href="{{ path('reservations_loans', { 'id': book.id }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
                             </td>
                         {% endif %}
                     </tr>                      

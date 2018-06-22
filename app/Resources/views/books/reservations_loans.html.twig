@@ -1,0 +1,70 @@
+{% include 'books/view.html.twig' %}
+
+{% block body %}
+
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message|trans }}
+        </div>
+    {% endfor %}
+
+<h2>{{ 'book.reservations_and_loans'|trans }}</h2>
+
+<h3>{{ 'book.reservations'|trans }}</h3>
+{% if reservations is defined and reservations|length %}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
+            </tr>
+            {% for reservation in reservations %}          
+                <tr>    
+                    <td style="border-bottom:1px solid black">{{ reservation.user.id }}</td>
+                    <td style="border-bottom:1px solid black">
+                        <font color= {{ booksManager.reservationExpired(reservation)? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
+                    </td>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('cancel_reservation', { 'id': book.id, 'userId': reservation.user.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                    </td>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('make_loan', { 'id': reservation.id }) }}">{{'book.loan'|trans}}</a>
+                    </td>
+                </tr>             
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        {{ 'message.empty_list'|trans }}
+    </div>
+{% endif %}
+
+<h3>{{ 'book.loans'|trans }}</h3>
+{% if loans is defined and loans|length %}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
+            </tr>
+            {% for loan in loans %}          
+                <tr>    
+                    <td style="border-bottom:1px solid black">{{ loan.user.id }}</td>
+                    <td style="border-bottom:1px solid black">>
+                        <font color= {{ booksManager.loanExpired(loan)? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
+                    </td>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('book_return', { 'id': loan.id }) }}">{{'book.return'|trans}}</a>
+                    </td>
+                </tr>             
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        {{ 'message.empty_list'|trans }}
+    </div>
+{% endif %}
+
+{% endblock %}

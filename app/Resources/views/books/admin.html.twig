@@ -17,8 +17,8 @@
                         <th style="padding-bottom:20px">{{ 'book.genre'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'book.publisher'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'book.year'|trans }}</th>
-                        <th style="padding-bottom:20px">{{ 'book.totalAvailable'|trans }}</th>
-                        <th style="padding-bottom:20px">{{ 'book.currentlyAvailable'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.number_of_copies'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.copies_available'|trans }}</th>
                     </tr>
                 {% for book in books %}
                     
@@ -29,7 +29,7 @@
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
                         <td style="border-bottom:1px solid black">{{ book.publisher }}</td>
                         <td style="border-bottom:1px solid black">{{ book.year }}</td>
-                        <td style="border-bottom:1px solid black">{{ book.totalAvailable }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.numberOfCopies }}</td>
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
 
                     </tr>             

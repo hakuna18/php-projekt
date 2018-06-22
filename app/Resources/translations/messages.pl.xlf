@@ -22,12 +22,12 @@
                 <source>book.year</source>
                 <target>Rok wydania</target>
             </trans-unit>
-             <trans-unit id="book.totalAvailable">
-                <source>book.totalAvailable</source>
+             <trans-unit id="book.number_of_copies">
+                <source>book.number_of_copies</source>
                 <target>Ilość wszystkich egzemplarzy</target>
             </trans-unit>
-             <trans-unit id="book.currentlyAvailable">
-                <source>book.currentlyAvailable</source>
+             <trans-unit id="book.copies_available">
+                <source>book.copies_available</source>
                 <target>Ilość dostępnych egzemplarzy</target>
             </trans-unit>
              <trans-unit id="Catalog">
@@ -54,8 +54,8 @@
                 <source>book.cancel_reservation</source>
                 <target>Anuluj rezerwacje</target>
             </trans-unit>
-            <trans-unit id="book.reservations_and_checkouts">
-                <source>book.reservations_and_checkouts</source>
+            <trans-unit id="book.reservations_and_loans">
+                <source>book.reservations_and_loans</source>
                 <target>Rezerwacje i wypożyczenia</target>
             </trans-unit>
         </body>

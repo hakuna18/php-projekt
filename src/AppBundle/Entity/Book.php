@@ -7,6 +7,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Book.
@@ -44,19 +45,9 @@ class Book
      * )
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
+     /**
      * Title.
      *
      * @var string $title
@@ -74,7 +65,117 @@ class Book
      *     max="128",
      * )
      */
-    protected $title;
+    private $title;
+
+     /**
+     * Author.
+     *
+     * @var string $author
+     *
+     * @ORM\Column(
+     *     name="author",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    private $author;
+
+     /**
+     * Genre.
+     *
+     * @var string $genre
+     *
+     * @ORM\Column(
+     *     name="genre",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    private $genre;
+
+     /**
+     * URI to the cover.
+     *
+     * @var string $coverURI
+     *
+     * @ORM\Column(
+     *     name="CoverURI",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    private $coverURI;
+
+     /**
+     * Publisher.
+     *
+     * @var string $publisher
+     *
+     * @ORM\Column(
+     *     name="publisher",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    private $publisher;
+
+        /**
+     * Year.
+     *
+     * @var integer $year
+     *
+     * @ORM\Column(
+     *     name="year",
+     *     type="integer",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    private $year;
+
+     /**
+     * Total number of copies
+     *
+     * @var integer $numberOfCopies
+     *
+     * @ORM\Column(
+     *     name="NumberOfCopies",
+     *     type="integer",
+     *     nullable=false,
+     *     options={"unsigned"=true}
+     * )
+     */
+    private $numberOfCopies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
+     */
+    private $reservations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Loan", mappedBy="book")
+     */
+    private $loans;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+        $this->loans = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set title
@@ -99,21 +200,6 @@ class Book
     {
         return $this->title;
     }
-
-
-     /**
-     * Author.
-     *
-     * @var string $author
-     *
-     * @ORM\Column(
-     *     name="author",
-     *     type="string",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $author;
 
     /**
      * Set author
@@ -140,20 +226,6 @@ class Book
     }
 
     /**
-     * Genre.
-     *
-     * @var string $genre
-     *
-     * @ORM\Column(
-     *     name="genre",
-     *     type="string",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $genre;
-
-    /**
      * Set genre
      *
      * @param string $genre
@@ -176,20 +248,6 @@ class Book
     {
         return $this->genre;
     }
-
-    /**
-     * URI to the cover.
-     *
-     * @var string $coverURI
-     *
-     * @ORM\Column(
-     *     name="CoverURI",
-     *     type="string",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $coverURI;
 
     /**
      * Set cover URI
@@ -216,20 +274,6 @@ class Book
     }
 
     /**
-     * Publisher.
-     *
-     * @var string $publisher
-     *
-     * @ORM\Column(
-     *     name="publisher",
-     *     type="string",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $publisher;
-
-    /**
      * Set publisher
      *
      * @param string $publisher
@@ -252,20 +296,6 @@ class Book
     {
         return $this->publisher;
     }
-
-    /**
-     * Year.
-     *
-     * @var integer $year
-     *
-     * @ORM\Column(
-     *     name="year",
-     *     type="integer",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $year;
 
     /**
      * Set year
@@ -292,69 +322,47 @@ class Book
     }
 
      /**
-     * Total available count
+     * Set number of copies
      *
-     * @var integer $totalAvailable
-     *
-     * @ORM\Column(
-     *     name="TotalAvailable",
-     *     type="integer",
-     *     nullable=false,
-     *     options={"unsigned"=true}
-     * )
-     */
-    protected $totalAvailable;
-
-     /**
-     * Set total available count
-     *
-     * @param integer $totalAvailable
+     * @param integer $numberOfCopies
      *
      * @return Book
      */
-    public function setTotalAvailable($count)
+    public function setNumberOfCopies($count)
     {
-        $this->totalAvailable = $count;
+        $this->numberOfCopies = $count;
 
         return $this;
     }
 
     /**
-     * Get total available count
+     * Get number of copies
      *
      * @return integer
      */
-    public function getTotalAvailable()
+    public function getNumberOfCopies()
     {
-        return $this->totalAvailable;
+        return $this->numberOfCopies;
     }
 
      /**
-     * Currently available count
+     * Get list of reservations
      *
-     * @var integer $currentlyAvailable
-     *
-     * @ORM\Column(
-     *     name="CurrentlyAvailable",
-     *     type="integer",
-     *     nullable=false,
-     *     options={"unsigned"=true}
-     * )
+     * @return ArrayCollection
      */
-    protected $currentlyAvailable;
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
 
      /**
-     * Set currently available count
+     * Get list of reservations
      *
-     * @param integer $totatAvailable
-     *
-     * @return Book
+     * @return ArrayCollection
      */
-    public function setCurrentlyAvailable($count)
+    public function getLoans()
     {
-        $this->currentlyAvailable = $count;
-
-        return $this;
+        return $this->loans;
     }
 
     /**
@@ -364,6 +372,6 @@ class Book
      */
     public function getCurrentlyAvailable()
     {
-        return $this->currentlyAvailable;
+        return $this->getNumberOfCopies() - $this->loans->count() - $this->reservations->count();
     }
 }

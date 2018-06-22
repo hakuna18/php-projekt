@@ -29,7 +29,7 @@ class LoadBookData extends Fixture
                 'coverURI' => 'swiat-dysku-kolor-magii-terry-pratchett.jpg',
                 'publisher' => 'Prószyński i S-ka',
                 'year' => 1994,
-                'totalAvailable' => 10
+                'numberOfCopies' => 10
             ],
             [
                 'title' => 'Harry Potter: Kamien filozoficzny',
@@ -38,7 +38,7 @@ class LoadBookData extends Fixture
                 'coverURI' => 'kamien-filozoficzny.jpg',
                 'publisher' => 'Media Rodzina',
                 'year' => 2016,
-                'totalAvailable' => 3
+                'numberOfCopies' => 3
             ],
             [
                 'title' => 'Solaris',
@@ -47,7 +47,7 @@ class LoadBookData extends Fixture
                 'publisher' => 'Wydawnictwo Literackie',
                 'year' => 2012,
                 'coverURI' => 'solaris.jpg',
-                'totalAvailable' => 1
+                'numberOfCopies' => 1
             ],
         ];
 
@@ -59,8 +59,7 @@ class LoadBookData extends Fixture
             $book->setCoverURI($item['coverURI']);
             $book->setPublisher($item['publisher']);
             $book->setYear($item['year']);
-            $book->setTotalAvailable($item['totalAvailable']);
-            $book->setCurrentlyAvailable($item['totalAvailable']);
+            $book->setNumberOfCopies($item['numberOfCopies']);
      
             $manager->persist($book);
         }

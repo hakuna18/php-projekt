@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
 
 /**
- * Reservation
+ * Loan
  *
- * @ORM\Table(name="reservation")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ReservationRepository")
+ * @ORM\Table(name="loan")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LoanRepository")
  */
-class Reservation
+class Loan
 {
     /**
      * @var int
@@ -25,25 +25,25 @@ class Reservation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="loanDate", type="datetime")
      */
-    private $creationDate;
+    private $loanDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="loans")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Book", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="Book", inversedBy="loans")
      * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */
     private $book;
 
     public function __construct()
     {
-        $this->creationDate = new DateTime('now');
+        $this->loanDate = new DateTime('now');
     }
 
     /**
@@ -57,13 +57,13 @@ class Reservation
     }
 
     /**
-     * Get creationDate
+     * Get loanDate
      *
      * @return \DateTime
      */
-    public function getCreationDate()
+    public function getLoanDate()
     {
-        return $this->creationDate;
+        return $this->loanDate;
     }
 
     /**
@@ -71,7 +71,7 @@ class Reservation
      *
      * @param \stdClass $user
      *
-     * @return Reservation
+     * @return Loan
      */
     public function setUser($user)
     {
@@ -95,7 +95,7 @@ class Reservation
      *
      * @param \stdClass $book
      *
-     * @return Reservation
+     * @return Loan
      */
     public function setBook($book)
     {
