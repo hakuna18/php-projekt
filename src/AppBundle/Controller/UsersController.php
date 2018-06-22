@@ -8,27 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Repository\UsersRepository;
 use FOS\UserBundle\Doctrine\UserManager;
 
+use UserBundle\Entity\User;
+
 class UsersController extends Controller
 {
-    // /**
-    //  * Users repository.
-    //  *
-    //  * @var \AppBundle\Repository\UsersRepository|null Users repository
-    //  */
-    // protected $usersRepository = null;
-
-    // /**
-    //  * UsersController constructor.
-    //  *
-    //  * @param \AppBundle\Repository\UsersRepository $usersRepository Users repository
-    //  */
-    // public function __construct(UsersRepository $usersRepository)
-    // {
-    //     $this->usersRepository = $usersRepository;
-    // }
-
     /**
-     * @Route("/users", name="users")
+     * @Route("/admin/users", name="users")
      */
     public function indexAction(Request $request)
     {
@@ -37,6 +22,33 @@ class UsersController extends Controller
             'users/index.html.twig',
             ['users' => $userManager->findUsers()]
         );
+    }
+
+    /**
+     * @Route("/user/panel", name="user_panel")
+     */
+    public function panelAction(Request $request)
+    {
+        if ($this->getUser()) {
+            return $this->render('users/panel.html.twig', ["user" => $this->getUser()]);
+        } else {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+    }
+
+    /**
+     * @Route("/user/delete/{id}", name="user_delete")
+     */
+    public function deleteAction(Request $request, User $user)
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+        $userManager->deleteUser($user);
+
+        $this->addFlash(
+            'notice',
+            'user_deleted.confirmation'
+        );
+        $this->redirectToRoute('books_catalogue');
     }
 
     /**

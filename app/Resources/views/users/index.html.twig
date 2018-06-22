@@ -1,36 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block body %}
-  
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-       
-
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashBag.all %}
-                {% for message in messages %}
-                    <div class="{{ type }}">
-                        {{ message|trans({}, 'FOSUserBundle') }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
 
    
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-    
+{% block fos_user_content %}
+{% endblock fos_user_content %}
 
 {% block title %}
-    {{ 'Managing'|trans }}
+    {% include 'login_panel.html.twig' %}
+    {{ 'page.users'|trans }}
 {% endblock %}
 
-    <h1>{{ 'Users'|trans }}</h1>
+{% block body %}
+    <h1>{{ 'page.users'|trans }}</h1>
     
     {% if users is defined and users|length %}
         <table class="table table-striped">
