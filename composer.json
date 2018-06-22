@@ -30,9 +30,7 @@
         "symfony/symfony": "3.4.*",
         "twig/twig": "^1.0||^2.0",
         "twitter/bootstrap": "^4.1",
-        "white-october/pagerfanta-bundle": "^1.2",
-        "twitter/bootstrap": "^4.0",
-        "components/jquery": "^3.2"
+        "white-october/pagerfanta-bundle": "^1.2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",

@@ -65,6 +65,7 @@ class LoadBookData extends Fixture
             $book->setPublisher($item['publisher']);
             $book->setYear($item['year']);
             $book->setNumberOfCopies($item['numberOfCopies']);
+            $book->setDescription($item['description']);
      
             $manager->persist($book);
         }

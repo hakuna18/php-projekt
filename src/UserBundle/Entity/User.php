@@ -7,6 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -31,7 +32,12 @@ class User extends BaseUser
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
-        $this->$loans = new ArrayCollection();
+        $this->loans = new ArrayCollection();
+
+        $this->name = "";
+        $this->surname = "";
+
+        parent::__construct();
     }
 
     /**
