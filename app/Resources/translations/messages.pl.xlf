@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="book.cancel_reservation">
                 <source>book.cancel_reservation</source>
-                <target>Anuluj rezerwacje</target>
+                <target>Anuluj rezerwację</target>
             </trans-unit>
             <trans-unit id="book.reservations_and_loans">
                 <source>book.reservations_and_loans</source>
@@ -97,9 +97,11 @@
             <trans-unit id="user.loans">
                 <source>user.loans</source>
                 <target>Wypożyczenia użytkownika</target>
+            </trans-unit>      
+            <trans-unit id="book.description">
+                <source>book.description</source>
+                <target>Opis</target>
             </trans-unit>
-        
-        
         </body>
     </file>
 </xliff>

@@ -152,6 +152,20 @@ class Book
     private $numberOfCopies;
 
     /**
+     * Description.
+     *
+     * @var string $description
+     *
+     * @ORM\Column(
+     *     name="description",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $description;
+
+    /**
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
      */
     private $reservations;
@@ -373,5 +387,29 @@ class Book
     public function getCurrentlyAvailable()
     {
         return $this->getNumberOfCopies() - $this->loans->count() - $this->reservations->count();
+    }
+    
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Book
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

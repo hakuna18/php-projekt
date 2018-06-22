@@ -16,6 +16,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "components/jquery": "^3.3",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "^2.1",
@@ -28,7 +29,10 @@
         "symfony/swiftmailer-bundle": "^2.6.4",
         "symfony/symfony": "3.4.*",
         "twig/twig": "^1.0||^2.0",
-        "white-october/pagerfanta-bundle": "^1.2"
+        "twitter/bootstrap": "^4.1",
+        "white-october/pagerfanta-bundle": "^1.2",
+        "twitter/bootstrap": "^4.0",
+        "components/jquery": "^3.2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
