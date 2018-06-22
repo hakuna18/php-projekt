@@ -1,8 +1,8 @@
-{% block title %}
-    {{ 'book.reservations_and_loans'|trans }}
-{% endblock %}
+{% extends 'base.html.twig' %}
 
-{% include 'books/view.html.twig' %}
+{% block title %}
+    {{ 'page.admin.view_user'|trans }}
+{% endblock %}
 
 {% block body %}
 {% include 'login_panel.html.twig' %}
@@ -13,21 +13,47 @@
         </div>
     {% endfor %}
 
+<h2>{{ 'user_details'|trans }}</h2>
+        <table class="table table-striped">
+            <tbody>
+                    <tr>
+                        <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'user.email'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'user.last_login'|trans }}</th>
+                    </tr>
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.lastLogin|date('Y-m-d') }}</td>
+                    </tr>
+            </tbody>
+        </table>
+
+        <form action="{{ path('user_delete', {'id': user.id}) }}">
+            {% if user.loans|length %}
+                <input type="submit" style="color:red" value={{'info.cant_delete_account_has_loans'|trans}} disabled/>
+            {% else %}
+                <input type="submit" style="color:red" value={{'action.user_delete'|trans}}/>
+            {% endif %}
+        </form>
+
 <h2>{{ 'book.reservations_and_loans'|trans }}</h2>
 
 <h3>{{ 'book.reservations'|trans }}</h3>
-{% if reservations is defined and reservations|length %}
+{% if user.reservations is defined and user.reservations|length %}
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
             </tr>
-            {% for reservation in reservations %}          
-                <tr>    
-                    <td style="border-bottom:1px solid black">{{ reservation.user.name }}</td>
-                    <td style="border-bottom:1px solid black">{{ reservation.user.surname }}</td>
+            {% for reservation in user.reservations %}          
+                <tr>
+                    <td style="border-bottom:1px solid black">
+                         <a href="{{ path('admin_book_view', { 'id': reservation.book.id }) }}">{{ reservation.book.title }}</a>
+                    </td>
                     <td style="border-bottom:1px solid black">
                         <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                     </td>
@@ -48,18 +74,18 @@
 {% endif %}
 
 <h3>{{ 'book.loans'|trans }}</h3>
-{% if loans is defined and loans|length %}
+{% if user.loans is defined and user.loans|length %}
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
             </tr>
-            {% for loan in loans %}          
+            {% for loan in user.loans %}          
                 <tr>    
-                    <td style="border-bottom:1px solid black">{{ loan.user.name }}</td>
-                    <td style="border-bottom:1px solid black">{{ loan.user.surname }}</td>
+                    <td style="border-bottom:1px solid black">
+                         <a href="{{ path('admin_book_view', { 'id': loan.book.id }) }}">{{ loan.book.title }}</a>
+                    </td>
                     <td style="border-bottom:1px solid black">>
                         <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                     </td>

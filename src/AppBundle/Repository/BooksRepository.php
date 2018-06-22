@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use AppBundle\Entity\Book;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * BooksRepository
@@ -27,12 +28,12 @@ class BooksRepository extends EntityRepository
             )
                 array_push($result, $book);
         }
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryAll(), false));
+
+        $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(Book::NUM_ITEMS);
         $paginator->setCurrentPage($page);
 
         return $paginator;
-        return $result;
     }
      /**
      * Query all entities.

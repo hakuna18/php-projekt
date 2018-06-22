@@ -11,9 +11,6 @@ use \Datetime;
 
 class BooksManager
 {
-    private static $RESERVATION_DAYS_LIMIT = 3;
-    private static $LOAN_DAYS_LIMIT = 30;
-
     protected $entityManager = null;
 
     /**
@@ -48,10 +45,6 @@ class BooksManager
         return $this->findReservation($user, $book) != null;
     }
 
-    public function reservationExpired($reservation) {
-        return time() - $reservation->getCreationDate()->getTimestamp() > 3600 * 24 * BooksManager::$RESERVATION_DAYS_LIMIT;
-    }
-
     public function canMakeReservation($user, $book) {
         return !$this->hasReservation($user, $book) && $book->getCurrentlyAvailable() > 0;
     }
@@ -68,10 +61,6 @@ class BooksManager
 
     public function canLoan($user, $book) {
         return $this->hasReservation($user, $book);
-    }
-
-    public function loanExpired($loan) {
-        return time() - $loan->getLoanDate()->getTimestamp() > 3600 * 24 * BooksManager::$LOAN_DAYS_LIMIT;
     }
 
     public function makeALoan($reservation) {

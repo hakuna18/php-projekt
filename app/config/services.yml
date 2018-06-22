@@ -38,3 +38,12 @@ services:
     app.books_manager:
         class: AppBundle\Service\BooksManager
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.users_manager:
+        class: AppBundle\Service\UsersManager
+        arguments: ['@doctrine.orm.entity_manager', '@fos_user.user_manager']
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }

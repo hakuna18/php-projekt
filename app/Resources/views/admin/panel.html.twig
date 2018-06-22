@@ -1,38 +1,40 @@
-{% block title %}
-    {{ 'book.reservations_and_loans'|trans }}
-{% endblock %}
+{% extends 'base.html.twig' %}
 
-{% include 'books/view.html.twig' %}
+{% block title %}
+    {{ 'page.admin_panel'|trans }}
+{% endblock %}
 
 {% block body %}
 {% include 'login_panel.html.twig' %}
 
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message|trans }}
-        </div>
-    {% endfor %}
+    <h1>{{ 'page.admin_panel'|trans }}</h1>
 
-<h2>{{ 'book.reservations_and_loans'|trans }}</h2>
+    <h2>{{ 'book.reservations_and_loans'|trans }}</h2>
 
-<h3>{{ 'book.reservations'|trans }}</h3>
-{% if reservations is defined and reservations|length %}
+    <h3>{{ 'book.reservations'|trans }}</h3>
+    {% if reservations is defined and reservations|length %}
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.name'|trans }} {{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
             </tr>
             {% for reservation in reservations %}          
                 <tr>    
-                    <td style="border-bottom:1px solid black">{{ reservation.user.name }}</td>
-                    <td style="border-bottom:1px solid black">{{ reservation.user.surname }}</td>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('admin_user_view', { 'id': reservation.user.id }) }}">
+                            {{ reservation.user.name }} {{ reservation.user.surname }}
+                        </a>
+                    </td>
+                    <td style="border-bottom:1px solid black">
+                         <a href="{{ path('admin_book_view', { 'id': reservation.book.id }) }}">{{ reservation.book.title }}</a>
+                    </td>
                     <td style="border-bottom:1px solid black">
                         <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('cancel_reservation', { 'id': book.id, 'userId': reservation.user.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                        <a href="{{ path('cancel_reservation', { 'id': reservation.book.id, 'userId': reservation.user.id }) }}">{{'book.cancel_reservation'|trans}}</a>
                     </td>
                     <td style="border-bottom:1px solid black">
                         <a href="{{ path('make_loan', { 'id': reservation.id }) }}">{{'book.loan'|trans}}</a>
@@ -52,15 +54,21 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.name'|trans }} {{ 'user.surname'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
             </tr>
             {% for loan in loans %}          
                 <tr>    
-                    <td style="border-bottom:1px solid black">{{ loan.user.name }}</td>
-                    <td style="border-bottom:1px solid black">{{ loan.user.surname }}</td>
-                    <td style="border-bottom:1px solid black">>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('admin_user_view', { 'id': loan.user.id }) }}">
+                            {{ loan.user.name }} {{ loan.user.surname }}
+                        </a>
+                    </td>
+                    <td style="border-bottom:1px solid black">
+                        <a href="{{ path('admin_book_view', { 'id': loan.book.id }) }}">{{ loan.book.title }}</a>
+                    </td>
+                    <td style="border-bottom:1px solid black">
                         <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                     </td>
                     <td style="border-bottom:1px solid black">

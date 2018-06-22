@@ -8,12 +8,20 @@
                 {% endfor %}
             {% endfor %}
         {% endif %}
-
+            {% if app.request.pathinfo != path('books_catalogue') %}
+                <a href="{{ path('books_catalogue') }}">{{ 'books_catalogue'|trans }}</a>
+                |
+            {% endif %}
+            
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-                |
-                <a href="{{ path('user_panel') }}">{{ 'page.user_panel'|trans }}</a>
+                |              
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('admin_panel') }}">{{ 'page.admin_panel'|trans }}</a>
+                {% else %}
+                    <a href="{{ path('user_panel') }}">{{ 'page.user_panel'|trans }}</a>
+                 {% endif %}
             {% else %}
                 <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}

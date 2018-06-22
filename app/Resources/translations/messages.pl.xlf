@@ -30,8 +30,8 @@
                 <source>book.copies_available</source>
                 <target>Ilość dostępnych egzemplarzy</target>
             </trans-unit>
-             <trans-unit id="Catalog">
-                <source>Catalog</source>
+             <trans-unit id="books.catalogue">
+                <source>books.catalogue</source>
                 <target>Katalog</target>
             </trans-unit>
              <trans-unit id="title.book_add">

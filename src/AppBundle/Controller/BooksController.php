@@ -105,15 +105,48 @@ class BooksController extends Controller
     }
     
      /**
-     * @Route("/admin", name="admin_panel")
+     * @Route("/admin/panel", name="admin_panel")
      */
-    public function adminAction(Request $request) {
+    public function adminPanelAction(Request $request) {
+        $reservations =  $this->reservationsRepository->findAll();
+        $loans = $this->loansRepository->findAll();
+
+        return $this->render(
+            'admin/panel.html.twig',
+            [
+                'reservations' => $reservations,
+                'loans' => $loans
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/books", name="admin_books")
+     */
+    public function adminBooksAction(Request $request) {
         $books = $this->booksRepository->findAll();
 
         return $this->render(
             'books/admin.html.twig',
             [
                 'books' => $books
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/books/{id}", name="admin_book_view")
+     */
+    public function adminBookViewAction(Book $book) {
+        $reservations = $book->getReservations();
+        $loans = $book->getLoans();
+
+        return $this->render(
+            'books/reservations_loans.html.twig',
+            [
+                'book' => $book,
+                'reservations' => $reservations,
+                'loans' => $loans
             ]
         );
     }
@@ -153,7 +186,7 @@ class BooksController extends Controller
     }
 
     /**
-     * @Route("/loan/{id}", name="make_loan")
+     * @Route("/loan/make/{id}", name="make_loan")
      */
     public function loanAction(Request $request, Reservation $reservation) {
         if ($this->booksManager->makeALoan($reservation)) {
@@ -176,24 +209,6 @@ class BooksController extends Controller
             );
         }  
         return $this->redirect($request->headers->get('referer'));
-    }
-
-    /**
-     * @Route("/admin/reservations/{id}", name="reservations_loans")
-     */
-    public function reservationsAndLoansAction(Book $book) {
-        $reservations = $book->getReservations();
-        $loans = $book->getLoans();
-
-        return $this->render(
-            'books/reservations_loans.html.twig',
-            [
-                'book' => $book,
-                'reservations' => $reservations,
-                'loans' => $loans,
-                'booksManager' => $this->booksManager
-            ]
-        );
     }
 
     /**

@@ -8,7 +8,7 @@
 {% include 'login_panel.html.twig' %}
     <h1>{{ 'page.user_panel'|trans }}</h1>
     
-    <h2>{{ 'page.user_panel.user_details'|trans }}</h2>
+    <h2>{{ 'user_details'|trans }}</h2>
     {{ 'user.name'|trans }}
     <b>{{ user.name }}</b>
     {{ 'user.surname'|trans }}
@@ -21,8 +21,8 @@
         <input type="submit" value={{ 'action.change_password'|trans }}/>
     </form>
     <form action="{{ path('user_delete', {'id': user.id}) }}">
-        {% if user.reservations|length %}
-            <input type="submit" style="color:red" value={{'info.cant_delete_account_has_loans'|trans}} enabled=false/>
+        {% if user.loans|length %}
+            <input type="submit" style="color:red" value={{'info.cant_delete_account_has_loans'|trans}} disabled/>
         {% else %}
             <input type="submit" style="color:red" value={{'action.user_delete'|trans}}/>
         {% endif %}
@@ -42,10 +42,10 @@
                             <a href="{{ path('book_view', { 'id': reservation.book.id }) }}">{{ reservation.book.title }}</a>
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <font color= {{ booksManager.reservationExpired(reservation)? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
+                            <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                            <a href="{{ path('cancel_reservation', { 'id': reservation.book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
                         </td>
                     </tr>             
                 {% endfor %}

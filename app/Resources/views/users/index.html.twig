@@ -5,32 +5,36 @@
 {% endblock fos_user_content %}
 
 {% block title %}
-    {% include 'login_panel.html.twig' %}
     {{ 'page.users'|trans }}
 {% endblock %}
 
 {% block body %}
+    {% include 'login_panel.html.twig' %}
     <h1>{{ 'page.users'|trans }}</h1>
+
+    {{ form_start(form, { method: 'post', action: url('admin_users') }) }}   
+    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query'}}) }}
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
+    {{ form_end(form) }}
     
     {% if users is defined and users|length %}
         <table class="table table-striped">
             <tbody>
                     <tr>
-                        <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
-                        <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'user.name'|trans }} {{ 'user.surname'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'user.email'|trans }}</th>
-                        <th style="padding-bottom:20px">{{ 'user.reservations'|trans }}</th>
-                        <th style="padding-bottom:20px">{{ 'user.loans'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'user.last_login'|trans }}</th>
                     </tr>
                 {% for user in users %}
-                    
-                    <tr>
-                       
-                        <td style="border-bottom:1px solid black">{{ user.name }}</td>
-                        <td style="border-bottom:1px solid black">{{ user.surname }}</td>
-                        <td style="border-bottom:1px solid black">{{ user.email }}</td>
-                        <td style="border-bottom:1px solid black">{{ user.reservations }}</td>
-                        <td style="border-bottom:1px solid black">{{ user.loans }}</td>
+
+                    <tr>                     
+                     <td style="border-bottom:1px solid black">
+                        <a href="{{ path('admin_user_view', { 'id': user.id }) }}">
+                            {{ user.name }} {{ user.surname }}
+                        </a>
+                    </td>
+                    <td style="border-bottom:1px solid black">{{ user.email }}</td>
+                    <td style="border-bottom:1px solid black">{{ user.lastLogin|date('Y-m-d') }}</td>
                     </tr>             
                 {% endfor %}
             </tbody>

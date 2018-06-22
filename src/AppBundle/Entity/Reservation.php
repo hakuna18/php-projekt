@@ -13,6 +13,8 @@ use \DateTime;
  */
 class Reservation
 {
+    private static $RESERVATION_DAYS_LIMIT = 3;
+
     /**
      * @var int
      *
@@ -44,6 +46,10 @@ class Reservation
     public function __construct()
     {
         $this->creationDate = new DateTime('now');
+    }
+
+    public function isExpired() {
+        return time() - $this->creationDate->getTimestamp() > 3600 * 24 * Reservation::$RESERVATION_DAYS_LIMIT;
     }
 
     /**

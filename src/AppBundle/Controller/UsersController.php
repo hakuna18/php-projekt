@@ -5,30 +5,58 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Repository\UsersRepository;
 use FOS\UserBundle\Doctrine\UserManager;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
+use AppBundle\Repository\UsersRepository;
 use UserBundle\Entity\User;
+use AppBundle\Service\UsersManager;
 
 class UsersController extends Controller
 {
-    /**
-     * @Route("/admin/users", name="users")
-     */
-    public function indexAction(Request $request)
+    private $usersManager = null;
+
+    public function __construct(UsersManager $usersManager)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
+        $this->usersManager = $usersManager;
+    }
+    /**
+     * @Route("/admin/users", name="admin_users")
+     */
+    public function adminIndexAction(Request $request) {
+        $searchQuery = $request->request->get('form')['search'];
+        $matchedUsers = $this->usersManager->findUserByPattern($searchQuery);
+
+        $searchQuery = $request->request->get('form')['search'];
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
+
         return $this->render(
             'users/index.html.twig',
-            ['users' => $userManager->findUsers()]
+            [
+                'users' => $matchedUsers,
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+    /**
+     * @Route("/admin/users/{id}", name="admin_user_view")
+     */
+    public function adminViewAction(Request $request, User $user) {
+        return $this->render(
+            'admin/user.html.twig',
+            ['user' => $user]
         );
     }
 
     /**
      * @Route("/user/panel", name="user_panel")
      */
-    public function panelAction(Request $request)
-    {
+    public function panelAction(Request $request) {
         if ($this->getUser()) {
             return $this->render('users/panel.html.twig', ["user" => $this->getUser()]);
         } else {
@@ -39,25 +67,14 @@ class UsersController extends Controller
     /**
      * @Route("/user/delete/{id}", name="user_delete")
      */
-    public function deleteAction(Request $request, User $user)
-    {
-        $userManager = $this->container->get('fos_user.user_manager');
+    public function deleteAction(Request $request, User $user) {
+        $userManager = $this->container->get('user.users_manager');
         $userManager->deleteUser($user);
-
+    
         $this->addFlash(
             'notice',
             'user_deleted.confirmation'
         );
-        $this->redirectToRoute('books_catalogue');
-    }
-
-    /**
-     * @Route("/?search={query}", name="users_search")
-     */
-    public function search($query) {
-        return $this->render(
-            'users/index.html.twig',
-            ['users' => $userManager->findUsers()->findByStr($query)]
-        );
+        return $this->redirectToRoute('books_catalogue');
     }
 }

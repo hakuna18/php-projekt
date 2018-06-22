@@ -123,7 +123,7 @@ class Book
      */
     private $publisher;
 
-        /**
+    /**
      * Year.
      *
      * @var integer $year
@@ -159,11 +159,11 @@ class Book
      * @ORM\Column(
      *     name="description",
      *     type="string",
-     *     length=128,
+     *     length=1025,
      *     nullable=false,
      * )
      */
-    protected $description;
+   private $description;
 
     /**
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
