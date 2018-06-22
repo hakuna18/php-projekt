@@ -13,12 +13,21 @@
         </div>
     {% endfor %}
 
+    {% if app.user %}
+        <form action="{{ path('fos_user_security_logout') }}">
+            <input type="submit" value={{ 'form.logout'|trans }} class="btn btn-default pull-right" style="float:right"/>
+        </form>
+    {% else %}
+        <form action="{{ path('fos_user_security_login') }}">
+            <input type="submit" value={{ 'form.login'|trans }} class="btn btn-default pull-right" style="float:right"/>
+        </form>
+    {% endif %}
+
     <h1>{{ 'Katalog' }}</h1>
 
-    {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}
-    {{ 
-        form_widget(form.search, {'attr': {'class': 'form-control search-query'}})
-    }}
+    {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}   
+    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query'}}) }}
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
     {{ form_end(form) }}
     
     {% if books is defined and books|length %}

@@ -127,15 +127,15 @@ class User extends BaseUser
      */
     private $reservations;
 
-    // /**
-    //  * Loans.
-    //  *
-    //  * @ORM\OneToMany(
-    //  * targetEntity="AppBundle\Entity\Loan", 
-    //  * mappedBy="users"
-    //  * )
-    //  */
-    // private $loans;
+    /**
+     * Loans.
+     *
+     * @ORM\OneToMany(
+     * targetEntity="AppBundle\Entity\Loan", 
+     * mappedBy="users"
+     * )
+     */
+    private $loans;
 
     
 }

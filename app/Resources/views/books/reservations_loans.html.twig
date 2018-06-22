@@ -15,12 +15,14 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
             </tr>
             {% for reservation in reservations %}          
                 <tr>    
-                    <td style="border-bottom:1px solid black">{{ reservation.user.id }}</td>
+                    <td style="border-bottom:1px solid black">{{ reservation.user.name }}</td>
+                    <td style="border-bottom:1px solid black">{{ reservation.user.surname }}</td>
                     <td style="border-bottom:1px solid black">
                         <font color= {{ booksManager.reservationExpired(reservation)? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                     </td>
@@ -45,12 +47,14 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="padding-bottom:20px">{{ 'user.id'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
             </tr>
             {% for loan in loans %}          
                 <tr>    
-                    <td style="border-bottom:1px solid black">{{ loan.user.id }}</td>
+                    <td style="border-bottom:1px solid black">{{ loan.user.name }}</td>
+                    <td style="border-bottom:1px solid black">{{ loan.user.surname }}</td>
                     <td style="border-bottom:1px solid black">>
                         <font color= {{ booksManager.loanExpired(loan)? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                     </td>
