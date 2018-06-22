@@ -128,20 +128,38 @@ class User extends BaseUser
      *
      * @ORM\OneToMany(
      * targetEntity="AppBundle\Entity\Reservation", 
-     * mappedBy="users"
+     * mappedBy="user"
      * )
      */
     private $reservations;
+
+     /**
+     * Get reservations
+     *
+     * @return ArrayCollection
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
 
     /**
      * Loans.
      *
      * @ORM\OneToMany(
      * targetEntity="AppBundle\Entity\Loan", 
-     * mappedBy="users"
+     * mappedBy="user"
      * )
      */
     private $loans;
 
-    
+     /**
+     * Get reservations
+     *
+     * @return ArrayCollection
+     */
+    public function getLoans()
+    {
+        return $this->loans;
+    }  
 }

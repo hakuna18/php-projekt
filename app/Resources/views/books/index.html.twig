@@ -1,27 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {# {{ 'title.books'|trans }} #}
-    {{ 'Katalog' }}
+    {{ 'books.catalogue'|trans }}
 {% endblock %}
 
 {% block body %}
+{% include 'login_panel.html.twig' %}
 
     {% for message in app.flashes('notice') %}
         <div class="flash-notice">
             {{ message|trans }}
         </div>
     {% endfor %}
-
-    {% if app.user %}
-        <form action="{{ path('fos_user_security_logout') }}">
-            <input type="submit" value={{ 'form.logout'|trans }} class="btn btn-default pull-right" style="float:right"/>
-        </form>
-    {% else %}
-        <form action="{{ path('fos_user_security_login') }}">
-            <input type="submit" value={{ 'form.login'|trans }} class="btn btn-default pull-right" style="float:right"/>
-        </form>
-    {% endif %}
 
     <h1>{{ 'Katalog' }}</h1>
 

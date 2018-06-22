@@ -62,8 +62,8 @@
                 <source>book.reservations</source>
                 <target>Rezerwacje</target>
             </trans-unit>
-            <trans-unit id="book.checkouts">
-                <source>book.checkouts</source>
+            <trans-unit id="book.loans">
+                <source>book.loans</source>
                 <target>Wypożyczenia</target>
             </trans-unit>
             <trans-unit id="message.empty_list">

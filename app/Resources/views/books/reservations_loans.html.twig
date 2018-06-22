@@ -1,6 +1,11 @@
+{% block title %}
+    {{ 'book.reservations_and_loans'|trans }}
+{% endblock %}
+
 {% include 'books/view.html.twig' %}
 
 {% block body %}
+{% include 'login_panel.html.twig' %}
 
     {% for message in app.flashes('notice') %}
         <div class="flash-notice">
@@ -17,7 +22,7 @@
             <tr>
                 <th style="padding-bottom:20px">{{ 'user.name'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'reservation.date'|trans }}</th>
             </tr>
             {% for reservation in reservations %}          
                 <tr>    
