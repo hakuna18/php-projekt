@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="book.return">
                 <source>book.return</source>
-                <target>Wypożycz</target>
+                <target>Zwróć</target>
             </trans-unit>
             <trans-unit id="page.admin.view_user">
                 <source>page.admin.view_user</source>
