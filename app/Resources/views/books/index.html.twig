@@ -50,7 +50,7 @@
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
                             <td style="border-bottom:1px solid black">
-                                <a href="{{ path('admin_books', { 'id': book.id }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
+                                <a href="{{ path('admin_book_view', { 'id': book.id }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
                             </td>
                         {% endif %}
                     </tr>                      

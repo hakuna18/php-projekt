@@ -120,12 +120,12 @@ assetic:
             inputs:
                 - '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
 
-        bootstrap_css_map:
-            inputs:
-                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css.map'
-            output: "assetic/bootstrap.css.map"
+        # bootstrap_css_map:
+        #     inputs:
+        #         - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css.map'
+        #     output: "assetic/bootstrap.css.map"
 
-        bootstrap_theme_css_map:
-            inputs:
-                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css.map'
-            output: "assetic/bootstrap-theme.css.map"
+        # bootstrap_theme_css_map:
+        #     inputs:
+        #         - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css.map'
+        #     output: "assetic/bootstrap-theme.css.map"
