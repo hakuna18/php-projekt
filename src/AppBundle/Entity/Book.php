@@ -134,6 +134,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
+     * @Assert\Type("integer")
      */
     private $year;
 
