@@ -34,12 +34,12 @@ class CoverUploadListener
 
     private function uploadFile($entity)
     {
-        $file = $entity->getCover();
-
         if (!$entity instanceof Book) {
             return;
         }
 
+        $file = $entity->getCover();
+        
         // only upload new files
         if ($file instanceof UploadedFile) {
             $fileName = $this->uploader->upload($file);
