@@ -149,6 +149,7 @@ class Book
      *     nullable=false,
      *     options={"unsigned"=true}
      * )
+     * @Assert\Type("integer")
      */
     private $numberOfCopies;
 
