@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
     </head>
     {% extends "base.html.twig" %}
-    <body>
+
+    {% block body %}
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -31,5 +32,5 @@
 
             {% endblock fos_user_content %}
         </div>
-    </body>
+    {% endblock %}
 </html>
