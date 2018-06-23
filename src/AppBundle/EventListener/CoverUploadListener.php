@@ -7,6 +7,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Product;
 use AppBundle\Service\FileUploader;
+use AppBundle\Entity\Book;
 
 class CoverUploadListener
 {
@@ -34,6 +35,10 @@ class CoverUploadListener
     private function uploadFile($entity)
     {
         $file = $entity->getCover();
+
+        if (!$entity instanceof Book) {
+            return;
+        }
 
         // only upload new files
         if ($file instanceof UploadedFile) {
