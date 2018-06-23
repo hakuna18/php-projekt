@@ -18,9 +18,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(
  *     repositoryClass="AppBundle\Repository\BooksRepository"
  * )
- * @UniqueEntity(
- *     fields={"name"}
- * )
  */
 class Book
 {
@@ -96,18 +93,21 @@ class Book
     private $genre;
 
      /**
-     * URI to the cover.
+     * Cover.
      *
-     * @var string $coverURI
+     * @var string $cover
      *
      * @ORM\Column(
-     *     name="CoverURI",
+     *     name="Cover",
      *     type="string",
      *     length=128,
      *     nullable=false,
      * )
+     * 
+     * @Assert\NotBlank(message="Please, upload the cover.")
+     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
-    private $coverURI;
+    private $cover;
 
      /**
      * Publisher.
@@ -264,27 +264,27 @@ class Book
     }
 
     /**
-     * Set cover URI
+     * Set cover
      *
-     * @param string $coverURI
+     * @param string $cover
      *
      * @return Book
      */
-    public function setCoverURI($uri)
+    public function setCover($cover)
     {
-        $this->coverURI = $uri;
+        $this->cover = $cover;
 
         return $this;
     }
 
     /**
-     * Get cover URI
+     * Get cover
      *
      * @return string
      */
-    public function getCoverURI()
+    public function getCover()
     {
-        return $this->coverURI;
+        return $this->cover;
     }
 
     /**

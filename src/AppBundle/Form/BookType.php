@@ -8,6 +8,7 @@ use AppBundle\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -75,16 +76,24 @@ class BookType extends AbstractType
                 ],
             ]
         )->add(
-            'total_available',
+            'numberOfCopies',
             TextType::class,
             [
-                'label' => 'book.totalAvailable',
+                'label' => 'book.number_of_copies',
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
                 ],
             ]
-            //dodawanie okładki - z dysku?
+        )->add(
+            'description',
+            TextType::class,
+            [
+                'label' => 'book.description',
+                'required' => true
+            ]
+        )->add('cover',
+            FileType::class, array('label' => 'cover_file')       
         );
     }
 
