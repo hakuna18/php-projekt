@@ -87,7 +87,7 @@
                 <target>Nazwisko</target>
             </trans-unit>
             <trans-unit id="user.email">
-                <source>Usersuser.email</source>
+                <source>user.email</source>
                 <target>Adres e-mail</target>
             </trans-unit>
             <trans-unit id="user.reservations">
@@ -118,7 +118,90 @@
                 <source>book.preview</source>
                 <target>Podgląd książki</target>
             </trans-unit>
-
+            <trans-unit id="page.admin_panel">
+                <source>page.admin_panel</source>
+                <target>Panel administratora</target>
+            </trans-unit>
+            <trans-unit id="reservation.date">
+                <source>reservation.date</source>
+                <target>Data rezerwacji</target>
+            </trans-unit>
+            <trans-unit id="book.loan">
+                <source>book.loan</source>
+                <target>Wypożycz</target>
+            </trans-unit>
+            <trans-unit id="loan.date">
+                <source>loan.date</source>
+                <target>Data wypożyczenia</target>
+            </trans-unit>
+            <trans-unit id="book.return">
+                <source>book.return</source>
+                <target>Wypożycz</target>
+            </trans-unit>
+            <trans-unit id="page.admin.view_user">
+                <source>page.admin.view_user</source>
+                <target>Pokaż użytkownika</target>
+            </trans-unit>
+            <trans-unit id="user_details">
+                <source>user_details</source>
+                <target>Dane użytkownika</target>
+            </trans-unit>
+            <trans-unit id="user.last_login">
+                <source>user.last_login</source>
+                <target>Ostatnie logowanie</target>
+            </trans-unit>
+            <trans-unit id="info.cant_delete_account_has_loans">
+                <source>info.cant_delete_account_has_loans</source>
+                <target>Nie można usunąć z nie oddanymi książkami</target>
+            </trans-unit>
+            <trans-unit id="action.user_delete">
+                <source>action.user_delete</source>
+                <target>Usuń konto</target>
+            </trans-unit>
+            <trans-unit id="welcome">
+                <source>welcome</source>
+                <target>Witaj</target>
+            </trans-unit>
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Błąd w formularzu</target>
+            </trans-unit>
+            <trans-unit id="books_catalogue">
+                <source>books_catalogue</source>
+                <target>Katalog</target>
+            </trans-unit>
+            <trans-unit id="Catalog">
+                <source>Catalog</source>
+                <target>Katalog</target>
+            </trans-unit>
+            <trans-unit id="page.user_panel">
+                <source>page.user_panel</source>
+                <target>Panel użytkownika</target>
+            </trans-unit>
+            <trans-unit id="page.users">
+                <source>page.users</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="page.user_panel.account_actions">
+                <source>page.user_panel.account_actions</source>
+                <target>Akcje konta</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="layout.logged_in_as">
+                <source>layout.logged_in_as</source>
+                <target>Zalogowano jako</target>
+            </trans-unit>
+            <trans-unit id="action.layout.logout">
+                <source>layout.logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="layout.login">
+                <source>layout.login</source>
+                <target>Zaloguj</target>
+            </trans-unit>      
         </body>
     </file>
 </xliff>
