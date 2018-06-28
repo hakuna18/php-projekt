@@ -34,10 +34,10 @@
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
-                        <td style="border-bottom:1px solid black">
-                            <a href="{{ path('book_view', {'id': book.id}) }}">{{ 'book.details'|trans }}</a>
-                        </td>
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
+                            <td style="border-bottom:1px solid black">
+                                <a href="{{ path('book_view', {'id': book.id}) }}">{{ 'book.details'|trans }}</a>
+                            </td>
                             {% if booksManager.hasReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
                                     <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
