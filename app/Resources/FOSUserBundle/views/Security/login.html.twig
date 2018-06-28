@@ -1,12 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {# {% if error %}
-        {%  include 'default/_single_flash_message.html.twig' with {
-            type: 'danger',
-            message: error|trans({}, 'FOSUserBundle')
-        } %}
-    {% endif %} #}
+    {% if error %}
+        <div class="flash-notice">
+            {{ error.message|trans({}, 'FOSUserBundle') }}
+        </div>
+    {% endif %}
 
     <form action="{{ path("fos_user_security_check") }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -24,27 +23,3 @@
     </form>
         <a href="{{ path('fos_user_resetting_request') }}">{{'forgot.password'|trans}}?</a>
 {% endblock body %}
-
-{# {% block body %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-        <a href="{{ path('fos_user_security_logout') }}">
-            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-        </a>
-    {% else %}   
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-            <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-            <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-            <input type="password" id="password" name="_password" required="required" />
-
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-        </form>
-    {% endif %}
-{% endblock body %} #}
