@@ -6,12 +6,6 @@
 
 {% block body %}
 
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message|trans }}
-        </div>
-    {% endfor %}
-
 <h2>{{ 'book.reservations_and_loans'|trans }}</h2>
 
 <h3>{{ 'book.reservations'|trans }}</h3>

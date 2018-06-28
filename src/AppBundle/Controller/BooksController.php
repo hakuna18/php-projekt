@@ -236,7 +236,7 @@ class BooksController extends Controller
             $this->booksRepository->save($book);
             $this->addFlash('success', 'message.created_successfully');
 
-            return $this->redirectToRoute('books_catalogue');
+            return $this->redirectToRoute('books_add');
         }
 
         return $this->render(

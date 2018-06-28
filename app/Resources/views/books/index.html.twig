@@ -7,12 +7,6 @@
 {% block body %}
 {% include 'login_panel.html.twig' %}
 
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message|trans }}
-        </div>
-    {% endfor %}
-
     <h1>{{ 'books.catalogue'|trans }}</h1>
 
     {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}   

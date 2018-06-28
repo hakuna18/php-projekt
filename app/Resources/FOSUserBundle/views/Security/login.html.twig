@@ -2,7 +2,7 @@
 
 {% block body %}
     {% if error %}
-        <div class="flash-notice">
+        <div class="alert alert-danger" role="alert">
             {{ error.message|trans({}, 'FOSUserBundle') }}
         </div>
     {% endif %}
