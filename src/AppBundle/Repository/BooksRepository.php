@@ -18,17 +18,19 @@ class BooksRepository extends EntityRepository
 {
     // Looks for books with title/author/genre mathching given regex pattern.
     public function findByPattern($pattern, $page = 1) {
-        $pattern = '*' . strtoupper(trim($pattern)) . '*';
-        $books = $this->findAll();
+        $pattern = '/' . strtoupper(trim($pattern)) . '/';
         $result = array();
-        foreach($books as $book) {
-            if(preg_match($pattern, strtoupper($book->getTitle()))
-            || preg_match($pattern, strtoupper($book->getAuthor()))
-            || preg_match($pattern, strtoupper($book->getGenre()))
-            )
-                array_push($result, $book);
+        // If regex valid
+        if (@preg_match($pattern, null)) {
+            $books = $this->findAll();   
+            foreach($books as $book) {
+                if(preg_match($pattern, strtoupper($book->getTitle()))
+                || preg_match($pattern, strtoupper($book->getAuthor()))
+                || preg_match($pattern, strtoupper($book->getGenre()))
+                )
+                    array_push($result, $book);
+            }
         }
-
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(Book::NUM_ITEMS);
         $paginator->setCurrentPage($page);
