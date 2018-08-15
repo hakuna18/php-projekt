@@ -24,9 +24,10 @@ class UsersManager
         $this->fosUserManager = $fosUserManager;
     }
 
+    // TODO: Move this to " users repository" ?
     // Looks for users with name/surname/email mathching given regex pattern.
     public function findUserByPattern($pattern) {
-        $pattern = '*' . strtoupper(trim($pattern)) . '*';
+        $pattern = '/' . strtoupper(trim($pattern)) . '/';
         $users = $this->fosUserManager->findUsers();
         $result = array();
         foreach($users as $user) {
@@ -43,11 +44,15 @@ class UsersManager
         return $nonAdminUsers;
     }
 
+    public function getAllUsers() {
+        return $this->fosUserManager->findUsers();
+    }
+
     public function deleteUser($user) {
         foreach ($user->getReservations() as $reservation) {
-            $this->$em->remove($reservation);
+            $this->entityManager->remove($reservation);
         } 
-        $fosUserManager->deleteUser($user);
-        $this->$em->flush();
+        $this->fosUserManager->deleteUser($user);
+        $this->entityManager->flush();
     }
 }

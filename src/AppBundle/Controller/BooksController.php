@@ -26,11 +26,11 @@ class BooksController extends Controller
      */
     protected $booksRepository = null;
 
-    protected $booksManager = null;
-
     protected $loansRepository = null;
 
     protected $reservationsRepository = null;
+
+    protected $booksManager = null;
 
 
     /**
@@ -104,22 +104,6 @@ class BooksController extends Controller
         );
     }
     
-     /**
-     * @Route("/admin/panel", name="admin_panel")
-     */
-    public function adminPanelAction(Request $request) {
-        $reservations =  $this->reservationsRepository->findAll();
-        $loans = $this->loansRepository->findAll();
-
-        return $this->render(
-            'admin/panel.html.twig',
-            [
-                'reservations' => $reservations,
-                'loans' => $loans
-            ]
-        );
-    }
-
     /**
      * @Route("/admin/books", name="admin_books")
      */

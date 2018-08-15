@@ -68,12 +68,13 @@ class UsersController extends Controller
      * @Route("/user/delete/{id}", name="user_delete")
      */
     public function deleteAction(Request $request, User $user) {
-        $this->$usersManager->deleteUser($user);
+        $this->usersManager->deleteUser($user);
     
         $this->addFlash(
             'notice',
             'user_deleted.confirmation'
         );
+
         return $this->redirectToRoute('books_catalogue');
     }
 }
