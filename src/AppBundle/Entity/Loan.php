@@ -13,8 +13,10 @@ use \DateTime;
  */
 class Loan
 {
-    private static $LOAN_DAYS_LIMIT = 30;
+    const NUM_ITEMS = 5;
 
+    private static $LOAN_DAYS_LIMIT = 30;
+    
     /**
      * @var int
      *

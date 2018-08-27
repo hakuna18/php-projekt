@@ -31,7 +31,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/panel", name="admin_panel")
+     * @Route("/admin_panel", name="admin_panel")
      */
     public function adminPanelAction(Request $request) {
         $reservations =  $this->booksManager->getRepository(Reservation::class)->findAll();

@@ -2,6 +2,10 @@
 
 namespace AppBundle\Repository;
 
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
+use AppBundle\Entity\Reservation;
+
 /**
  * ReservationRepository
  *
@@ -10,4 +14,27 @@ namespace AppBundle\Repository;
  */
 class ReservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    // Query by user's surname/email or book's ISBN
+    public function query($pattern, $page = 1) {
+        $pattern = '/' . strtoupper(trim($pattern)) . '/';
+        $result = array();
+        // If regex valid
+        if (@preg_match($pattern, null) !== false) {
+            $reservations = $this->findAll(); 
+            foreach($reservations as $reservation) {
+                if(preg_match($pattern, strtoupper($reservation->getUser()->getSurname()))
+                || preg_match($pattern, strtoupper($reservation->getUser()->getEmail()))
+                || preg_match($pattern, strtoupper($reservation->getBook()->getISBN()))
+                ) {
+                    array_push($result, $reservation);
+                }
+            }
+        }
+
+        $paginator = new Pagerfanta(new ArrayAdapter($result));
+        $paginator->setMaxPerPage(Reservation::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+        
+        return $paginator;
+    }
 }

@@ -44,6 +44,26 @@ class Book
      */
     private $id;
 
+    /**
+     * ISBN.
+     *
+     * @var string $isbn
+     *
+     * @ORM\Column(
+     *     name="isbn",
+     *     type="string",
+     *     length=13,
+     *     nullable=false,
+     * )
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="13",
+     *     max="13",
+     * )
+     */
+    private $isbn;
+
      /**
      * Title.
      *
@@ -165,7 +185,7 @@ class Book
      *     nullable=false,
      * )
      */
-   private $description;
+    private $description;
 
     /**
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
@@ -191,6 +211,30 @@ class Book
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set ISBN
+     *
+     * @param string $isbn
+     *
+     * @return Book
+     */
+    public function setISBN($isbn)
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    /**
+     * Get ISBN
+     *
+     * @return string
+     */
+    public function getISBN()
+    {
+        return $this->isbn;
     }
 
     /**

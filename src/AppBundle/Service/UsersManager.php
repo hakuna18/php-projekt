@@ -6,6 +6,8 @@ namespace AppBundle\Service;
 use UserBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 class UsersManager
 {
@@ -26,22 +28,32 @@ class UsersManager
 
     // TODO: Move this to " users repository" ?
     // Looks for users with name/surname/email mathching given regex pattern.
-    public function findUserByPattern($pattern) {
+    public function findByPattern($pattern, $includeAdmins = false, $page = 1) {
         $pattern = '/' . strtoupper(trim($pattern)) . '/';
-        $users = $this->fosUserManager->findUsers();
         $result = array();
-        foreach($users as $user) {
-            if(preg_match($pattern, strtoupper($user->getName()))
-            || preg_match($pattern, strtoupper($user->getSurname()))
-            || preg_match($pattern, strtoupper($user->getEmail()))
-            )
-                array_push($result, $user);
+        // If regex valid  
+        if (@preg_match($pattern, null)) {
+            $users = $this->fosUserManager->findUsers();
+            foreach($users as $user) {
+                if(preg_match($pattern, strtoupper($user->getName()))
+                || preg_match($pattern, strtoupper($user->getSurname()))
+                || preg_match($pattern, strtoupper($user->getEmail()))
+                )
+                    array_push($result, $user);
+            }
         }
 
-        $nonAdminUsers = array_filter($result, function ($user){
-            return !in_array("ROLE_SUPER_ADMIN", $user->getRoles());
-        });
-        return $nonAdminUsers;
+        if (!$includeAdmins) {
+            $result = array_filter($result, function ($user){
+                return !in_array("ROLE_SUPER_ADMIN", $user->getRoles());
+            });
+        }
+
+        $paginator = new Pagerfanta(new ArrayAdapter($result));
+        $paginator->setMaxPerPage(User::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+        
+        return $paginator;
     }
 
     public function getAllUsers() {

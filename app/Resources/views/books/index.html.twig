@@ -10,8 +10,8 @@
     <h1>{{ 'books.catalogue'|trans }}</h1>
 
     {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}   
-    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query'}}) }}
-    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
+    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query }}) }}
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right"/>
     {{ form_end(form) }}
     
     {% if books is defined and books|length %}
@@ -20,7 +20,7 @@
                 {% for book in books %}
                     <tr>
                         <td>
-                            <a href={{ path(is_granted("ROLE_ADMIN")? 'admin_book_view' : 'book_view', {'id': book.id}) }}>                         
+                            <a href="{{ path('book_view', {'id': book.id}) }}">                         
                                 <img src="{{asset('uploads/covers/' ~ book.cover)}}" width=100 height=150>
                             </a>
                         </td>
@@ -43,9 +43,9 @@
                             {% endif %}
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
-                            <td style="border-bottom:1px solid black">
-                                <a href="{{ path('admin_book_view', { 'id': book.id }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
-                            </td>
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('reservations_loans', { 'search': book.ISBN }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
+                        </td>
                         {% endif %}
                     </tr>                      
                 {% endfor %}

@@ -13,6 +13,8 @@ use \DateTime;
  */
 class Reservation
 {
+    const NUM_ITEMS = 5;
+    
     private static $RESERVATION_DAYS_LIMIT = 3;
 
     /**

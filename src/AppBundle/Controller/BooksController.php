@@ -76,7 +76,8 @@ class BooksController extends Controller
             [
                 'books' => $this->booksRepository->findByPattern($searchQuery, $page),
                 'form' => $form->createView(),
-                'booksManager' => $this->booksManager
+                'booksManager' => $this->booksManager,
+                'search_query' => $searchQuery
             ]
         );
     }
@@ -103,37 +104,72 @@ class BooksController extends Controller
             ['book' => $book]
         );
     }
-    
-    /**
-     * @Route("/admin/books", name="admin_books")
-     */
-    public function adminBooksAction(Request $request) {
-        $books = $this->booksRepository->findAll();
-
-        return $this->render(
-            'books/admin.html.twig',
-            [
-                'books' => $books
-            ]
-        );
-    }
 
     /**
-     * @Route("/admin/books/{id}", name="admin_book_view")
+     * @Route("/loans", name="reservations_loans")
      */
-    public function adminBookViewAction(Book $book) {
-        $reservations = $book->getReservations();
-        $loans = $book->getLoans();
+    public function reservationsLoansIndexAction(Request $request) {
+        // Only admin is allowed to list all loans.
+        if(!$this->getUser() || !in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
+            throw $this->createAccessDeniedException('You cannot access this page!');        
+        }
+
+        $searchQuery = $request->request->get('form')['search'];
+        if (!$searchQuery) {
+            $searchQuery = $request->query->get('search');
+        }
+
+        $reservationPage = $request->query->get('reservationPage');
+        $reservations = $this->reservationsRepository->query($searchQuery, $reservationPage? $reservationPage : 1);
+
+        $loansPage = $request->query->get('loansPage'); 
+        $loans = $this->loansRepository->query($searchQuery, $loansPage? $loansPage : 1);
+ 
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
 
         return $this->render(
             'books/reservations_loans.html.twig',
             [
-                'book' => $book,
                 'reservations' => $reservations,
-                'loans' => $loans
+                'loans' => $loans,
+                'form' => $form->createView(),
+                'search_query' => $searchQuery
             ]
         );
     }
+    
+    // /**
+    //  * @Route("/admin/books", name="admin_books")
+    //  */
+    // public function adminBooksAction(Request $request) {
+    //     $books = $this->booksRepository->findAll();
+
+    //     return $this->render(
+    //         'books/admin.html.twig',
+    //         [
+    //             'books' => $books
+    //         ]
+    //     );
+    // }
+
+    // /**
+    //  * @Route("/admin/books/{id}", name="admin_book_view")
+    //  */
+    // public function adminBookViewAction(Book $book) {
+    //     $reservations = $book->getReservations();
+    //     $loans = $book->getLoans();
+
+    //     return $this->render(
+    //         'books/reservations_loans.html.twig',
+    //         [
+    //             'book' => $book,
+    //             'reservations' => $reservations,
+    //             'loans' => $loans
+    //         ]
+    //     );
+    // }
 
      /**
      * @Route("/reservation/make/{id}", name="make_reservation")

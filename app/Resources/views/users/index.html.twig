@@ -12,8 +12,8 @@
     {% include 'login_panel.html.twig' %}
     <h1>{{ 'page.users'|trans }}</h1>
 
-    {{ form_start(form, { method: 'post', action: url('admin_users') }) }}   
-    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query'}}) }}
+    {{ form_start(form, { method: 'post', action: url('users') }) }}   
+    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
     <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
     {{ form_end(form) }}
     
@@ -29,7 +29,7 @@
 
                     <tr>                     
                      <td style="border-bottom:1px solid black">
-                        <a href="{{ path('admin_user_view', { 'id': user.id }) }}">
+                        <a href="{{ path('user_view', { 'id': user.id }) }}">
                             {{ user.name }} {{ user.surname }}
                         </a>
                     </td>
@@ -44,5 +44,8 @@
             {{ 'message.empty_list'|trans }}
         </div>
     {% endif %}
+    <div class="pagerfanta">
+        {{ pagerfanta(users, 'twitter_bootstrap4_translated', { routeName: ('users_paginated'), 'proximity': 5 }) }}
+    </div>
 
 {% endblock %}

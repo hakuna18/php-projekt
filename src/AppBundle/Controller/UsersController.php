@@ -22,14 +22,32 @@ class UsersController extends Controller
     {
         $this->usersManager = $usersManager;
     }
+
     /**
-     * @Route("/admin/users", name="admin_users")
+     * Index action.
+     *
+     * @param integer $page Current page number
+     * 
+     * @Route(
+     *     "/users",
+     *     defaults={"page": 1},
+     *     name="users",
+     * )
+     * @Route(
+     *     "/users/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="users_paginated",
+     *)
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function adminIndexAction(Request $request) {
-        $searchQuery = $request->request->get('form')['search'];
-        $matchedUsers = $this->usersManager->findUserByPattern($searchQuery);
+    public function indexAction(Request $request, $page) {
+        // Only admin is allowed to access users list.
+        if(!$this->getUser() || !in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
+            throw $this->createAccessDeniedException('You cannot access this page!');        
+        }
 
         $searchQuery = $request->request->get('form')['search'];
+        $matchedUsers = $this->usersManager->findByPattern($searchQuery, false, $page);
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();
@@ -38,13 +56,14 @@ class UsersController extends Controller
             'users/index.html.twig',
             [
                 'users' => $matchedUsers,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'search_query' => $searchQuery
             ]
         );
     }
 
     /**
-     * @Route("/admin/users/{id}", name="admin_user_view")
+     * @Route("/users/view/{id}", name="user_view")
      */
     public function adminViewAction(Request $request, User $user) {
         return $this->render(

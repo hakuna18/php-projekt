@@ -3,9 +3,9 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Book;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
-use AppBundle\Entity\Book;
 use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
@@ -21,7 +21,7 @@ class BooksRepository extends EntityRepository
         $pattern = '/' . strtoupper(trim($pattern)) . '/';
         $result = array();
         // If regex valid
-        if (@preg_match($pattern, null)) {
+        if (@preg_match($pattern, null) !== false) {
             $books = $this->findAll();   
             foreach($books as $book) {
                 if(preg_match($pattern, strtoupper($book->getTitle()))

@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class User extends BaseUser
 {
+    const NUM_ITEMS = 5;
     /**
      * @ORM\Id
      * @ORM\Column(
