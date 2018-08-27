@@ -9,15 +9,18 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class RegistrationListener implements EventSubscriberInterface
 {
     private $router;
+    private $session;
 
-    public function __construct(UrlGeneratorInterface $router)
+    public function __construct(UrlGeneratorInterface $router, Session $session)
     {
         $this->router = $router;
+        $this->session = $session;
     }
 
     /**
@@ -34,7 +37,7 @@ class RegistrationListener implements EventSubscriberInterface
 
     public function onRegistrationSuccess(FormEvent $event) {
         $url = $this->router->generate('admin_panel');
-    
+        $this->session->getFlashBag()->add('success', 'user.registration_success');
         $event->setResponse(new RedirectResponse($url));
     }
 
