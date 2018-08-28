@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ 'title.register'|trans }}
+{% endblock %}
+
+{% block body %}
+{% include 'login_panel.html.twig' %}
+<h1> {{ 'title.register'|trans }} </h1>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}
+{% endblock body %}
