@@ -201,7 +201,35 @@
             <trans-unit id="layout.login">
                 <source>layout.login</source>
                 <target>Zaloguj</target>
-            </trans-unit>      
+            </trans-unit>   
+            <trans-unit id="forgot.password">
+                <source>forgot.password</source>
+                <target>Nie pamiętasz hasła</target>
+            </trans-unit>
+            <trans-unit id="page.books_add">
+                <source>page.books_add</source>
+                <target>Dodaj książkę</target>
+            </trans-unit>
+            <trans-unit id="page.register_user">
+                <source>page.register_user</source>
+                <target>Zarejestruj użytkownika</target>
+            </trans-unit>        
+            <trans-unit id="cover_file">
+                <source>cover_file</source>
+                <target>Wybierz zdjęcie okładki</target>
+            </trans-unit>  
+             <trans-unit id="show.users">
+                <source>show.users</source>
+                <target>Pokaż użytkowników</target>
+            </trans-unit>  
+             <trans-unit id="show.reservations_loans">
+                <source>show.reservations_loans</source>
+                <target>Pokaż rezerwacje i wypożyczenia</target>
+            </trans-unit>  
+             <trans-unit id="book.isbn">
+                <source>book.isbn</source>
+                <target>ISBN</target>
+            </trans-unit>  
         </body>
     </file>
 </xliff>
