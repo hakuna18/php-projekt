@@ -18,13 +18,13 @@
     
     <h2>{{ 'page.user_panel.account_actions'|trans }}</h2>
     <form action="{{ path('fos_user_change_password') }}">
-        <input type="submit" value={{ 'action.change_password'|trans }}/>
+        <input type="submit" value="{{ 'action.change_password'|trans }}"/>
     </form>
     <form action="{{ path('user_delete', {'id': user.id}) }}">
         {% if user.loans|length %}
-            <input type="submit" style="color:red" value={{'info.cant_delete_account_has_loans'|trans}} disabled/>
+            <input type="submit" style="color:red" value="{{'info.cant_delete_account_has_loans'|trans}}" disabled/>
         {% else %}
-            <input type="submit" style="color:red" value={{'action.user_delete'|trans}}/>
+            <input type="submit" style="color:red" value="{{'action.user_delete'|trans}}"/>
         {% endif %}
     </form>
 

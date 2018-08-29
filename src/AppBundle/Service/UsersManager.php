@@ -26,7 +26,6 @@ class UsersManager
         $this->fosUserManager = $fosUserManager;
     }
 
-    // TODO: Move this to " users repository" ?
     // Looks for users with name/surname/email mathching given regex pattern.
     public function findByPattern($pattern, $includeAdmins = false, $page = 1) {
         $pattern = '/' . strtoupper(trim($pattern)) . '/';

@@ -27,6 +27,17 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
+            'ISBN',
+            TextType::class,
+            [
+                'label' => 'book.isbn',
+                'required' => true,
+                'attr' => [
+                    'min_length' => 13,
+                    'max_length' => 13,
+                ],
+            ]
+        )->add(
             'title',
             TextType::class,
             [

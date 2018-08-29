@@ -31,19 +31,31 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin_panel", name="admin_panel")
+     * @Route("/admin/panel", name="admin_panel")
      */
     public function adminPanelAction(Request $request) {
-        $reservations =  $this->booksManager->getRepository(Reservation::class)->findAll();
-        $loans = $this->booksManager->getRepository(Loan::class)->findAll();
-        $users = $this->usersManager->getAllUsers();
+        $searchQuery = $request->request->get('form')['search'];
+        if (!$searchQuery) {
+            $searchQuery = $request->query->get('search');
+        }
+
+        $reservationPage = $request->query->get('reservationPage');
+        $reservations = $this->booksManager->getRepository(Reservation::class)->query($searchQuery, $reservationPage? $reservationPage : 1);
+
+        $loansPage = $request->query->get('loansPage'); 
+        $loans = $this->booksManager->getRepository(Loan::class)->query($searchQuery, $loansPage? $loansPage : 1);
+ 
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
 
         return $this->render(
             'admin/panel.html.twig',
             [
                 'reservations' => $reservations,
                 'loans' => $loans,
-                'users' => $users
+                'form' => $form->createView(),
+                'search_query' => $searchQuery
             ]
         );
     }

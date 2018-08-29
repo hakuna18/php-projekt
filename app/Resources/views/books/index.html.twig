@@ -17,6 +17,14 @@
     {% if books is defined and books|length %}
         <table class="table table-striped">
             <tbody>
+                <tr>
+                    <th style="padding-bottom:20px"></th>
+                    <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
+                    <th style="padding-bottom:20px">{{ 'book.author'|trans }}</th>
+                    <th style="padding-bottom:20px">{{ 'book.genre'|trans }}</th>
+                    <th style="padding-bottom:20px">{{ 'book.copies_available'|trans }}</th>
+                    <th style="padding-bottom:20px">{{ 'book.actions'|trans }}</th>
+                </tr>
                 {% for book in books %}
                     <tr>
                         <td>
@@ -44,7 +52,7 @@
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
                         <td style="border-bottom:1px solid black">
-                            <a href="{{ path('reservations_loans', { 'search': book.ISBN }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
+                            <a href="{{ path('admin_panel', { 'search': book.ISBN }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
                         </td>
                         {% endif %}
                     </tr>                      

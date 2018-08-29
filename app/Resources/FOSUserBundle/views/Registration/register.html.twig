@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    {{ 'title.register'|trans }}
+    {{ 'title.register_user'|trans }}
 {% endblock %}
 
 {% block body %}
 {% include 'login_panel.html.twig' %}
-<h1> {{ 'title.register'|trans }} </h1>
+<h1> {{ 'title.register_user'|trans }} </h1>
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}

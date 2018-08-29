@@ -57,6 +57,7 @@ class Book
      * )
      * 
      * @Assert\NotBlank
+     * @Assert\Type(type="digit")
      * @Assert\Length(
      *     min="13",
      *     max="13",

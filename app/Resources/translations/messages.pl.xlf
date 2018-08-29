@@ -82,8 +82,16 @@
                 <source>user.name</source>
                 <target>Imię</target>
             </trans-unit>
+            <trans-unit id="Name">
+                <source>Name</source>
+                <target>Imię</target>
+            </trans-unit>
             <trans-unit id="user.surname">
                 <source>user.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+            <trans-unit id="Surname">
+                <source>Surname</source>
                 <target>Nazwisko</target>
             </trans-unit>
             <trans-unit id="user.email">
@@ -213,7 +221,15 @@
             <trans-unit id="page.register_user">
                 <source>page.register_user</source>
                 <target>Zarejestruj użytkownika</target>
-            </trans-unit>        
+            </trans-unit>
+            <trans-unit id="title.register_user">
+                <source>title.register_user</source>
+                <target>Zarejestruj użytkownika</target>
+            </trans-unit>
+            <trans-unit id="registration.submit">
+                <source>registration.submit</source>
+                <target>Zarejestruj użytkownika</target>
+            </trans-unit>     
             <trans-unit id="cover_file">
                 <source>cover_file</source>
                 <target>Wybierz zdjęcie okładki</target>
@@ -229,7 +245,47 @@
              <trans-unit id="book.isbn">
                 <source>book.isbn</source>
                 <target>ISBN</target>
-            </trans-unit>  
+            </trans-unit>
+            <trans-unit id="empty_list">
+                <source>empty_list</source>
+                <target>Brak rekordów</target>
+            </trans-unit>
+            <trans-unit id="user_deleted.confirmation">
+                <source>user_deleted.confirmation</source>
+                <target>Konto usunięte pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="title.reset_password">
+                <source>title.reset_password</source>
+                <target>Resetowanie hasła</target>
+            </trans-unit>
+            <trans-unit id="resetting.request.username">
+                <source>resetting.request.username</source>
+                <target>Nazwa użytkownika</target>
+            </trans-unit>
+            <trans-unit id="resetting.request.submit">
+                <source>resetting.request.submit</source>
+                <target>Resetuj</target>
+            </trans-unit>
+            <trans-unit id="title.check_mail">
+                <source>title.check_mail</source>
+                <target>Sprawdź mail</target>
+            </trans-unit>
+            <trans-unit id="book.reservation.confirmation">
+                <source>book.reservation.confirmation</source>
+                <target>Zarezerwowano pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="book.loan.confirmation">
+                <source>book.loan.confirmation</source>
+                <target>Wypożyczono pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="book.return.confirmation">
+                <source>book.return.confirmation</source>
+                <target>Zwrócono pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="book.actions">
+                <source>book.actions</source>
+                <target>Akcje</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -2,11 +2,9 @@
 
 {% block body %}
 
-{% include 'login_panel.html.twig' %}
-
 <h2>{{ 'book.reservations_and_loans'|trans }}</h2>
 
-{{ form_start(form, { method: 'post', action: url('reservations_loans') }) }}   
+{{ form_start(form, { method: 'post', action: app.request.uri }) }}   
 {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
 <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
 {{ form_end(form) }}
@@ -58,18 +56,18 @@
         <tbody>
             <tr>
                 <th style="padding-bottom:20px">{{ 'user.name'|trans }} {{ 'user.surname'|trans }}</th>
-                <th style="padding-bottom:20px">{{ 'user.surname'|trans }}</th>
+                <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                 <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
             </tr>
             {% for loan in loans %}          
                 <tr>    
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('admin_user_view', { 'id': loan.user.id }) }}">
+                        <a href="{{ path('user_view', { 'id': loan.user.id }) }}">
                             {{ loan.user.name }} {{ loan.user.surname }}
                         </a>
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('admin_book_view', { 'id': loan.book.id }) }}">{{ loan.book.title }}</a>
+                        <a href="{{ path('book_view', { 'id': loan.book.id }) }}">{{ loan.book.title }}</a>
                     </td>
                     <td style="border-bottom:1px solid black">
                         <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     

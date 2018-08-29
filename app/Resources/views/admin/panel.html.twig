@@ -7,11 +7,10 @@
 {% block body %}
 {% include 'login_panel.html.twig' %}
 
-    <form action="{{ path('users') }}">
-        <input type="submit" value={{'show.users'|trans}}/>
-    </form>
-    <form action="{{ path('reservations_loans') }}">
-        <input type="submit" value={{'show.reservations_loans'|trans}}/>
-    </form>
+    <h1>{{ 'page.admin_panel'|trans }}</h1>
+
+    <a href="{{ path('users') }}">{{'show.users'|trans}}</a>
+
+{% include 'admin/reservations_loans.html.twig' %}
 
 {% endblock %}

@@ -29,12 +29,12 @@ class UsersController extends Controller
      * @param integer $page Current page number
      * 
      * @Route(
-     *     "/users",
+     *     "admin/users",
      *     defaults={"page": 1},
      *     name="users",
      * )
      * @Route(
-     *     "/users/{page}",
+     *     "admin/users/{page}",
      *     requirements={"page": "[1-9]\d*"},
      *     name="users_paginated",
      *)
