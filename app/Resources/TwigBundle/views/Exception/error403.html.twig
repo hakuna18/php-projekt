@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'page.error403'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{'page.error403'|trans}}</h1>
+
+    <p>
+        {{'error403_text'|trans}} <a href="{{ path('books_catalogue') }}">{{ 'return_to_catalogue'|trans }}</a>.
+    </p>
+{% endblock %}

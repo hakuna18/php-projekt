@@ -282,9 +282,33 @@
                 <source>book.return.confirmation</source>
                 <target>Zwrócono pomyślnie</target>
             </trans-unit>
-            <trans-unit id="book.actions">
-                <source>book.actions</source>
-                <target>Akcje</target>
+            <trans-unit id="page.error404">
+                <source>page.error404</source>
+                <target>Błąd 404</target>
+            </trans-unit>
+            <trans-unit id="page.error403">
+                <source>page.error403</source>
+                <target>Błąd 403</target>
+            </trans-unit>
+            <trans-unit id="page.error">
+                <source>page.error</source>
+                <target>Błąd</target>
+            </trans-unit>
+            <trans-unit id="error404_text">
+                <source>error404_text</source>
+                <target>Strona której szukasz najwyraźniej nie istnieje...wybacz!</target>
+            </trans-unit>
+            <trans-unit id="error403_text">
+                <source>error403_text</source>
+                <target>Wygląda na to, że nie masz uprawnień do tej strony...ups!</target>
+            </trans-unit>
+            <trans-unit id="error_text">
+                <source>error_text</source>
+                <target>Wystąpił błąd przy przetwarzaniu tego żądania.</target>
+            </trans-unit>
+            <trans-unit id="return_to_catalogue">
+                <source>return_to_catalogue</source>
+                <target>Powrót do katalogu</target>
             </trans-unit>
         </body>
     </file>
