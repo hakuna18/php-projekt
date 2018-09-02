@@ -310,6 +310,10 @@
                 <source>return_to_catalogue</source>
                 <target>Powrót do katalogu</target>
             </trans-unit>
+            <trans-unit id="Bad credentials.">
+                <source>Bad credentials.</source>
+                <target>Niepoprawne dane logowania.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
