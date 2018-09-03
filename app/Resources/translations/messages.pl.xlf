@@ -50,6 +50,10 @@
                 <source>book.make_reservation</source>
                 <target>Zarezerwuj</target>
             </trans-unit>
+            <trans-unit id="book.reservation.cancel_confirmation">
+                <source>book.reservation.cancel_confirmation</source>
+                <target>Anulowano rezerwacje</target>
+            </trans-unit>
             <trans-unit id="book.cancel_reservation">
                 <source>book.cancel_reservation</source>
                 <target>Anuluj rezerwację</target>
@@ -233,7 +237,11 @@
             <trans-unit id="registration.submit">
                 <source>registration.submit</source>
                 <target>Zarejestruj użytkownika</target>
-            </trans-unit>     
+            </trans-unit>
+            <trans-unit id="user.registration_success">
+                <source>user.registration_success</source>
+                <target>Zarejestrowano pomyślnie</target>
+            </trans-unit>  
             <trans-unit id="cover_file">
                 <source>cover_file</source>
                 <target>Wybierz zdjęcie okładki</target>
@@ -257,6 +265,10 @@
             <trans-unit id="user_deleted.confirmation">
                 <source>user_deleted.confirmation</source>
                 <target>Konto usunięte pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="book_deleted.confirmation">
+                <source>book_deleted.confirmation</source>
+                <target>Książka usunięta pomyślnie</target>
             </trans-unit>
             <trans-unit id="title.reset_password">
                 <source>title.reset_password</source>
@@ -333,6 +345,26 @@
             <trans-unit id="form.submit">
                 <source>form.submit</source>
                 <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="title.book_edit">
+                <source>title.book_edit</source>
+                <target>Edycja książki</target>
+            </trans-unit>
+            <trans-unit id="action.edit_book">
+                <source>action.edit_book</source>
+                <target>Edytuj książkę</target>
+            </trans-unit>
+            <trans-unit id="action.delete_book">
+                <source>action.delete_book</source>
+                <target>Usuń książkę</target>
+            </trans-unit>
+            <trans-unit id="info.cant_delete_book_has_loans">
+                <source>info.cant_delete_book_has_loans</source>
+                <target>Nie można usunąć wypożyczonej książki</target>
+            </trans-unit>
+            <trans-unit id="operation_successful">
+                <source>operation_successful</source>
+                <target>Operacja wykonana pomyślnie</target>
             </trans-unit>
         </body>
     </file>

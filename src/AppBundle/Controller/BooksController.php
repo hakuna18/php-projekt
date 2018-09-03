@@ -53,12 +53,12 @@ class BooksController extends Controller
      * @param integer $page Current page number
      * 
      * @Route(
-     *     "/",
+     *     "/books",
      *     defaults={"page": 1},
      *     name="books_catalogue",
      * )
      * @Route(
-     *     "/page/{page}",
+     *     "/books/page/{page}",
      *     requirements={"page": "[1-9]\d*"},
      *     name="books_catalogue_paginated",
      *)
@@ -86,7 +86,7 @@ class BooksController extends Controller
      * View action.
      *
      * @Route(
-     *     "/{id}",
+     *     "/books/{id}",
      *     requirements={"id": "[1-9]\d*"},
      *     name="book_view",
      * )
@@ -175,7 +175,7 @@ class BooksController extends Controller
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/add",
+     *     "/books/add",
      *     name="books_add",
      * )
      * @Method({"GET", "POST"})
@@ -187,10 +187,8 @@ class BooksController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->booksRepository->save($book);
+            $this->booksRepository->createBook($book);
             $this->addFlash('success', 'message.created_successfully');
-
-            return $this->redirectToRoute('books_add');
         }
 
         return $this->render(
@@ -200,5 +198,46 @@ class BooksController extends Controller
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    /**
+    * @Route(
+    *     "/books/edit/{id}",
+    *     name="book_edit",
+    * )
+    * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Book $book)
+    {
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->booksManager->updateBook($book);
+            $this->addFlash('success', 'operation_successful');
+        }
+
+        return $this->render(
+            'books/edit.html.twig',
+            [
+                'book' => $book,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+    * @Route(
+    *     "/books/delete/{id}",
+    *     name="book_delete",
+    * )
+    * @Method({"GET", "POST"})
+     */
+    public function deleteAction(Request $request, Book $book)
+    {
+        $this->booksManager->deleteBook($book);
+        $this->addFlash('success', 'book_deleted.confirmation');
+
+        return $this->redirectToRoute('books_catalogue');
     }
 }

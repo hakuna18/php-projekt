@@ -6,23 +6,38 @@
 
 {% block body %}
 {% include 'login_panel.html.twig' %}
-<dl>
-    <dt>
-        <img src="{{asset('uploads/covers/' ~ book.cover)}}" width=200 height=300>
-    </dt>
-    <dt>{{ 'book.title'|trans }}</dt>
-    <dd>{{ book.title }}</dd>
-    <dt>{{ 'book.author'|trans }}</dt>
-    <dd>{{ book.author }}</dd>
-    <dt>{{ 'book.genre'|trans }}</dt>
-    <dd>{{ book.genre }}</dd>
-    <dt>{{ 'book.publisher'|trans }}</dt>
-    <dd>{{ book.publisher }}</dd>
-    <dt>{{ 'book.year'|trans }}</dt>
-    <dd>{{ book.year }}</dd>
-    <dt>{{ 'book.isbn'|trans }}</dt>
-    <dd>{{ book.ISBN }}</dd>
-    <dt> {{ 'book.description'|trans }} </dt>
-    <dd> {{ book.description }} </dd>
-</dl>
+
+    {% if is_granted("ROLE_ADMIN") %}
+        <form action="{{ path('book_edit', { 'id': book.id }) }}">
+            <input type="submit" value="{{ 'action.edit_book'|trans }}"/>
+        </form>
+        <form action="{{ path('book_delete', { 'id': book.id }) }}">
+        {% if book.loans|length %}
+            <input type="submit" style="color:red" value="{{'info.cant_delete_book_has_loans'|trans}}" disabled/>
+        {% else %}
+            <input type="submit" style="color:red" value="{{'action.delete_book'|trans}}"/>
+        {% endif %}
+        </form>
+    {% endif %}
+
+    <dl>
+        <dt>
+            <img src="{{asset('uploads/covers/' ~ book.cover)}}" width=200 height=300>
+        </dt>
+        <dt>{{ 'book.title'|trans }}</dt>
+        <dd>{{ book.title }}</dd>
+        <dt>{{ 'book.author'|trans }}</dt>
+        <dd>{{ book.author }}</dd>
+        <dt>{{ 'book.genre'|trans }}</dt>
+        <dd>{{ book.genre }}</dd>
+        <dt>{{ 'book.publisher'|trans }}</dt>
+        <dd>{{ book.publisher }}</dd>
+        <dt>{{ 'book.year'|trans }}</dt>
+        <dd>{{ book.year }}</dd>
+        <dt>{{ 'book.isbn'|trans }}</dt>
+        <dd>{{ book.ISBN }}</dd>
+        <dt> {{ 'book.description'|trans }} </dt>
+        <dd> {{ book.description }} </dd>
+    </dl>
+
 {% endblock %}

@@ -87,6 +87,21 @@ class BooksManager
         return true;
     }
 
+    public function createBook($book) {
+        $this->entityManager->persist($book);
+        $this->entityManager->flush();
+    }
+
+    public function updateBook($book) {
+        $this->entityManager->persist($book);
+        $this->entityManager->flush();
+    }
+
+    public function deleteBook($book) {
+        $this->entityManager->remove($book);
+        $this->entityManager->flush();
+    }
+
     private function findReservation($user, $book) {
         $reservationsRepo = $this->entityManager->getRepository(Reservation::class);
         $reservations = $reservationsRepo->findBy(array(
