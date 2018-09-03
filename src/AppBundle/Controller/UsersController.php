@@ -9,6 +9,7 @@ use FOS\UserBundle\Doctrine\UserManager;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use AppBundle\Repository\UsersRepository;
 use UserBundle\Entity\User;
@@ -77,10 +78,50 @@ class UsersController extends Controller
      */
     public function panelAction(Request $request) {
         if ($this->getUser()) {
-            return $this->render('users/panel.html.twig', ["user" => $this->getUser()]);
+            return $this->render(
+                'users/panel.html.twig', 
+                [
+                    'user' => $this->getUser(),
+                ]
+            );
         } else {
             return $this->redirectToRoute('fos_user_security_login');
         }
+    }
+
+    /**
+     * @Route("/user/change_mail/{id}", name="user_change_mail")
+     */
+    public function changeMailAction(Request $request, User $user) {
+        $form = $this->createFormBuilder($user)
+            ->add('email')
+            ->add('save', SubmitType::class, array('label' => 'form.submit'))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $this->usersManager->updateUser($user);
+            $this->addFlash(
+                'success',
+                'mail_updated.confirmation'
+            );
+        }
+
+        return $this->render(
+            'users/change_mail.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+     /**
+     * @Route("/user/change_mail_confirmation", name="change_mail_confirmation")
+     */
+    public function changeMailConfirmationAction(Request $request) {
+        return $this->render('users/change_mail_confirmation.html.twig');
     }
 
     /**

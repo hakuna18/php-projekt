@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Catalog'|trans }}
+{% endblock %}
+
+{% block body %}
+{% include 'login_panel.html.twig' %}
+
+    <h1>{{ 'Catalog'|trans }}</h1>
+    
+    {% if books is defined and books|length %}
+        <table class="table table-striped">
+            <tbody>
+                    <tr>
+                        <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.author'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.genre'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.publisher'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.year'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.number_of_copies'|trans }}</th>
+                        <th style="padding-bottom:20px">{{ 'book.copies_available'|trans }}</th>
+                    </tr>
+                {% for book in books %}                 
+                    <tr>                      
+                        <td style="border-bottom:1px solid black">{{ book.title }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.author }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.genre }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.publisher }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.year }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.numberOfCopies }}</td>
+                        <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
+
+                    </tr>             
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'empty_list'|trans }}
+        </div>
+    {% endif %}
+
+{% endblock %}

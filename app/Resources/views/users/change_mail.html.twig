@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'page.change_mail'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% include 'login_panel.html.twig' %}
+    <h1>{{ 'page.change_mail'|trans }}</h1>
+
+    {{ form_start(form, { method: 'post'}) }}   
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

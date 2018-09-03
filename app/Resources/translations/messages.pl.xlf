@@ -98,6 +98,10 @@
                 <source>user.email</source>
                 <target>Adres e-mail</target>
             </trans-unit>
+            <trans-unit id="Email">
+                <source>Email</source>
+                <target>Adres e-mail</target>
+            </trans-unit>
             <trans-unit id="user.reservations">
                 <source>user.reservations</source>
                 <target>Rezerwacje użytkownika</target>
@@ -160,7 +164,7 @@
             </trans-unit>
             <trans-unit id="info.cant_delete_account_has_loans">
                 <source>info.cant_delete_account_has_loans</source>
-                <target>Nie można usunąć z nie oddanymi książkami</target>
+                <target>Nie można usunąć konta z nie oddanymi książkami</target>
             </trans-unit>
             <trans-unit id="action.user_delete">
                 <source>action.user_delete</source>
@@ -313,6 +317,22 @@
             <trans-unit id="Bad credentials.">
                 <source>Bad credentials.</source>
                 <target>Niepoprawne dane logowania.</target>
+            </trans-unit>
+            <trans-unit id="page.change_mail">
+                <source>page.change_mail</source>
+                <target>Zmiana emaila</target>
+            </trans-unit>
+            <trans-unit id="action.change_mail">
+                <source>action.change_mail</source>
+                <target>Zmień email</target>
+            </trans-unit>
+            <trans-unit id="mail_updated.confirmation">
+                <source>mail_updated.confirmation</source>
+                <target>Zaktualizowano email</target>
+            </trans-unit>
+            <trans-unit id="form.submit">
+                <source>form.submit</source>
+                <target>Zapisz</target>
             </trans-unit>
         </body>
     </file>

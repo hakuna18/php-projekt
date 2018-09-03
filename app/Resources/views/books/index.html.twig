@@ -9,7 +9,7 @@
 
     <h1>{{ 'books.catalogue'|trans }}</h1>
 
-    {{ form_start(form, { method: 'post', action: url('books_catalogue') }) }}   
+    {{ form_start(form, { method: 'post' }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query }}) }}
     <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right"/>
     {{ form_end(form) }}

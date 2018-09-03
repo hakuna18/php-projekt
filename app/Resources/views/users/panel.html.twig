@@ -17,9 +17,15 @@
     <b>{{ user.email }}</b>
     
     <h2>{{ 'page.user_panel.account_actions'|trans }}</h2>
+
     <form action="{{ path('fos_user_change_password') }}">
         <input type="submit" value="{{ 'action.change_password'|trans }}"/>
     </form>
+
+    <form action="{{ path('user_change_mail', { 'id': user.id }) }}">
+        <input type="submit" value="{{ 'action.change_mail'|trans }}"/>
+    </form>
+    
     <form action="{{ path('user_delete', {'id': user.id}) }}">
         {% if user.loans|length %}
             <input type="submit" style="color:red" value="{{'info.cant_delete_account_has_loans'|trans}}" disabled/>
@@ -61,13 +67,13 @@
                     <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                     <th style="padding-bottom:20px">{{ 'loan.date'|trans }}</th>
                 </tr>
-                {% for loan in loans %}          
+                {% for loan in user.loans %}          
                     <tr>    
                         <td style="border-bottom:1px solid black">
                             <a href="{{ path('book_view', { 'id': loan.book.id }) }}">{{ loan.book.title }}</a>
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <font color= {{ booksManager.loanExpired(loan)? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
+                            <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                         </td>
                     </tr>               
                 {% endfor %}

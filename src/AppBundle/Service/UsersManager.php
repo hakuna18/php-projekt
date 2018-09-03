@@ -59,6 +59,10 @@ class UsersManager
         return $this->fosUserManager->findUsers();
     }
 
+    public function updateUser($user) {
+        $this->fosUserManager->updateUser($user);
+    }
+
     public function deleteUser($user) {
         foreach ($user->getReservations() as $reservation) {
             $this->entityManager->remove($reservation);
