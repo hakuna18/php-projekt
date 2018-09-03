@@ -64,12 +64,41 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/users/view/{id}", name="user_view")
+     * @Route("/admin/users/view/{id}", name="user_view")
      */
     public function adminViewAction(Request $request, User $user) {
         return $this->render(
             'admin/user.html.twig',
             ['user' => $user]
+        );
+    }
+
+    /**
+     * @Route("/admin/users/edit/{id}", name="user_edit")
+     */
+    public function adminEditAction(Request $request, User $user) {
+        $form = $this->createFormBuilder($user)
+            ->add('name', TextType::class)
+            ->add('surname', TextType::class)
+            ->add('email', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'form.submit'))
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $this->usersManager->updateUser($user);
+            $this->addFlash(
+                'success',
+                'operation_successful'
+            );
+        }
+
+        return $this->render(
+            'admin/edit_user.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView()
+            ]
         );
     }
 

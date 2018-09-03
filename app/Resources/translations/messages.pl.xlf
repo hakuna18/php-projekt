@@ -366,6 +366,14 @@
                 <source>operation_successful</source>
                 <target>Operacja wykonana pomyślnie</target>
             </trans-unit>
+            <trans-unit id="action.user_edit">
+                <source>action.user_edit</source>
+                <target>Edytuj dane</target>
+            </trans-unit>
+            <trans-unit id="page.edit_user">
+                <source>page.edit_user</source>
+                <target>Edytuj użytkownika</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
