@@ -374,6 +374,14 @@
                 <source>page.edit_user</source>
                 <target>Edytuj użytkownika</target>
             </trans-unit>
+            <trans-unit id="isbn.only_digits">
+                <source>isbn.only_digits</source>
+                <target>Numer ISBN musi składać się z samych cyfr</target>
+            </trans-unit>
+            <trans-unit id="validation.upload_cover">
+                <source>validation.upload_cover</source>
+                <target>Musisz dodać okładkę</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

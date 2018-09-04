@@ -57,11 +57,9 @@ class Book
      * )
      * 
      * @Assert\NotBlank
-     * @Assert\Type(type="digit")
-     * @Assert\Length(
-     *     min="13",
-     *     max="13",
-     * )
+     * @Assert\Type(type="digit",message="isbn.only_digits")
+     * @Assert\Length(min="13",max="13",exactMessage="isbn.13_digits")     
+     * 
      */
     private $isbn;
 
@@ -96,6 +94,12 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="5",
+     *     max="128",
+     * )
      */
     private $author;
 
@@ -109,6 +113,12 @@ class Book
      *     type="string",
      *     length=128,
      *     nullable=false,
+     * )
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="128",
      * )
      */
     private $genre;
@@ -125,7 +135,6 @@ class Book
      *     nullable=false,
      * )
      * 
-     * @Assert\NotBlank(message="Please, upload the cover.")
      * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $cover;
@@ -141,6 +150,8 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
+     * 
+     * @Assert\NotBlank
      */
     private $publisher;
 

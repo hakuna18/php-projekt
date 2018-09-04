@@ -13,12 +13,22 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class BookType.
  */
 class BookType extends AbstractType
 {
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * {@inheritdoc}
      *
@@ -86,6 +96,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
+                    'min' => '0'
                 ],
             ]
         )->add(
@@ -96,6 +107,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
+                    'min' => '1'
                 ],
             ]
         )->add(
@@ -109,7 +121,8 @@ class BookType extends AbstractType
             FileType::class, 
             [
                 'label' => 'cover_file',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ]
         )->add('save',
             SubmitType::class, 
@@ -117,6 +130,15 @@ class BookType extends AbstractType
                 'label' => 'form.submit'
             ]
         );
+
+        if (!$options['edit_mode']){
+            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) {
+                $form = $event->getForm();
+                if ( $form['cover']->getData() == NULL ){
+                    $form->addError(new FormError($this->translator->trans('validation.upload_cover')));                  
+                }
+            });
+        }
     }
 
     /**
@@ -129,6 +151,7 @@ class BookType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => Book::class,
+                'edit_mode' => false
             ]
         );
     }

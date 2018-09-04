@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\HttpFoundation\File\File;
 
 use AppBundle\Entity\Book;
 use AppBundle\Entity\Loan;
@@ -64,7 +65,7 @@ class BooksController extends Controller
      *)
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request, $page) {
+    public function indexAction(Request $request, $page=1) {
         $searchQuery = $request->request->get('form')['search'];
 
         $form = $this->createFormBuilder(null)
@@ -187,8 +188,8 @@ class BooksController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->booksRepository->createBook($book);
-            $this->addFlash('success', 'message.created_successfully');
+            $this->booksManager->createBook($book);
+            $this->addFlash('success', 'operation_successful');
         }
 
         return $this->render(
@@ -209,10 +210,14 @@ class BooksController extends Controller
      */
     public function editAction(Request $request, Book $book)
     {
-        $form = $this->createForm(BookType::class, $book);
+        var_dump($this->getParameter('covers_directory'));
+        $cover_backup = $book->getCover();
+        $form = $this->createForm(BookType::class, $book, ['edit_mode' => true]);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($book->getCover() == NULL) {
+                $book->setCover($cover_backup);
+            }
             $this->booksManager->updateBook($book);
             $this->addFlash('success', 'operation_successful');
         }
