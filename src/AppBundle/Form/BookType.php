@@ -11,11 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class BookType.
@@ -46,6 +48,7 @@ class BookType extends AbstractType
                 'attr' => [
                     'min_length' => 13,
                     'max_length' => 13,
+                    'size' => 11
                 ],
             ]
         )->add(
@@ -56,6 +59,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
+                    'size' => 30
                 ],
             ]
         )->add(
@@ -112,9 +116,13 @@ class BookType extends AbstractType
             ]
         )->add(
             'description',
-            TextType::class,
+            TextareaType::class,
             [
                 'label' => 'book.description',
+                'attr' => [
+                    'cols' => 40,
+                    'rows' => 3
+                ],
                 'required' => true,
             ]
         )->add(
@@ -122,8 +130,12 @@ class BookType extends AbstractType
             FileType::class,
             [
                 'label' => 'cover_file',
-                'data_class' => null,
-                'required' => false,
+                // It is needed to add this work-around when editing a book: Due to HTML specification 'FileType' cannot be pre-filled
+                // https://github.com/symfony/symfony/issues/10696#issuecomment-40263577
+                // https://stackoverflow.com/a/16367121/2603886
+                // so when editing: a) set data_class to null to avoid symfony error b) make this field not required
+                'data_class' => $options['edit_mode']? null : File::class,   
+                'required' => $options['edit_mode']? false : true,
             ]
         )->add(
             'save',
@@ -133,12 +145,15 @@ class BookType extends AbstractType
             ]
         );
 
-        if (!$options['edit_mode']) {
-            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) {
+        // Since the cover upload field is not required when editing, make sure the cover does not get reset to null
+        // by manually reverting it to the previous cover
+        if ($options['edit_mode']) {
+            $book = $builder->getData();
+            $cover_backup = $book->getCover();
+            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($book, $cover_backup) {
                 $form = $event->getForm();
-                if ($form['cover']->getData() == null) {
-                    $form->addError(new FormError($this->translator->trans('validation.upload_cover')));
-                }
+                if (!$form->isValid() || $book->getCover() == null)
+                    $book->setCover($cover_backup);
             });
         }
     }

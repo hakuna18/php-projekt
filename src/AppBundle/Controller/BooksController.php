@@ -218,15 +218,11 @@ class BooksController extends Controller
     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Book $book)
-    {
-       
-        $cover_backup = $book->getCover();
+    {   
+        $backup = $book->getCover();
         $form = $this->createForm(BookType::class, $book, ['edit_mode' => true]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($book->getCover() == null) {
-                $book->setCover($cover_backup);
-            }
             $this->booksManager->updateBook($book);
             $this->addFlash('success', 'operation_successful');
         }
