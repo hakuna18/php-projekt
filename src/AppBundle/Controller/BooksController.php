@@ -210,7 +210,7 @@ class BooksController extends Controller
      */
     public function editAction(Request $request, Book $book)
     {
-        var_dump($this->getParameter('covers_directory'));
+       
         $cover_backup = $book->getCover();
         $form = $this->createForm(BookType::class, $book, ['edit_mode' => true]);
         $form->handleRequest($request);

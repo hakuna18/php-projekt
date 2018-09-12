@@ -382,6 +382,10 @@
                 <source>validation.upload_cover</source>
                 <target>Musisz dodać okładkę</target>
             </trans-unit>
+	    <trans-unit id="change_password.submit">
+	    	<source>change_password.submit</source>
+		<target>Zmień hasło</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
