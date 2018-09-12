@@ -17,12 +17,18 @@ use AppBundle\Repository\BooksRepository;
 use AppBundle\Service\BooksManager;
 use AppBundle\Service\UsersManager;
 
-
+/**
+ * Class AdminController.
+ *
+ * @Route(
+ *     "/admin"
+ * )
+ */
 class AdminController extends Controller
 {
     protected $usersManager = null;
 
-    protected $booksManager = null; 
+    protected $booksManager = null;
 
     public function __construct(UsersManager $usersManager, BooksManager $booksManager)
     {
@@ -31,9 +37,10 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/panel", name="admin_panel")
+     * @Route("/panel", name="admin_panel")
      */
-    public function adminPanelAction(Request $request) {
+    public function adminPanelAction(Request $request)
+    {
         $searchQuery = $request->request->get('form')['search'];
         if (!$searchQuery) {
             $searchQuery = $request->query->get('search');
@@ -42,7 +49,7 @@ class AdminController extends Controller
         $reservationPage = $request->query->get('reservationPage');
         $reservations = $this->booksManager->getRepository(Reservation::class)->query($searchQuery, $reservationPage? $reservationPage : 1);
 
-        $loansPage = $request->query->get('loansPage'); 
+        $loansPage = $request->query->get('loansPage');
         $loans = $this->booksManager->getRepository(Loan::class)->query($searchQuery, $loansPage? $loansPage : 1);
  
         $form = $this->createFormBuilder(null)
@@ -55,7 +62,7 @@ class AdminController extends Controller
                 'reservations' => $reservations,
                 'loans' => $loans,
                 'form' => $form->createView(),
-                'search_query' => $searchQuery
+                'search_query' => $searchQuery,
             ]
         );
     }

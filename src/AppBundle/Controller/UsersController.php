@@ -28,7 +28,7 @@ class UsersController extends Controller
      * Index action.
      *
      * @param integer $page Current page number
-     * 
+     *
      * @Route(
      *     "admin/users",
      *     defaults={"page": 1},
@@ -41,10 +41,11 @@ class UsersController extends Controller
      *)
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request, $page) {
+    public function indexAction(Request $request, $page)
+    {
         // Only admin is allowed to access users list.
-        if(!$this->getUser() || !in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
-            throw $this->createAccessDeniedException('You cannot access this page!');        
+        if (!$this->getUser() || !in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
+            throw $this->createAccessDeniedException('You cannot access this page!');
         }
 
         $searchQuery = $request->request->get('form')['search'];
@@ -58,7 +59,7 @@ class UsersController extends Controller
             [
                 'users' => $matchedUsers,
                 'form' => $form->createView(),
-                'search_query' => $searchQuery
+                'search_query' => $searchQuery,
             ]
         );
     }
@@ -66,7 +67,8 @@ class UsersController extends Controller
     /**
      * @Route("/admin/users/view/{id}", name="user_view")
      */
-    public function adminViewAction(Request $request, User $user) {
+    public function adminViewAction(Request $request, User $user)
+    {
         return $this->render(
             'admin/user.html.twig',
             ['user' => $user]
@@ -76,7 +78,8 @@ class UsersController extends Controller
     /**
      * @Route("/admin/users/edit/{id}", name="user_edit")
      */
-    public function adminEditAction(Request $request, User $user) {
+    public function adminEditAction(Request $request, User $user)
+    {
         $form = $this->createFormBuilder($user)
             ->add('name', TextType::class)
             ->add('surname', TextType::class)
@@ -84,8 +87,7 @@ class UsersController extends Controller
             ->add('save', SubmitType::class, array('label' => 'form.submit'))
             ->getForm();
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->usersManager->updateUser($user);
             $this->addFlash(
                 'success',
@@ -97,7 +99,7 @@ class UsersController extends Controller
             'admin/edit_user.html.twig',
             [
                 'user' => $user,
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }
@@ -105,10 +107,11 @@ class UsersController extends Controller
     /**
      * @Route("/user/panel", name="user_panel")
      */
-    public function panelAction(Request $request) {
+    public function panelAction(Request $request)
+    {
         if ($this->getUser()) {
             return $this->render(
-                'users/panel.html.twig', 
+                'users/panel.html.twig',
                 [
                     'user' => $this->getUser(),
                 ]
@@ -121,15 +124,15 @@ class UsersController extends Controller
     /**
      * @Route("/user/change_mail/{id}", name="user_change_mail")
      */
-    public function changeMailAction(Request $request, User $user) {
+    public function changeMailAction(Request $request, User $user)
+    {
         $form = $this->createFormBuilder($user)
             ->add('email')
             ->add('save', SubmitType::class, array('label' => 'form.submit'))
             ->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->usersManager->updateUser($user);
             $this->addFlash(
                 'success',
@@ -149,14 +152,16 @@ class UsersController extends Controller
      /**
      * @Route("/user/change_mail_confirmation", name="change_mail_confirmation")
      */
-    public function changeMailConfirmationAction(Request $request) {
+    public function changeMailConfirmationAction(Request $request)
+    {
         return $this->render('users/change_mail_confirmation.html.twig');
     }
 
     /**
      * @Route("/user/delete/{id}", name="user_delete")
      */
-    public function deleteAction(Request $request, User $user) {
+    public function deleteAction(Request $request, User $user)
+    {
         $this->usersManager->deleteUser($user);
     
         $this->addFlash(

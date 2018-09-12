@@ -96,7 +96,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
-                    'min' => '0'
+                    'min' => '0',
                 ],
             ]
         )->add(
@@ -107,7 +107,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
-                    'min' => '1'
+                    'min' => '1',
                 ],
             ]
         )->add(
@@ -115,27 +115,29 @@ class BookType extends AbstractType
             TextType::class,
             [
                 'label' => 'book.description',
-                'required' => true
+                'required' => true,
             ]
-        )->add('cover',
-            FileType::class, 
+        )->add(
+            'cover',
+            FileType::class,
             [
                 'label' => 'cover_file',
                 'data_class' => null,
-                'required' => false
+                'required' => false,
             ]
-        )->add('save',
-            SubmitType::class, 
+        )->add(
+            'save',
+            SubmitType::class,
             [
-                'label' => 'form.submit'
+                'label' => 'form.submit',
             ]
         );
 
-        if (!$options['edit_mode']){
+        if (!$options['edit_mode']) {
             $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) {
                 $form = $event->getForm();
-                if ( $form['cover']->getData() == NULL ){
-                    $form->addError(new FormError($this->translator->trans('validation.upload_cover')));                  
+                if ($form['cover']->getData() == null) {
+                    $form->addError(new FormError($this->translator->trans('validation.upload_cover')));
                 }
             });
         }
@@ -151,7 +153,7 @@ class BookType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => Book::class,
-                'edit_mode' => false
+                'edit_mode' => false,
             ]
         );
     }

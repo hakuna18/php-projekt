@@ -55,11 +55,11 @@ class Book
      *     length=13,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Type(type="digit",message="isbn.only_digits")
-     * @Assert\Length(min="13",max="13",exactMessage="isbn.13_digits")     
-     * 
+     * @Assert\Length(min="13",max="13",exactMessage="isbn.13_digits")
+     *
      */
     private $isbn;
 
@@ -74,7 +74,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Length(
      *     min="3",
@@ -94,7 +94,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Length(
      *     min="5",
@@ -114,7 +114,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Length(
      *     min="3",
@@ -134,7 +134,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $cover;
@@ -150,7 +150,7 @@ class Book
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      */
     private $publisher;
@@ -158,7 +158,7 @@ class Book
     /**
      * Year.
      *
-     * @var integer $year
+     * @var int $year
      *
      * @ORM\Column(
      *     name="year",
@@ -173,7 +173,7 @@ class Book
      /**
      * Total number of copies
      *
-     * @var integer $numberOfCopies
+     * @var int $numberOfCopies
      *
      * @ORM\Column(
      *     name="NumberOfCopies",

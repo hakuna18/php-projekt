@@ -38,7 +38,7 @@ class BooksController extends Controller
      * BooksController constructor.
      *
      * @param \AppBundle\Repository\BooksRepository $booksRepository Books repository
-     * @param \AppBundle\Service\BooksManager $booksManager Books manager service
+     * @param \AppBundle\Service\BooksManager       $booksManager    Books manager service
      */
     public function __construct(BooksManager $booksManager)
     {
@@ -52,7 +52,7 @@ class BooksController extends Controller
      * Index action.
      *
      * @param integer $page Current page number
-     * 
+     *
      * @Route(
      *     "/books",
      *     defaults={"page": 1},
@@ -65,7 +65,8 @@ class BooksController extends Controller
      *)
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request, $page=1) {
+    public function indexAction(Request $request, $page = 1)
+    {
         $searchQuery = $request->request->get('form')['search'];
 
         $form = $this->createFormBuilder(null)
@@ -78,7 +79,7 @@ class BooksController extends Controller
                 'books' => $this->booksRepository->findByPattern($searchQuery, $page),
                 'form' => $form->createView(),
                 'booksManager' => $this->booksManager,
-                'search_query' => $searchQuery
+                'search_query' => $searchQuery,
             ]
         );
     }
@@ -109,22 +110,25 @@ class BooksController extends Controller
      /**
      * @Route("/reservation/make/{id}", name="make_reservation")
      */
-    public function makeReservationAction(Request $request, Book $book) {
+    public function makeReservationAction(Request $request, Book $book)
+    {
         $user = $this->getUser();
         $reservation = $this->booksManager->makeReservation($user, $book);
         if ($reservation) {
-             $this->addFlash(
+            $this->addFlash(
                 'notice',
                 'book.reservation.confirmation'
             );
         }
+
         return $this->redirectToRoute('books_catalogue');
     }
 
      /**
      * @Route("/reservation/cancel/{id}", name="cancel_reservation")
      */
-    public function cancelReservationAction(Request $request, Book $book) {
+    public function cancelReservationAction(Request $request, Book $book)
+    {
         $userId = $request->query->get('userId');
         if ($userId) {
             $user = $this->get('fos_user.user_manager')->findUserBy(array('id' => $userId));
@@ -137,32 +141,37 @@ class BooksController extends Controller
                 'book.reservation.cancel_confirmation'
             );
         }
+
         return $this->redirect($request->headers->get('referer'));
     }
 
     /**
      * @Route("/loan/make/{id}", name="make_loan")
      */
-    public function loanAction(Request $request, Reservation $reservation) {
+    public function loanAction(Request $request, Reservation $reservation)
+    {
         if ($this->booksManager->makeALoan($reservation)) {
             $this->addFlash(
                 'notice',
                 'book.loan.confirmation'
             );
-        }  
+        }
+  
         return $this->redirect($request->headers->get('referer'));
     }
 
     /**
      * @Route("/loan/return/{id}", name="book_return")
      */
-    public function returnBookAction(Request $request, Loan $loan) {
+    public function returnBookAction(Request $request, Loan $loan)
+    {
         if ($loan && $this->booksManager->returnBook($loan)) {
             $this->addFlash(
                 'notice',
                 'book.return.confirmation'
             );
-        }  
+        }
+  
         return $this->redirect($request->headers->get('referer'));
     }
 
@@ -215,7 +224,7 @@ class BooksController extends Controller
         $form = $this->createForm(BookType::class, $book, ['edit_mode' => true]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($book->getCover() == NULL) {
+            if ($book->getCover() == null) {
                 $book->setCover($cover_backup);
             }
             $this->booksManager->updateBook($book);

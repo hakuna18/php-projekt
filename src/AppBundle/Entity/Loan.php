@@ -45,12 +45,14 @@ class Loan
      */
     private $book;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->loanDate = new DateTime('now');
     }
 
-    public function isExpired() {
-        return time() - $this->loanDate->getTimestamp() > 3600 * 24 * LOAN::$LOAN_DAYS_LIMIT;  
+    public function isExpired()
+    {
+        return time() - $this->loanDate->getTimestamp() > 3600 * 24 * LOAN::$LOAN_DAYS_LIMIT;
     }
 
     /**
@@ -121,4 +123,3 @@ class Loan
         return $this->book;
     }
 }
-

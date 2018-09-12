@@ -50,7 +50,8 @@ class Reservation
         $this->creationDate = new DateTime('now');
     }
 
-    public function isExpired() {
+    public function isExpired()
+    {
         return time() - $this->creationDate->getTimestamp() > 3600 * 24 * Reservation::$RESERVATION_DAYS_LIMIT;
     }
 
@@ -122,4 +123,3 @@ class Reservation
         return $this->book;
     }
 }
-
