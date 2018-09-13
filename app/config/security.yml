@@ -26,15 +26,23 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
             logout:
-                target: /books
+                invalidate_session: false
+                success_handler: user.logout_success_handler
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: ROLE_ADMIN }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }       
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, role: ROLE_ADMIN }
-        - { path: ^/add, role: ROLE_ADMIN }
+        - { path: ^/register, role: ROLE_ADMIN }     
+        - { path: ^/admin, role: ROLE_ADMIN }   
+        - { path: ^/books/add, role: ROLE_ADMIN }
+        - { path: ^/books/edit, role: ROLE_ADMIN }
+        - { path: ^/books/delete, role: ROLE_ADMIN }
+        - { path: ^/books/loan, role: ROLE_ADMIN }
+        - { path: ^/users/change_mail, role: ROLE_USER }
+        - { path: ^/users/panel, role: ROLE_USER }
+        - { path: ^/users, role: ROLE_ADMIN }
+        
         
             # activate different ways to authenticate
 

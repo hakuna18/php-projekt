@@ -37,39 +37,4 @@ class BooksRepository extends EntityRepository
 
         return $paginator;
     }
-     /**
-     * Query all entities.
-     *
-     * @return \Doctrine\ORM\QueryBuilder
-     */
-    protected function queryAll()
-    {
-        return $this->createQueryBuilder('book');
-    }
-
-    /**
-     * Save entity.
-     *
-     * @param \AppBundle\Entity\Book $book Book entity
-     *
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function save(Book $book)
-    {
-        $this->_em->persist($book);
-        $this->_em->flush($book);
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @param \AppBundle\Entity\Book $book Book entity
-     *
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function delete(Book $book)
-    {
-        $this->_em->remove($book);
-        $this->_em->flush();
-    }
 }

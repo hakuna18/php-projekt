@@ -1,0 +1,59 @@
+{% block body %}
+          
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+        ||          
+        {% if is_granted("ROLE_ADMIN") %}
+            {% if app.request.pathinfo != path('admin_panel') %}
+                <a href="{{ path('admin_panel') }}">{{ 'page.admin_panel'|trans }}</a>
+                |
+            {% endif %}
+            {% if app.request.pathinfo != path('books_add') %}
+                <a href="{{ path('books_add') }}">{{ 'page.books_add'|trans }}</a>
+                |
+            {% endif %}
+            {% if app.request.pathinfo != path('fos_user_registration_register') %}
+                <a href="{{ path('fos_user_registration_register') }}">{{ 'page.register_user'|trans }}</a>
+                |
+            {% endif %}
+        {% else %}
+            {% if app.request.pathinfo != path('user_panel') %}
+                <a href="{{ path('user_panel') }}">{{ 'page.user_panel'|trans }}</a>
+                |
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% if app.request.pathinfo != path('fos_user_security_login') %}
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
+    {% endif %} {# is_granted("IS_AUTHENTICATED_REMEMBERED") #}
+
+    {% if app.request.pathinfo != path('books_catalogue') %}
+        <a href="{{ path('books_catalogue') }}">{{ 'books_catalogue'|trans }}</a>           
+    {% endif %}
+    
+    {# Display flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            {% if label == 'notice' %}
+                {% set div = 'success' %}
+            {% elseif label == 'error' %}
+                {% set div = 'danger' %}
+            {% else %}
+                {% set div = label %}
+            {% endif %}
+            <div class="alert alert-{{ div }}" role="alert">
+                {{ message|trans }}
+            </div>
+        {% endfor %}       
+    {% endfor %}
+
+    {# Display errors #}
+    {% if error is defined and error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.message|trans }}
+        </div>
+    {% endif %}
+
+ {% endblock %}           

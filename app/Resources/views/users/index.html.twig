@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'login_panel.html.twig' %}
+    {% include 'top_menu.html.twig' %}
     <h1>{{ 'page.users'|trans }}</h1>
 
     {{ form_start(form, { method: 'post', action: url('users') }) }}   

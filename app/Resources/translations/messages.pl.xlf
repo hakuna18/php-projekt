@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="message.empty_list">
                 <source>message.empty_list</source>
-                <target>Brak wyników</target>
+                <target>Brak rekordów</target>
             </trans-unit>
             <trans-unit id="Managing">
                 <source>Managing</source>
@@ -274,6 +274,10 @@
                 <source>title.reset_password</source>
                 <target>Resetowanie hasła</target>
             </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Zmiana hasła</target>
+            </trans-unit>
             <trans-unit id="resetting.request.username">
                 <source>resetting.request.username</source>
                 <target>Nazwa użytkownika</target>
@@ -382,10 +386,26 @@
                 <source>validation.upload_cover</source>
                 <target>Musisz dodać okładkę</target>
             </trans-unit>
-	    <trans-unit id="change_password.submit">
-	    	<source>change_password.submit</source>
-		<target>Zmień hasło</target>
-	    </trans-unit>
+            <trans-unit id="change_password.submit">
+                <source>change_password.submit</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="book.has_loan">
+                <source>book.has_loan</source>
+                <target>Wypożyczono</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="Hasło zostało zmienione.">
+                <source>Hasło zostało zmienione.</source>
+                <target>Hasło zostało zmienione</target>
+            </trans-unit>
+            <trans-unit id="confirmation.logged_out">
+                <source>confirmation.logged_out</source>
+                <target>Wylogowano</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

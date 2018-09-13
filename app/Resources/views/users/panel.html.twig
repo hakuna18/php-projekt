@@ -5,34 +5,47 @@
 {% endblock %}
 
 {% block body %}
-{% include 'login_panel.html.twig' %}
+{% include 'top_menu.html.twig' %}
     <h1>{{ 'page.user_panel'|trans }}</h1>
     
     <h2>{{ 'user_details'|trans }}</h2>
-    {{ 'user.name'|trans }}
-    <b>{{ user.name }}</b>
-    {{ 'user.surname'|trans }}
-    <b>{{ user.surname }}</b>
-    {{ 'user.email'|trans }}
-    <b>{{ user.email }}</b>
+    <div>
+        {{ 'user.name'|trans }}: <b>{{ user.name }}</b>
+    </div>
+    <div>
+        {{ 'user.surname'|trans }}: <b>{{ user.surname }}</b>
+    </div>
+    <div>
+    {{ 'user.email'|trans }}: <b>{{ user.email }}</b>
+    </div>
     
     <h2>{{ 'page.user_panel.account_actions'|trans }}</h2>
-
-    <form action="{{ path('fos_user_change_password') }}">
-        <input type="submit" value="{{ 'action.change_password'|trans }}"/>
-    </form>
-
-    <form action="{{ path('user_change_mail', { 'id': user.id }) }}">
-        <input type="submit" value="{{ 'action.change_mail'|trans }}"/>
-    </form>
     
-    <form action="{{ path('user_delete', {'id': user.id}) }}">
-        {% if user.loans|length %}
-            <input type="submit" style="color:red" value="{{'info.cant_delete_account_has_loans'|trans}}" disabled/>
-        {% else %}
-            <input type="submit" style="color:red" value="{{'action.user_delete'|trans}}"/>
-        {% endif %}
-    </form>
+    <table style="border-spacing:3">
+        <tbody>
+        <tr>
+            <td>
+            <form action="{{ path('fos_user_change_password') }}">
+                <input type="submit" value="{{ 'action.change_password'|trans }}" class="btn btn-default"/>
+            </form>
+            </td>
+            <td>
+            <form action="{{ path('user_change_mail', { 'id': user.id }) }}">
+                <input type="submit" value="{{ 'action.change_mail'|trans }}" class="btn btn-default"/>
+            </form>
+            </td>
+            <td>
+            <form action="{{ path('user_delete', {'id': user.id}) }}">
+                {% if user.loans|length %}
+                    <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
+                {% else %}
+                    <input type="submit" style="color:red" value="{{'action.user_delete'|trans}}" class="btn btn-default"/>
+                {% endif %}
+            </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
     <h3>{{ 'book.reservations'|trans }}</h3>
     {% if user.reservations|length %}
@@ -57,6 +70,10 @@
                 {% endfor %}
             </tbody>
         </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'empty_list'|trans }}
+        </div>
     {% endif %}
 
     <h3>{{ 'book.loans'|trans }}</h3>
@@ -79,6 +96,10 @@
                 {% endfor %}
             </tbody>
         </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'empty_list'|trans }}
+        </div>
     {% endif %}
 
 {% endblock %}

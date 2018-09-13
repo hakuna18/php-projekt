@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-{% include 'login_panel.html.twig' %}
+{% include 'top_menu.html.twig' %}
 
     <h1>{{ 'books.catalogue'|trans }}</h1>
 
     {{ form_start(form, { method: 'post' }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query }}) }}
-    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right"/>
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default"/>
     {{ form_end(form) }}
     
     {% if books is defined and books|length %}
@@ -42,6 +42,10 @@
                             {% if booksManager.hasReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
                                     <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                                </td>
+                            {% elseif booksManager.hasLoan(app.user, book) %}
+                                <td style="border-bottom:1px solid black">
+                                    {{ 'book.has_loan'|trans }}
                                 </td>
                             {% elseif booksManager.canMakeReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-{% include 'login_panel.html.twig' %}
+{% include 'top_menu.html.twig' %}
 
     {% if is_granted("ROLE_ADMIN") %}
         <form action="{{ path('book_edit', { 'id': book.id }) }}">

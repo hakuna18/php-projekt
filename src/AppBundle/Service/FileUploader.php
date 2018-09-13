@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+// https://symfony.com/doc/3.4/controller/upload_file.html
 class FileUploader
 {
     private $targetDirectory;

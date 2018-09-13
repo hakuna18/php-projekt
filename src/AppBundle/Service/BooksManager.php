@@ -63,6 +63,10 @@ class BooksManager
         return $this->hasReservation($user, $book);
     }
 
+    public function hasLoan($user, $book) {
+        return $this->findLoan($user, $book) != null;
+    }
+
     public function makeALoan($reservation) {
         $user = $reservation->getUser();
         $book = $reservation->getBook();
@@ -109,5 +113,14 @@ class BooksManager
             'book' => $book
         ));
         return count($reservations) == 0? null : $reservations[0];
+    }
+
+    private function findLoan($user, $book) {
+        $loansRepo = $this->entityManager->getRepository(Loan::class);
+        $loans = $loansRepo->findBy(array(
+            'user' => $user,
+            'book' => $book
+        ));
+        return count($loans) == 0? null : $loans[0];
     }
 }

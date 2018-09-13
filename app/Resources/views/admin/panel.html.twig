@@ -5,12 +5,33 @@
 {% endblock %}
 
 {% block body %}
-{% include 'login_panel.html.twig' %}
+{% include 'top_menu.html.twig' %}
 
     <h1>{{ 'page.admin_panel'|trans }}</h1>
 
-    <a href="{{ path('users') }}">{{'show.users'|trans}}</a>
+    <table style="border-spacing:3">
+        <tbody>
+        <tr>
+            <td>
+            <form action="{{ path('fos_user_change_password') }}">
+                <input type="submit" value="{{ 'action.change_password'|trans }}" class="btn btn-default"/>
+            </form>
+            </td>
+            <td>
+            <form action="{{ path('user_change_mail', { 'id': app.user.id }) }}">
+                <input type="submit" value="{{ 'action.change_mail'|trans }}" class="btn btn-default"/>
+            </form>
+            </td>
+            <td>
+            <form action="{{ path('users') }}">
+                <input type="submit" value="{{'show.users'|trans}}" class="btn btn-default"/>
+            </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-{% include 'admin/reservations_loans.html.twig' %}
+<br>
+{% include 'admin/reservations_loans_content.html.twig' %}
 
 {% endblock %}

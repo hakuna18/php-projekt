@@ -3,7 +3,17 @@ services:
 #        class: UserBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     user.registration:
-            class: UserBundle\EventListener\RegistrationListener
-            arguments: ['@router', '@session']
-            tags:
-                - { name: kernel.event_subscriber }
+        class: UserBundle\EventListener\RegistrationListener
+        arguments: ['@router', '@session']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    user.password_changing:
+        class: UserBundle\EventListener\PasswordChangeListener
+        arguments: [ '@router', '@session' ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    user.logout_success_handler:
+        class: UserBundle\Handler\LogoutSuccessHandler
+        arguments: [ '@router', '@session' ]

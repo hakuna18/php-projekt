@@ -17,7 +17,11 @@ use AppBundle\Form\BookType;
 use AppBundle\Repository\BooksRepository;
 use AppBundle\Service\BooksManager;
 
-
+/**
+ * Books controller.
+ * 
+ * @Route("/books")
+ */
 class BooksController extends Controller
 {
     /**
@@ -37,8 +41,7 @@ class BooksController extends Controller
     /**
      * BooksController constructor.
      *
-     * @param \AppBundle\Repository\BooksRepository $booksRepository Books repository
-     * @param \AppBundle\Service\BooksManager       $booksManager    Books manager service
+     * @param \AppBundle\Service\BooksManager $booksManager Books manager service
      */
     public function __construct(BooksManager $booksManager)
     {
@@ -54,12 +57,12 @@ class BooksController extends Controller
      * @param integer $page Current page number
      *
      * @Route(
-     *     "/books",
+     *     "/",
      *     defaults={"page": 1},
      *     name="books_catalogue",
      * )
      * @Route(
-     *     "/books/page/{page}",
+     *     "/page/{page}",
      *     requirements={"page": "[1-9]\d*"},
      *     name="books_catalogue_paginated",
      *)
@@ -85,10 +88,10 @@ class BooksController extends Controller
     }
 
    /**
-     * View action.
+     * View single book action.
      *
      * @Route(
-     *     "/books/{id}",
+     *     "/{id}",
      *     requirements={"id": "[1-9]\d*"},
      *     name="book_view",
      * )
@@ -185,7 +188,7 @@ class BooksController extends Controller
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/books/add",
+     *     "/add",
      *     name="books_add",
      * )
      * @Method({"GET", "POST"})
@@ -212,7 +215,7 @@ class BooksController extends Controller
 
     /**
     * @Route(
-    *     "/books/edit/{id}",
+    *     "/edit/{id}",
     *     name="book_edit",
     * )
     * @Method({"GET", "POST"})
@@ -238,7 +241,7 @@ class BooksController extends Controller
 
     /**
     * @Route(
-    *     "/books/delete/{id}",
+    *     "/delete/{id}",
     *     name="book_delete",
     * )
     * @Method({"GET", "POST"})

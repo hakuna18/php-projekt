@@ -9,6 +9,7 @@ use AppBundle\Entity\Product;
 use AppBundle\Service\FileUploader;
 use AppBundle\Entity\Book;
 
+// https://symfony.com/doc/3.4/controller/upload_file.html
 class CoverUploadListener
 {
     private $uploader;

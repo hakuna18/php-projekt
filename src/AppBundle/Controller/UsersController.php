@@ -15,6 +15,11 @@ use AppBundle\Repository\UsersRepository;
 use UserBundle\Entity\User;
 use AppBundle\Service\UsersManager;
 
+/**
+ * Users controller.
+ * 
+ * @Route("/users")
+ */
 class UsersController extends Controller
 {
     private $usersManager = null;
@@ -30,12 +35,12 @@ class UsersController extends Controller
      * @param integer $page Current page number
      *
      * @Route(
-     *     "admin/users",
+     *     "/",
      *     defaults={"page": 1},
      *     name="users",
      * )
      * @Route(
-     *     "admin/users/{page}",
+     *     "/{page}",
      *     requirements={"page": "[1-9]\d*"},
      *     name="users_paginated",
      *)
@@ -43,11 +48,6 @@ class UsersController extends Controller
      */
     public function indexAction(Request $request, $page)
     {
-        // Only admin is allowed to access users list.
-        if (!$this->getUser() || !in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
-            throw $this->createAccessDeniedException('You cannot access this page!');
-        }
-
         $searchQuery = $request->request->get('form')['search'];
         $matchedUsers = $this->usersManager->findByPattern($searchQuery, false, $page);
         $form = $this->createFormBuilder(null)
@@ -65,9 +65,9 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/admin/users/view/{id}", name="user_view")
+     * @Route("/view/{id}", name="user_view")
      */
-    public function adminViewAction(Request $request, User $user)
+    public function viewAction(Request $request, User $user)
     {
         return $this->render(
             'admin/user.html.twig',
@@ -76,9 +76,9 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/admin/users/edit/{id}", name="user_edit")
+     * @Route("/edit/{id}", name="user_edit")
      */
-    public function adminEditAction(Request $request, User $user)
+    public function editAction(Request $request, User $user)
     {
         $form = $this->createFormBuilder($user)
             ->add('name', TextType::class)
@@ -105,7 +105,22 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/user/panel", name="user_panel")
+     * @Route("/delete/{id}", name="user_delete")
+     */
+    public function deleteAction(Request $request, User $user)
+    {
+        $this->usersManager->deleteUser($user);
+    
+        $this->addFlash(
+            'notice',
+            'user_deleted.confirmation'
+        );
+
+        return $this->redirectToRoute('users');
+    }
+
+    /**
+     * @Route("/panel", name="user_panel")
      */
     public function panelAction(Request $request)
     {
@@ -122,10 +137,11 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/user/change_mail/{id}", name="user_change_mail")
+     * @Route("/change_mail", name="user_change_mail")
      */
-    public function changeMailAction(Request $request, User $user)
+    public function changeMailAction(Request $request)
     {
+        $user = $this->getUser();
         $form = $this->createFormBuilder($user)
             ->add('email')
             ->add('save', SubmitType::class, array('label' => 'form.submit'))
@@ -147,28 +163,5 @@ class UsersController extends Controller
                 'form' => $form->createView(),
             ]
         );
-    }
-
-     /**
-     * @Route("/user/change_mail_confirmation", name="change_mail_confirmation")
-     */
-    public function changeMailConfirmationAction(Request $request)
-    {
-        return $this->render('users/change_mail_confirmation.html.twig');
-    }
-
-    /**
-     * @Route("/user/delete/{id}", name="user_delete")
-     */
-    public function deleteAction(Request $request, User $user)
-    {
-        $this->usersManager->deleteUser($user);
-    
-        $this->addFlash(
-            'notice',
-            'user_deleted.confirmation'
-        );
-
-        return $this->redirectToRoute('books_catalogue');
     }
 }

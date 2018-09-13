@@ -1,5 +1,4 @@
 <?php
-// src/Acme/UserBundle/EventListener/PasswordResettingListener.php
 
 namespace UserBundle\EventListener;
 
@@ -11,7 +10,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
+// https://symfony.com/doc/master/bundles/FOSUserBundle/controller_events.html
 class RegistrationListener implements EventSubscriberInterface
 {
     private $router;
@@ -36,7 +35,7 @@ class RegistrationListener implements EventSubscriberInterface
     }
 
     public function onRegistrationSuccess(FormEvent $event) {
-        $url = $this->router->generate('admin_panel');
+        $url = $this->router->generate('users');
         $this->session->getFlashBag()->add('success', 'user.registration_success');
         $event->setResponse(new RedirectResponse($url));
     }

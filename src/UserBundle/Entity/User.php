@@ -35,8 +35,9 @@ class User extends BaseUser
         $this->reservations = new ArrayCollection();
         $this->loans = new ArrayCollection();
 
-        $this->name = "";
-        $this->surname = "";
+        // This is a work-around for a case when the user is created from the FOS user create CLI.
+        $this->name = "empty";
+        $this->surname = "empty";
 
         parent::__construct();
     }
