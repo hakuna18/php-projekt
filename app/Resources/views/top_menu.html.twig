@@ -1,35 +1,37 @@
 {% block body %}
-          
+             
+    {% set current_route = app.request.attributes.get('_route') %}
+
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
         <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
         ||          
         {% if is_granted("ROLE_ADMIN") %}
-            {% if app.request.pathinfo != path('admin_panel') %}
+            {% if current_route != 'admin_panel' %}
                 <a href="{{ path('admin_panel') }}">{{ 'page.admin_panel'|trans }}</a>
                 |
             {% endif %}
-            {% if app.request.pathinfo != path('books_add') %}
+            {% if current_route != 'books_add' %}
                 <a href="{{ path('books_add') }}">{{ 'page.books_add'|trans }}</a>
                 |
             {% endif %}
-            {% if app.request.pathinfo != path('fos_user_registration_register') %}
+            {% if current_route != 'fos_user_registration_register' %}
                 <a href="{{ path('fos_user_registration_register') }}">{{ 'page.register_user'|trans }}</a>
                 |
             {% endif %}
         {% else %}
-            {% if app.request.pathinfo != path('user_panel') %}
+            {% if current_route != 'user_panel' %}
                 <a href="{{ path('user_panel') }}">{{ 'page.user_panel'|trans }}</a>
                 |
             {% endif %}
         {% endif %}
     {% else %}
-        {% if app.request.pathinfo != path('fos_user_security_login') %}
+        {% if current_route != 'fos_user_security_login' %}
             <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
         {% endif %}
     {% endif %} {# is_granted("IS_AUTHENTICATED_REMEMBERED") #}
 
-    {% if app.request.pathinfo != path('books_catalogue') %}
+    {% if current_route != 'books_catalogue' and current_route != 'books_catalogue_paginated' %}
         <a href="{{ path('books_catalogue') }}">{{ 'books_catalogue'|trans }}</a>           
     {% endif %}
     
