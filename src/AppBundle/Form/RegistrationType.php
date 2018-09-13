@@ -29,7 +29,8 @@ class RegistrationType extends AbstractType
                 'attr' => [
                     'max_length' => 128,
                 ],
-            ]);
+            ]
+        );
     }
 
     public function getParent()

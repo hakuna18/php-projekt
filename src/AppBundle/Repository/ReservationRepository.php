@@ -15,14 +15,15 @@ use AppBundle\Entity\Reservation;
 class ReservationRepository extends \Doctrine\ORM\EntityRepository
 {
     // Query by user's surname/email or book's ISBN
-    public function query($pattern, $page = 1) {
-        $pattern = '/' . strtoupper(trim($pattern)) . '/';
+    public function query($pattern, $page = 1)
+    {
+        $pattern = '/'.strtoupper(trim($pattern)).'/';
         $result = array();
         // If regex valid
         if (@preg_match($pattern, null) !== false) {
-            $reservations = $this->findAll(); 
-            foreach($reservations as $reservation) {
-                if(preg_match($pattern, strtoupper($reservation->getUser()->getSurname()))
+            $reservations = $this->findAll();
+            foreach ($reservations as $reservation) {
+                if (preg_match($pattern, strtoupper($reservation->getUser()->getSurname()))
                 || preg_match($pattern, strtoupper($reservation->getUser()->getEmail()))
                 || preg_match($pattern, strtoupper($reservation->getBook()->getISBN()))
                 ) {

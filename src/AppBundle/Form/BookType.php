@@ -48,7 +48,7 @@ class BookType extends AbstractType
                 'attr' => [
                     'min_length' => 13,
                     'max_length' => 13,
-                    'size' => 11
+                    'size' => 11,
                 ],
             ]
         )->add(
@@ -59,7 +59,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
-                    'size' => 30
+                    'size' => 30,
                 ],
             ]
         )->add(
@@ -121,7 +121,7 @@ class BookType extends AbstractType
                 'label' => 'book.description',
                 'attr' => [
                     'cols' => 40,
-                    'rows' => 3
+                    'rows' => 3,
                 ],
                 'required' => true,
             ]
@@ -134,7 +134,7 @@ class BookType extends AbstractType
                 // https://github.com/symfony/symfony/issues/10696#issuecomment-40263577
                 // https://stackoverflow.com/a/16367121/2603886
                 // so when editing: a) set data_class to null to avoid symfony error b) make this field not required
-                'data_class' => $options['edit_mode']? null : File::class,   
+                'data_class' => $options['edit_mode']? null : File::class,
                 'required' => $options['edit_mode']? false : true,
             ]
         )->add(
@@ -149,11 +149,12 @@ class BookType extends AbstractType
         // by manually reverting it to the previous cover
         if ($options['edit_mode']) {
             $book = $builder->getData();
-            $cover_backup = $book->getCover();
-            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($book, $cover_backup) {
+            $coverBackup = $book->getCover();
+            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($book, $coverBackup) {
                 $form = $event->getForm();
-                if (!$form->isValid() || $book->getCover() == null)
-                    $book->setCover($cover_backup);
+                if (!$form->isValid() || $book->getCover() == null) {
+                    $book->setCover($coverBackup);
+                }
             });
         }
     }

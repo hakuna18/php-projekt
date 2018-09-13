@@ -19,7 +19,7 @@ use AppBundle\Service\BooksManager;
 
 /**
  * Books controller.
- * 
+ *
  * @Route("/books")
  */
 class BooksController extends Controller
@@ -99,7 +99,6 @@ class BooksController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-
     public function viewAction($id)
     {
         $book = $this->booksRepository->findOneById($id);
@@ -221,7 +220,7 @@ class BooksController extends Controller
     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Book $book)
-    {   
+    {
         $backup = $book->getCover();
         $form = $this->createForm(BookType::class, $book, ['edit_mode' => true]);
         $form->handleRequest($request);

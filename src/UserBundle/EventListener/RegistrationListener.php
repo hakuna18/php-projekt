@@ -34,13 +34,15 @@ class RegistrationListener implements EventSubscriberInterface
         ];
     }
 
-    public function onRegistrationSuccess(FormEvent $event) {
+    public function onRegistrationSuccess(FormEvent $event)
+    {
         $url = $this->router->generate('users');
         $this->session->getFlashBag()->add('success', 'user.registration_success');
         $event->setResponse(new RedirectResponse($url));
     }
 
-    public function stopEvent(FilterUserResponseEvent $event) {
+    public function stopEvent(FilterUserResponseEvent $event)
+    {
 
         $event->stopPropagation();
     }

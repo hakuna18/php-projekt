@@ -15,7 +15,7 @@ class Reservation
 {
     const NUM_ITEMS = 5;
     
-    private static $RESERVATION_DAYS_LIMIT = 3;
+    const RESERVATION_DAYS_LIMIT = 3;
 
     /**
      * @var int
@@ -52,7 +52,7 @@ class Reservation
 
     public function isExpired()
     {
-        return time() - $this->creationDate->getTimestamp() > 3600 * 24 * Reservation::$RESERVATION_DAYS_LIMIT;
+        return time() - $this->creationDate->getTimestamp() > 3600 * 24 * Reservation::RESERVATION_DAYS_LIMIT;
     }
 
     /**

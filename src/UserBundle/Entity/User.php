@@ -3,6 +3,7 @@
  * User entity.
  */
 namespace UserBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -18,6 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser
 {
     const NUM_ITEMS = 5;
+
     /**
      * @ORM\Id
      * @ORM\Column(
@@ -30,18 +32,6 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
-    {
-        $this->reservations = new ArrayCollection();
-        $this->loans = new ArrayCollection();
-
-        // This is a work-around for a case when the user is created from the FOS user create CLI.
-        $this->name = "empty";
-        $this->surname = "empty";
-
-        parent::__construct();
-    }
-
     /**
      * Name.
      *
@@ -53,7 +43,7 @@ class User extends BaseUser
      *     length=128,
      *     nullable=false,
      * )
-     * 
+     *
      * @Assert\NotBlank
      * @Assert\Length(
      *     min="3",
@@ -62,6 +52,52 @@ class User extends BaseUser
      */
     protected $name;
 
+    /**
+     * Surname.
+     *
+     * @var string $surname
+     *
+     * @ORM\Column(
+     *     name="surname",
+     *     type="string",
+     *     length=128,
+     *     nullable=false,
+     * )
+     */
+    protected $surname;
+
+    /**
+     * Reservations.
+     *
+     * @ORM\OneToMany(
+     * targetEntity="AppBundle\Entity\Reservation",
+     * mappedBy="user"
+     * )
+     */
+    private $reservations;
+
+    /**
+     * Loans.
+     *
+     * @ORM\OneToMany(
+     * targetEntity="AppBundle\Entity\Loan",
+     * mappedBy="user"
+     * )
+     */
+    private $loans;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+        $this->loans = new ArrayCollection();
+
+        // This is a work-around for a case when the user is created from the FOS user create CLI.
+        $this->name = "empty";
+        $this->surname = "empty";
+
+        parent::__construct();
+    }
+    
     /**
      * Set name
      *
@@ -85,21 +121,6 @@ class User extends BaseUser
     {
         return $this->name;
     }
-
-
-     /**
-     * Surname.
-     *
-     * @var string $surname
-     *
-     * @ORM\Column(
-     *     name="surname",
-     *     type="string",
-     *     length=128,
-     *     nullable=false,
-     * )
-     */
-    protected $surname;
 
     /**
      * Set surname
@@ -125,16 +146,6 @@ class User extends BaseUser
         return $this->surname;
     }
 
-    /**
-     * Reservations.
-     *
-     * @ORM\OneToMany(
-     * targetEntity="AppBundle\Entity\Reservation", 
-     * mappedBy="user"
-     * )
-     */
-    private $reservations;
-
      /**
      * Get reservations
      *
@@ -145,16 +156,6 @@ class User extends BaseUser
         return $this->reservations;
     }
 
-    /**
-     * Loans.
-     *
-     * @ORM\OneToMany(
-     * targetEntity="AppBundle\Entity\Loan", 
-     * mappedBy="user"
-     * )
-     */
-    private $loans;
-
      /**
      * Get reservations
      *
@@ -163,5 +164,5 @@ class User extends BaseUser
     public function getLoans()
     {
         return $this->loans;
-    }  
+    }
 }

@@ -15,7 +15,7 @@ class Loan
 {
     const NUM_ITEMS = 5;
 
-    private static $LOAN_DAYS_LIMIT = 30;
+    const LOAN_DAYS_LIMIT = 30;
     
     /**
      * @var int
@@ -52,7 +52,7 @@ class Loan
 
     public function isExpired()
     {
-        return time() - $this->loanDate->getTimestamp() > 3600 * 24 * LOAN::$LOAN_DAYS_LIMIT;
+        return time() - $this->loanDate->getTimestamp() > 3600 * 24 * LOAN::LOAN_DAYS_LIMIT;
     }
 
     /**

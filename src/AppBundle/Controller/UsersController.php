@@ -17,7 +17,7 @@ use AppBundle\Service\UsersManager;
 
 /**
  * Users controller.
- * 
+ *
  * @Route("/users")
  */
 class UsersController extends Controller
@@ -131,9 +131,9 @@ class UsersController extends Controller
                     'user' => $this->getUser(),
                 ]
             );
-        } else {
-            return $this->redirectToRoute('fos_user_security_login');
         }
+
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
     /**

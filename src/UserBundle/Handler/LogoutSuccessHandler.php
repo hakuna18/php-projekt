@@ -23,6 +23,7 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
     {
         $this->session->getFlashBag()->add('success', 'confirmation.logged_out');
         $route = $this->router->generate('fos_user_security_login');
+
         return new RedirectResponse($route);
     }
 }

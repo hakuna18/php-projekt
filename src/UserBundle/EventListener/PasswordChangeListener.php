@@ -17,15 +17,16 @@ class PasswordChangeListener implements EventSubscriberInterface
     private $router;
     private $session;
 
-    public function __construct(UrlGeneratorInterface $router, Session $session) 
+    public function __construct(UrlGeneratorInterface $router, Session $session)
     {
         $this->router = $router;
         $this->session = $session;
     }
 
-    public static function getSubscribedEvents() {
+    public static function getSubscribedEvents()
+    {
         return [
-            FOSUserEvents::CHANGE_PASSWORD_SUCCESS  => 'onPasswordChangeSuccess'
+            FOSUserEvents::CHANGE_PASSWORD_SUCCESS  => 'onPasswordChangeSuccess',
         ];
     }
 

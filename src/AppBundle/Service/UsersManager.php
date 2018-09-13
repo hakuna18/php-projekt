@@ -27,23 +27,25 @@ class UsersManager
     }
 
     // Looks for users with name/surname/email mathching given regex pattern.
-    public function findByPattern($pattern, $includeAdmins = false, $page = 1) {
-        $pattern = '/' . strtoupper(trim($pattern)) . '/';
+    public function findByPattern($pattern, $includeAdmins = false, $page = 1)
+    {
+        $pattern = '/'.strtoupper(trim($pattern)).'/';
         $result = array();
-        // If regex valid  
+        // If regex valid
         if (@preg_match($pattern, null)) {
             $users = $this->fosUserManager->findUsers();
-            foreach($users as $user) {
-                if(preg_match($pattern, strtoupper($user->getName()))
+            foreach ($users as $user) {
+                if (preg_match($pattern, strtoupper($user->getName()))
                 || preg_match($pattern, strtoupper($user->getSurname()))
                 || preg_match($pattern, strtoupper($user->getEmail()))
-                )
+                ) {
                     array_push($result, $user);
+                }
             }
         }
 
         if (!$includeAdmins) {
-            $result = array_filter($result, function ($user){
+            $result = array_filter($result, function ($user) {
                 return !in_array("ROLE_SUPER_ADMIN", $user->getRoles());
             });
         }
@@ -55,18 +57,21 @@ class UsersManager
         return $paginator;
     }
 
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         return $this->fosUserManager->findUsers();
     }
 
-    public function updateUser($user) {
+    public function updateUser($user)
+    {
         $this->fosUserManager->updateUser($user);
     }
 
-    public function deleteUser($user) {
+    public function deleteUser($user)
+    {
         foreach ($user->getReservations() as $reservation) {
             $this->entityManager->remove($reservation);
-        } 
+        }
         $this->fosUserManager->deleteUser($user);
         $this->entityManager->flush();
     }
