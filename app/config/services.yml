@@ -37,20 +37,19 @@ services:
 
     app.books_manager:
         class: AppBundle\Service\BooksManager
-        arguments: ['@doctrine.orm.entity_manager']
 
     app.users_manager:
         class: AppBundle\Service\UsersManager
-        arguments: ['@doctrine.orm.entity_manager', '@fos_user.user_manager']
+
+    # autowiring doesnt work for FileUploader's 'string' parameter, set manually
+    AppBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%covers_directory%'
 
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
-
-    AppBundle\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%covers_directory%'
 
     app.cover_upload_listener:
         class: AppBundle\EventListener\CoverUploadListener

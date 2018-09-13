@@ -48,7 +48,7 @@ class BookType extends AbstractType
                 'attr' => [
                     'min_length' => 13,
                     'max_length' => 13,
-                    'size' => 11,
+                    'size' => 13,
                 ],
             ]
         )->add(
