@@ -79,7 +79,7 @@ class BooksController extends Controller
         return $this->render(
             'books/index.html.twig',
             [
-                'books' => $this->booksRepository->findByPattern($searchQuery, $page),
+                'books' => $this->booksRepository->query($searchQuery, $page),
                 'form' => $form->createView(),
                 'booksManager' => $this->booksManager,
                 'search_query' => $searchQuery,

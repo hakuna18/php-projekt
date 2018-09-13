@@ -17,7 +17,7 @@ use Pagerfanta\Adapter\ArrayAdapter;
 class BooksRepository extends EntityRepository
 {
     // Looks for books with title/author/genre mathching given regex pattern.
-    public function findByPattern($pattern, $page = 1)
+    public function query($pattern, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';
         $result = array();
