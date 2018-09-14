@@ -53,8 +53,11 @@ class BooksController extends Controller
 
     /**
      * Index action.
+     * 
+     * @param Symfony\Component\HttpFoundation\Request $request
      *
      * @param integer $page Current page number
+     * 
      *
      * @Route(
      *     "/",
@@ -124,6 +127,8 @@ class BooksController extends Controller
 
    /**
      * View single book action.
+     * 
+     * @param AppBundle\Entity\Book $book Book
      *
      * @Route(
      *     "/{id}",
@@ -143,7 +148,16 @@ class BooksController extends Controller
     }
 
      /**
+     * Make a reservation action.
+     * 
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * 
+     * @param AppBundle\Entity\Book $book Book
+     * 
+     * 
      * @Route("/reservation/make/{id}", name="make_reservation")
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function makeReservationAction(Request $request, Book $book)
     {
@@ -160,7 +174,15 @@ class BooksController extends Controller
     }
 
      /**
+     * Cancel reservation action.
+     *  
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * 
+     * @param AppBundle\Entity\Book $book Book
+     * 
      * @Route("/reservation/cancel/{id}", name="cancel_reservation")
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function cancelReservationAction(Request $request, Book $book)
     {
@@ -181,7 +203,15 @@ class BooksController extends Controller
     }
 
     /**
+     * Change a reservation to a loan action.
+     * 
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * 
+     * @param AppBundle\Entity\Reservation $reservation Reservation
+     * 
      * @Route("/loan/make/{id}", name="make_loan")
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function loanAction(Request $request, Reservation $reservation)
     {
@@ -196,7 +226,15 @@ class BooksController extends Controller
     }
 
     /**
+     * Return book action.
+     * 
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * 
+     * @param AppBundle\Entity\Loan $loan
+     * 
      * @Route("/loan/return/{id}", name="book_return")
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function returnBookAction(Request $request, Loan $loan)
     {
@@ -246,11 +284,19 @@ class BooksController extends Controller
     }
 
     /**
+    * Edit action.
+    * 
+    * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+    *
+    * @param AppBundle\Entity\Book $book Book
+    *
     * @Route(
     *     "/edit/{id}",
     *     name="book_edit",
     * )
     * @Method({"GET", "POST"})
+    *
+    * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function editAction(Request $request, Book $book)
     {
@@ -272,12 +318,20 @@ class BooksController extends Controller
     }
 
     /**
+    * Delete action.
+    *
+    * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+    *
+    * @param AppBundle\Entity\Book $book Book
+    * 
     * @Route(
     *     "/delete/{id}",
     *     name="book_delete",
     * )
     * @Method({"GET", "POST"})
-     */
+    *
+    * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+    */
     public function deleteAction(Request $request, Book $book)
     {
         $this->booksManager->deleteBook($book);

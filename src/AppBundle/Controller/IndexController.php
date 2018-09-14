@@ -9,11 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * Index controller.
+ * 
+ * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+ * 
+ * @return \Symfony\Component\HttpFoundation\Response HTTP Response
  */
 class IndexController extends Controller
 {
     /**
+     * Index action.
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * 
      * @Route("/", name="homepage")
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function indexAction(Request $request)
     {

@@ -86,6 +86,9 @@ class User extends BaseUser
      */
     private $loans;
 
+    /**
+     * User entity constructor
+     */
     public function __construct()
     {
         $this->reservations = new ArrayCollection();

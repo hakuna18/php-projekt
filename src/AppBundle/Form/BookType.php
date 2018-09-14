@@ -26,6 +26,11 @@ class BookType extends AbstractType
 {
     private $translator;
 
+    /**
+     * BookType constructor
+     * 
+     * @param Symfony\Component\Translation\TranslatorInterface $translator
+     */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
