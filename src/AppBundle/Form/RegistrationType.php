@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Form/RegistrationType.php
+/**
+ * RegistrationType.
+ */
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;

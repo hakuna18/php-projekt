@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Service/FileUploader.php
+/**
+ * FileUploader.
+ */
 namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -10,6 +12,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class FileUploader
 {
+    /**
+     * Target directory.
+     */
     private $targetDirectory;
 
     /**

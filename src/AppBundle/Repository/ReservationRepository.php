@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Repository/ReservationRepository.php
+/**
+ * ReservationRepository.
+ */
 namespace AppBundle\Repository;
 
 use Pagerfanta\Pagerfanta;

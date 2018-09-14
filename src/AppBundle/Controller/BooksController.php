@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Controller/BooksController.php
+/**
+ * BooksController.
+ */
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,14 +29,29 @@ class BooksController extends Controller
     /**
      * Books repository.
      *
-     * @var \AppBundle\Repository\BooksRepository|null Books repository
+     * @var \AppBundle\Repository\BooksRepository|null
      */
     protected $booksRepository = null;
 
+    /**
+     * Loans repository.
+     *
+     * @var \AppBundle\Repository\LoansRepository|null
+     */
     protected $loansRepository = null;
 
+    /**
+     * Reservations repository.
+     *
+     * @var \AppBundle\Repository\ReservationRepository|null
+     */
     protected $reservationsRepository = null;
-
+    
+    /**
+     * Books manager.
+     *
+     * @var \AppBundle\Service\BooksManager|null
+     */
     protected $booksManager = null;
 
 

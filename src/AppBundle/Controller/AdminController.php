@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Controller/AdminController.php
+/**
+ * AdminController.
+ */
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,8 +28,14 @@ use AppBundle\Service\UsersManager;
  */
 class AdminController extends Controller
 {
+    /**
+     * Users manager
+     */
     protected $usersManager = null;
 
+    /**
+     * Books manager
+     */
     protected $booksManager = null;
 
 /**
@@ -43,6 +51,8 @@ class AdminController extends Controller
     }
 
     /**
+     * Admin panel action
+     *
      * @Route("/panel", name="admin_panel")
      *
      * @param Symfony\Component\HttpFoundation\Request $request

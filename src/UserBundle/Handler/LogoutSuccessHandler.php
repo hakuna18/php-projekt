@@ -1,5 +1,7 @@
 <?php
-// src/UserBundle/Handler/LogoutSuccessHandler.php
+/**
+ * LogoutSuccessHandler.
+ */
 namespace UserBundle\Handler;
 
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
@@ -13,8 +15,15 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
-    protected $router;
-    protected $session;
+    /**
+     * Router
+     */
+    private $router;
+
+    /**
+     * Session
+     */
+    private $session;
 
     /**
      * LogoutSuccessHandler constructor

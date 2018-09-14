@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Controller/IndexController.php
+/**
+ * IndexController.
+ */
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

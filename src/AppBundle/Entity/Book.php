@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Entity/Book.php
+/**
+ * Book.
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -216,11 +218,15 @@ class Book
     private $description;
 
     /**
+     * Reservations of this book
+     *
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
      */
     private $reservations;
 
     /**
+     * Loans of this book
+     *
      * @ORM\OneToMany(targetEntity="Loan", mappedBy="book")
      */
     private $loans;

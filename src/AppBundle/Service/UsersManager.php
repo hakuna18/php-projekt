@@ -1,6 +1,8 @@
 <?php
 
-// src/AppBundle/Service/UsersManager.php
+/**
+ * UsersManager.
+ */
 namespace AppBundle\Service;
 
 use UserBundle\Entity\User;
@@ -14,8 +16,14 @@ use Pagerfanta\Adapter\ArrayAdapter;
  */
 class UsersManager
 {
+    /**
+     * Entity manager
+     */
     protected $entityManager = null;
 
+    /**
+     * FOS User Manager
+     */
     protected $fosUserManager = null;
 
     /**

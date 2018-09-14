@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Repository/LoansRepository.php
+/**
+ * LoanRepository.
+ */
 namespace AppBundle\Repository;
 
 use Pagerfanta\Pagerfanta;

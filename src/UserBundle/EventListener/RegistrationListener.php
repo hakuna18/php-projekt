@@ -1,5 +1,7 @@
 <?php
-// src/UserBundle/EventListener/RegistrationListener.php
+/**
+ * RegistrationListener.
+ */
 namespace UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
@@ -16,7 +18,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 class RegistrationListener implements EventSubscriberInterface
 {
+    /**
+     * Router
+     */
     private $router;
+
+    /**
+     * Session
+     */
     private $session;
 
      /**

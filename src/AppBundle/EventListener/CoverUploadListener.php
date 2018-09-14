@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/EventListener/CoverUploadListener.php
+/**
+ * CoverUploadListener.
+ */
 namespace AppBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -16,6 +18,9 @@ use AppBundle\Entity\Book;
  * */
 class CoverUploadListener
 {
+    /**
+     * File uploader service
+     */
     private $uploader;
 
     /**

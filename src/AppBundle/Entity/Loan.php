@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Entity/Loan.php
+/**
+ * Loan.
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +20,8 @@ class Loan
     const LOAN_DAYS_LIMIT = 30;
 
     /**
+     * Entity's ID.
+     *
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +31,8 @@ class Loan
     private $id;
 
     /**
+     * Loan date.
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="loanDate", type="datetime")
@@ -34,12 +40,16 @@ class Loan
     private $loanDate;
 
     /**
+     * User of this loan.
+     *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="loans")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
+     * Book of this loan.
+     *
      * @ORM\ManyToOne(targetEntity="Book", inversedBy="loans")
      * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */

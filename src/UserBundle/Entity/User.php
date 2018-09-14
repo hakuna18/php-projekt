@@ -1,6 +1,6 @@
 <?php
 /**
- * User entity.
+ * User.
  */
 namespace UserBundle\Entity;
 
@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * User Entity
+ *
  * @ORM\Entity
  * @ORM\Table(
  *     name="fos_user"
@@ -21,6 +23,8 @@ class User extends BaseUser
     const NUM_ITEMS = 5;
 
     /**
+     * Entity's ID
+     *
      * @ORM\Id
      * @ORM\Column(
      *     name="id",

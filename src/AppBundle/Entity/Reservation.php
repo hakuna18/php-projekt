@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Entity/Reservation.php
+/**
+ * Reservation.
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +20,8 @@ class Reservation
     const RESERVATION_DAYS_LIMIT = 3;
 
     /**
+     * Entity's ID.
+     *
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +31,8 @@ class Reservation
     private $id;
 
     /**
+     * Creation date
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
@@ -34,12 +40,16 @@ class Reservation
     private $creationDate;
 
     /**
+     * This reservation's user
+     *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="reservations")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
+     * This reservation's book
+     *
      * @ORM\ManyToOne(targetEntity="Book", inversedBy="reservations")
      * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */

@@ -1,6 +1,8 @@
 <?php
 
-// src/AppBundle/Service/BooksManager.php
+/**
+ * BooksManager.
+ */
 namespace AppBundle\Service;
 
 use UserBundle\Entity\User;
@@ -15,6 +17,9 @@ use \Datetime;
  */
 class BooksManager
 {
+    /**
+     * Entity manager
+     */
     protected $entityManager = null;
 
     /**

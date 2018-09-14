@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Form/BookType.php
+/**
+ * BookType.
+ */
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Book;
@@ -22,6 +24,9 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class BookType extends AbstractType
 {
+    /**
+     * Translator service
+     */
     private $translator;
 
     /**

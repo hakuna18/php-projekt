@@ -1,5 +1,7 @@
 <?php
-// src/AppBundle/Controller/UsersController.php
+/**
+ * UsersController.
+ */
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,6 +24,9 @@ use AppBundle\Service\UsersManager;
  */
 class UsersController extends Controller
 {
+    /**
+     * Users manager
+     */
     private $usersManager = null;
 
     /**
