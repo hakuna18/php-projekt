@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Repository/ReservationRepository.php
 namespace AppBundle\Repository;
 
 use Pagerfanta\Pagerfanta;
@@ -43,7 +43,7 @@ class ReservationRepository extends \Doctrine\ORM\EntityRepository
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(Reservation::NUM_ITEMS);
         $paginator->setCurrentPage($page);
-        
+
         return $paginator;
     }
 }

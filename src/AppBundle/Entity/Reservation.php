@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Entity/Reservation.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +14,7 @@ use \DateTime;
 class Reservation
 {
     const NUM_ITEMS = 5;
-    
+
     const RESERVATION_DAYS_LIMIT = 3;
 
     /**

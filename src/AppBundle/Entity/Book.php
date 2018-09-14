@@ -1,7 +1,5 @@
 <?php
-/**
- * Book entity.
- */
+// src/AppBundle/Entity/Book.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -454,7 +452,7 @@ class Book
     {
         return $this->getNumberOfCopies() - $this->loans->count() - $this->reservations->count();
     }
-    
+
     /**
      * Set description
      *

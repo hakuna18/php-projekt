@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Entity/Loan.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +16,7 @@ class Loan
     const NUM_ITEMS = 5;
 
     const LOAN_DAYS_LIMIT = 30;
-    
+
     /**
      * @var int
      *

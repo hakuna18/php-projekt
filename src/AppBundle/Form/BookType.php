@@ -1,7 +1,5 @@
 <?php
-/**
- * Book type.
- */
+// src/AppBundle/Form/BookType.php
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Book;
@@ -157,7 +155,7 @@ class BookType extends AbstractType
             $coverBackup = $book->getCover();
             $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($book, $coverBackup) {
                 $form = $event->getForm();
-                if (!$form->isValid() || $book->getCover() == null) {
+                if (!$form->isValid() || $book->getCover() === null) {
                     $book->setCover($coverBackup);
                 }
             });

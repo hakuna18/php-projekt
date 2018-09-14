@@ -70,7 +70,7 @@ class UsersManager
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(User::NUM_ITEMS);
         $paginator->setCurrentPage($page);
-        
+
         return $paginator;
     }
 

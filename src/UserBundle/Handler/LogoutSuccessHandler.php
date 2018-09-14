@@ -1,5 +1,5 @@
 <?php
-
+// src/UserBundle/Handler/LogoutSuccessHandler.php
 namespace UserBundle\Handler;
 
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileUploader
 {
     private $targetDirectory;
-    
+
     /**
      * FileUploader constructor
      *

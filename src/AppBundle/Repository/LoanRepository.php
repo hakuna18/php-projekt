@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Repository/LoansRepository.php
 namespace AppBundle\Repository;
 
 use Pagerfanta\Pagerfanta;
@@ -43,7 +43,7 @@ class LoanRepository extends \Doctrine\ORM\EntityRepository
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(Loan::NUM_ITEMS);
         $paginator->setCurrentPage($page);
-        
+
         return $paginator;
     }
 }

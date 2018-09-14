@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Controller/BooksController.php
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -225,7 +225,7 @@ class BooksController extends Controller
                 'book.loan.confirmation'
             );
         }
-  
+
         return $this->redirect($request->headers->get('referer'));
     }
 
@@ -248,7 +248,7 @@ class BooksController extends Controller
                 'book.return.confirmation'
             );
         }
-  
+
         return $this->redirect($request->headers->get('referer'));
     }
 
@@ -257,9 +257,7 @@ class BooksController extends Controller
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
-     *
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      *
      * @Route(
      *     "/add",

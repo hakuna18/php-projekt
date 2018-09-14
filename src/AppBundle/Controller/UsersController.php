@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Controller/UsersController.php
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -142,7 +142,7 @@ class UsersController extends Controller
     {
         // Prevent deletion of another user by non-admin
         $isCurrentUserAdmin = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN');
-        if (!$isCurrentUserAdmin && $user != $this->getUser()) {
+        if (!$isCurrentUserAdmin && $user !== $this->getUser()) {
             throw $this->createAccessDeniedException("You cannot access this page!");
         }
 

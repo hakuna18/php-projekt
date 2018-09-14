@@ -1,5 +1,5 @@
 <?php
-
+// src/AppBundle/Controller/AdminController.php
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -61,7 +61,6 @@ class AdminController extends Controller
 
         $loansPage = $request->query->get('loansPage');
         $loans = $this->booksManager->getRepository(Loan::class)->query($searchQuery, $loansPage? $loansPage : 1);
- 
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();

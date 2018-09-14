@@ -61,7 +61,7 @@ class BooksManager
 
             return $reservation;
         }
- 
+
         return null;
     }
 
@@ -76,7 +76,7 @@ class BooksManager
      */
     public function hasReservation($user, $book)
     {
-        return $this->findReservation($user, $book) != null;
+        return $this->findReservation($user, $book) !== null;
     }
 
     /**
@@ -140,7 +140,7 @@ class BooksManager
      */
     public function hasLoan($user, $book)
     {
-        return $this->findLoan($user, $book) != null;
+        return $this->findLoan($user, $book) !== null;
     }
 
     /**
@@ -159,11 +159,11 @@ class BooksManager
             $loan->setUser($reservation->getUser());
             $loan->setBook($reservation->getBook());
             $this->entityManager->persist($loan);
-    
+
             // usun rezerwacje
             $this->entityManager->remove($reservation);
             $this->entityManager->flush();
-            
+
             return $loan;
         }
 
@@ -235,7 +235,7 @@ class BooksManager
             'book' => $book,
         ));
 
-        return count($reservations) == 0? null : $reservations[0];
+        return count($reservations) === 0? null : $reservations[0];
     }
 
     /**
@@ -255,6 +255,6 @@ class BooksManager
             'book' => $book,
         ));
 
-        return count($loans) == 0? null : $loans[0];
+        return count($loans) === 0? null : $loans[0];
     }
 }

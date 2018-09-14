@@ -1,5 +1,5 @@
 <?php
-
+// src/UserBundle/EventListener/RegistrationListener.php
 namespace UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;

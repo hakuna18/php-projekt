@@ -106,7 +106,6 @@ class LoadBookData extends Fixture
                 ->setYear($item['year'])
                 ->setNumberOfCopies($item['numberOfCopies'])
                 ->setDescription($item['description']);
-     
             $manager->persist($book);
         }
         $manager->flush();
