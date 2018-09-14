@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Catalog'|trans }}
+    {{ 'title.catalogue.details'|trans }}
 {% endblock %}
 
 {% block body %}
 {% include 'top_menu.html.twig' %}
 
-    <h1>{{ 'Catalog'|trans }}</h1>
+    <h1>{{ 'title.catalogue.details'|trans }}</h1>
     
+    {{ form_start(form, { method: 'post', action: app.request.uri }) }}   
+    {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default" />
+    {{ form_end(form) }}
+
     {% if books is defined and books|length %}
         <table class="table table-striped">
             <tbody>
                     <tr>
+                        <th style="padding-bottom:20px">{{ 'book.isbn'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'book.title'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'book.author'|trans }}</th>
                         <th style="padding-bottom:20px">{{ 'book.genre'|trans }}</th>
@@ -23,6 +29,7 @@
                     </tr>
                 {% for book in books %}                 
                     <tr>                      
+                        <td style="border-bottom:1px solid black">{{ book.ISBN }}</td>
                         <td style="border-bottom:1px solid black">{{ book.title }}</td>
                         <td style="border-bottom:1px solid black">{{ book.author }}</td>
                         <td style="border-bottom:1px solid black">{{ book.genre }}</td>
@@ -30,7 +37,20 @@
                         <td style="border-bottom:1px solid black">{{ book.year }}</td>
                         <td style="border-bottom:1px solid black">{{ book.numberOfCopies }}</td>
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
-
+                        <td style="border-bottom:1px solid black">
+                            <form action="{{ path('book_edit', { 'id': book.id }) }}">
+                                <input type="submit" value="{{ 'action.edit_book'|trans }}"/>
+                            </form>
+                        </td>
+                        <td style="border-bottom:1px solid black">
+                            <form action="{{ path('book_delete', { 'id': book.id }) }}">
+                                {% if book.loans|length %}
+                                    <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
+                                {% else %}
+                                    <input type="submit" style="color:red" value="{{'action.delete_book'|trans}}"/>
+                                {% endif %}
+                            </form>
+                        </td>
                     </tr>             
                 {% endfor %}
             </tbody>
@@ -40,5 +60,8 @@
             {{ 'empty_list'|trans }}
         </div>
     {% endif %}
+    <div class="pagerfanta">
+        {{ pagerfanta(books, 'twitter_bootstrap4_translated', { routeName: ('books_details_paginated'), 'proximity': 5 }) }}
+    </div>
 
 {% endblock %}

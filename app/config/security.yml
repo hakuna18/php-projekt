@@ -39,6 +39,7 @@ security:
         - { path: ^/books/edit, role: ROLE_ADMIN }
         - { path: ^/books/delete, role: ROLE_ADMIN }
         - { path: ^/books/loan, role: ROLE_ADMIN }
+        - { path: ^/books/details, role: ROLE_ADMIN }
         - { path: ^/users/change_mail, role: ROLE_USER }
         - { path: ^/users/panel, role: ROLE_USER }
         - { path: ^/users/delete, role: ROLE_USER }

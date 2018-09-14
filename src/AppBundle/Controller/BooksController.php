@@ -71,7 +71,6 @@ class BooksController extends Controller
     public function indexAction(Request $request, $page = 1)
     {
         $searchQuery = $request->request->get('form')['search'];
-
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();
@@ -88,6 +87,42 @@ class BooksController extends Controller
     }
 
    /**
+     * View catalogue details.
+     *
+     * @Route(
+     *     "/details",
+     *     defaults={"page": 1},
+     *     name="books_details",
+     * )
+     * 
+     * @Route(
+     *     "/details/{page}",
+     *     requirements={"id": "[1-9]\d*"},
+     *     defaults={"page": 1},
+     *     name="books_details_paginated",
+     * )
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+     */
+    public function viewDetailsAction(Request $request, $page = 1)
+    {
+        $searchQuery = $request->request->get('form')['search'];
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
+
+        return $this->render(
+            'books/all.html.twig',
+            [
+                'books' => $this->booksRepository->query($searchQuery, $page),
+                'form' => $form->createView(),
+                'search_query' => $searchQuery,
+            ]
+        );
+    }
+
+
+   /**
      * View single book action.
      *
      * @Route(
@@ -99,7 +134,7 @@ class BooksController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function viewAction(Book $book)
+    public function viewSingleAction(Book $book)
     {
         return $this->render(
             'books/view.html.twig',
@@ -248,6 +283,6 @@ class BooksController extends Controller
         $this->booksManager->deleteBook($book);
         $this->addFlash('success', 'book_deleted.confirmation');
 
-        return $this->redirectToRoute('books_catalogue');
+        return $this->redirectToRoute('books_details');
     }
 }

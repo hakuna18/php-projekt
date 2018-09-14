@@ -406,6 +406,14 @@
                 <source>confirmation.logged_out</source>
                 <target>Wylogowano</target>
             </trans-unit>
+            <trans-unit id="title.catalogue.details">
+                <source>title.catalogue.details</source>
+                <target>Katalog - szczegóły</target>
+            </trans-unit>
+            <trans-unit id="show.books_details">
+                <source>show.books_details</source>
+                <target>Pokaż książki</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
