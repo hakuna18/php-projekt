@@ -10,6 +10,10 @@
                 <source>isbn.13_digits</source>
                 <target>Numer ISBN musi składać się z 13 cyfr</target>
             </trans-unit>
+            <trans-unit id="author.no_digits">
+                <source>author.no_digits</source>
+                <target>Pole autora nie może zawierać cyfr</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

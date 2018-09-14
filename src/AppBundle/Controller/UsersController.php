@@ -140,8 +140,13 @@ class UsersController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        $this->usersManager->deleteUser($user);
-    
+        // Prevent deletion of another user by non-admin
+        $isCurrentUserAdmin = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN');
+        if (!$isCurrentUserAdmin && $user != $this->getUser()) {
+            throw $this->createAccessDeniedException("You cannot access this page!");
+        }
+
+        $this->usersManager->deleteUser($user); 
         $this->addFlash(
             'notice',
             'user_deleted.confirmation'

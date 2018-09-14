@@ -3,8 +3,9 @@
     {% set current_route = app.request.attributes.get('_route') %}
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+        |
+        <a href="{{ path('fos_user_security_logout') }}"><b>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</b></a>
         ||          
         {% if is_granted("ROLE_ADMIN") %}
             {% if current_route != 'admin_panel' %}
@@ -32,7 +33,7 @@
     {% endif %} {# is_granted("IS_AUTHENTICATED_REMEMBERED") #}
 
     {% if current_route != 'books_catalogue' and current_route != 'books_catalogue_paginated' %}
-        <a href="{{ path('books_catalogue') }}">{{ 'books_catalogue'|trans }}</a>           
+        <a href="{{ path('books_catalogue') }}"><b>{{ 'books_catalogue'|trans }}</b></a>           
     {% endif %}
     
     {# Display flash messages #}

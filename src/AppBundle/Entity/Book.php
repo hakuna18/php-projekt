@@ -100,6 +100,11 @@ class Book
      *     min="5",
      *     max="128",
      * )
+     * @Assert\Regex(
+     *      pattern= "/[0-9]+/",
+     *      match=false,
+     *      message= "author.no_digits"
+     * )
      */
     private $author;
 
@@ -135,7 +140,7 @@ class Book
      *     nullable=false,
      * )
      *
-     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
+     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" },maxSize="20M")
      */
     private $cover;
 
