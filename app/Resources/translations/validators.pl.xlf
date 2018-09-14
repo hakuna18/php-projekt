@@ -14,6 +14,10 @@
                 <source>author.no_digits</source>
                 <target>Pole autora nie może zawierać cyfr</target>
             </trans-unit>
+            <trans-unit id="genre.no_digits">
+                <source>genre.no_digits</source>
+                <target>Gatunek nie może zawierać cyfr</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

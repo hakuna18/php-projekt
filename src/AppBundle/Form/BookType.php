@@ -103,7 +103,6 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
-                    'min' => '0',
                 ],
             ]
         )->add(
@@ -114,7 +113,7 @@ class BookType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 128,
-                    'min' => '1',
+                    'min' => '0',
                 ],
             ]
         )->add(
@@ -148,15 +147,27 @@ class BookType extends AbstractType
             ]
         );
 
-        // Since the cover upload field is not required when editing, make sure the cover does not get reset to null
-        // by manually reverting it to the previous cover
         if ($options['edit_mode']) {
             $book = $builder->getData();
-            $coverBackup = $book->getCover();
-            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($book, $coverBackup) {
+            $cover = $book->getCover();
+            $minNumberOfCopiesAllowed = $book->getNumberOfCopies() - $book->getCurrentlyAvailable();
+            $builder->addEventListener(FormEvents::POST_SUBMIT, function ($event) use ($cover, $minNumberOfCopiesAllowed) {
                 $form = $event->getForm();
+                $book = $event->getData();
+                // Since the cover upload field is not required when editing, make sure the cover does not get reset to null
+                // by manually reverting it to the previous cover
                 if (!$form->isValid() || $book->getCover() === null) {
-                    $book->setCover($coverBackup);
+                    $book->setCover($cover);
+                }
+                // Manual validation of number of copies - it cant be lower than total number of loans + reservations
+                $data = $form->getData();
+                if ($form->isValid() && $book->getNumberOfCopies() < $minNumberOfCopiesAllowed) {
+                    $form->get('numberOfCopies')->addError(new FormError(
+                        $this->translator->trans(
+                            'num_copies_greater_than_%num_copies%',
+                            array('%num_copies%' => $minNumberOfCopiesAllowed)
+                        )
+                    ));
                 }
             });
         }

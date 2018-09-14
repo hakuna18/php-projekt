@@ -123,6 +123,11 @@ class Book
      *     min="3",
      *     max="128",
      * )
+     * @Assert\Regex(
+     *      pattern= "/[0-9]+/",
+     *      match=false,
+     *      message= "genre.no_digits"
+     * )
      */
     private $genre;
 
@@ -155,6 +160,10 @@ class Book
      * )
      *
      * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="128",
+     * )
      */
     private $publisher;
 
@@ -185,6 +194,7 @@ class Book
      *     options={"unsigned"=true}
      * )
      * @Assert\Type("integer")
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $numberOfCopies;
 
@@ -199,6 +209,8 @@ class Book
      *     length=1025,
      *     nullable=false,
      * )
+     *
+     * @Assert\Length(min="3")
      */
     private $description;
 
