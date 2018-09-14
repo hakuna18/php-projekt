@@ -209,6 +209,9 @@ class Book
      */
     private $loans;
 
+    /**
+     * Book entity constructor.
+     */
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -396,7 +399,7 @@ class Book
      /**
      * Set number of copies
      *
-     * @param integer $numberOfCopies
+     * @param integer $count
      *
      * @return Book
      */

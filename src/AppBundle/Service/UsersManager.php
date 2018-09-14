@@ -9,6 +9,9 @@ use FOS\UserBundle\Model\UserManagerInterface;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 
+/**
+ * Class UsersManager
+ */
 class UsersManager
 {
     protected $entityManager = null;
@@ -19,6 +22,8 @@ class UsersManager
      * BooksManager constructor.
      *
      * @param Doctrine\ORM\EntityManager $em Entity Manager
+     * 
+     * @param FOS\UserBundle\Model\UserManagerInterface $fosUserManager FOS User Manager
      */
     public function __construct(EntityManagerInterface $em, UserManagerInterface $fosUserManager)
     {
@@ -26,7 +31,19 @@ class UsersManager
         $this->fosUserManager = $fosUserManager;
     }
 
-    // Looks for users with name/surname/email mathching given regex pattern.
+    /**
+     * Find by pattern
+     * 
+     * Looks for users with name/surname/email mathching given regex pattern.
+     * 
+     * @param string $pattern
+     * 
+     * @param bol $includeAdmins
+     * 
+     * @param int $page
+     * 
+     * @return Pagerfanta\Pagerfanta
+     */
     public function findByPattern($pattern, $includeAdmins = false, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';
@@ -57,16 +74,31 @@ class UsersManager
         return $paginator;
     }
 
+    /**
+     * Get all users
+     * 
+     * @return array
+     */
     public function getAllUsers()
     {
         return $this->fosUserManager->findUsers();
     }
 
+    /** 
+     * Update user 
+     * 
+     * @param UserBundle\Entity\User $user User
+     */
     public function updateUser($user)
     {
         $this->fosUserManager->updateUser($user);
     }
 
+    /** 
+     * Delete user 
+     * 
+     * @param UserBundle\Entity\User $user User
+     */
     public function deleteUser($user)
     {
         foreach ($user->getReservations() as $reservation) {

@@ -14,7 +14,15 @@ use AppBundle\Entity\Loan;
  */
 class LoanRepository extends \Doctrine\ORM\EntityRepository
 {
-    // Query by user's surname/email or book's ISBN.
+    /**
+     *  Query by user's surname/email or book's ISBN.
+     * 
+     * @param string $pattern
+     * 
+     * @param int $page
+     * 
+     * @return Pagerfanta\Pagerfanta
+     */
     public function query($pattern, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';

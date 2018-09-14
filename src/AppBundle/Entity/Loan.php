@@ -45,11 +45,19 @@ class Loan
      */
     private $book;
 
+    /**
+     * Loan entity constructor
+     */
     public function __construct()
     {
         $this->loanDate = new DateTime('now');
     }
 
+    /**
+     * Is expired
+     * 
+     * @return bool
+     */
     public function isExpired()
     {
         return time() - $this->loanDate->getTimestamp() > 3600 * 24 * LOAN::LOAN_DAYS_LIMIT;

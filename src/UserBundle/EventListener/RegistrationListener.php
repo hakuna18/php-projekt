@@ -10,12 +10,22 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-// https://symfony.com/doc/master/bundles/FOSUserBundle/controller_events.html
+/**
+ * Class RegistrationListener
+ *  https://symfony.com/doc/master/bundles/FOSUserBundle/controller_events.html
+ */
 class RegistrationListener implements EventSubscriberInterface
 {
     private $router;
     private $session;
 
+     /**
+     * RegistrationListener constructor
+     * 
+     * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
+     * 
+     * @param Symfony\Component\HttpFoundation\Session\Session $session
+     */
     public function __construct(UrlGeneratorInterface $router, Session $session)
     {
         $this->router = $router;
@@ -34,6 +44,11 @@ class RegistrationListener implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * On Registration Success
+     * 
+     * @param FOS\UserBundle\Event\FormEvent $event
+     */
     public function onRegistrationSuccess(FormEvent $event)
     {
         $url = $this->router->generate('users');
@@ -41,6 +56,11 @@ class RegistrationListener implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($url));
     }
 
+    /**
+     * Stop Event
+     * 
+     * @param FOS\UserBundle\Event\FilterUserResponseEvent $event
+     */
     public function stopEvent(FilterUserResponseEvent $event)
     {
 

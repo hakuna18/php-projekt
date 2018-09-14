@@ -17,12 +17,22 @@ class PasswordChangeListener implements EventSubscriberInterface
     private $router;
     private $session;
 
+    /**
+     * PasswordChangeListener constructor
+     * 
+     * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
+     * 
+     * @param Symfony\Component\HttpFoundation\Session\Session $session
+     */
     public function __construct(UrlGeneratorInterface $router, Session $session)
     {
         $this->router = $router;
         $this->session = $session;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -30,6 +40,11 @@ class PasswordChangeListener implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * On Password Change Succes
+     * 
+     * @param FOS\UserBundle\Event\FormEvent $event
+     */
     public function onPasswordChangeSuccess(FormEvent $event)
     {
         $url = $this->router->generate('fos_user_security_logout');

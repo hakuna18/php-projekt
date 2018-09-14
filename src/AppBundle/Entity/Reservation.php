@@ -45,11 +45,19 @@ class Reservation
      */
     private $book;
 
+    /**
+     * Reservation entity constructor
+     */
     public function __construct()
     {
         $this->creationDate = new DateTime('now');
     }
 
+    /**
+     * Whether this reservation is expired
+     * 
+     * @return bool
+     */
     public function isExpired()
     {
         return time() - $this->creationDate->getTimestamp() > 3600 * 24 * Reservation::RESERVATION_DAYS_LIMIT;

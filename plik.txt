@@ -1,0 +1,372 @@
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\AppBundle.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 7 | ERROR | [ ] Missing doc comment for class AppBundle
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\AdminController.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 33 | ERROR | [ ] Missing doc comment for function __construct()
+ 39 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 41 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\BooksController.php
+----------------------------------------------------------------------
+FOUND 22 ERRORS AFFECTING 16 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  54 | ERROR | [ ] Doc comment for parameter "$request" missing
+  57 | ERROR | [ ] Doc comment for parameter $page does not match
+     |       |     actual variable name $request
+  90 | ERROR | [ ] Doc comment for parameter "$id" missing
+ 112 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 112 | ERROR | [ ] Doc comment for parameter "$book" missing
+ 114 | ERROR | [ ] Missing @return tag in function comment
+ 129 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 129 | ERROR | [ ] Doc comment for parameter "$book" missing
+ 131 | ERROR | [ ] Missing @return tag in function comment
+ 150 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 150 | ERROR | [ ] Doc comment for parameter "$reservation" missing
+ 152 | ERROR | [ ] Missing @return tag in function comment
+ 165 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 165 | ERROR | [ ] Doc comment for parameter "$loan" missing
+ 167 | ERROR | [ ] Missing @return tag in function comment
+ 215 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 215 | ERROR | [ ] Doc comment for parameter "$book" missing
+ 221 | ERROR | [ ] Missing @return tag in function comment
+ 241 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 241 | ERROR | [ ] Doc comment for parameter "$book" missing
+ 247 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\IndexController.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 15 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 17 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\UsersController.php
+----------------------------------------------------------------------
+FOUND 17 ERRORS AFFECTING 14 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  27 | ERROR | [ ] Missing doc comment for function __construct()
+  32 | ERROR | [ ] Doc comment for parameter "$request" missing
+  35 | ERROR | [ ] Doc comment for parameter $page does not match
+     |       |     actual variable name $request
+  67 | ERROR | [ ] Doc comment for parameter "$request" missing
+  67 | ERROR | [ ] Doc comment for parameter "$user" missing
+  69 | ERROR | [ ] Missing @return tag in function comment
+  78 | ERROR | [ ] Doc comment for parameter "$request" missing
+  78 | ERROR | [ ] Doc comment for parameter "$user" missing
+  80 | ERROR | [ ] Missing @return tag in function comment
+ 107 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 107 | ERROR | [ ] Doc comment for parameter "$user" missing
+ 109 | ERROR | [ ] Missing @return tag in function comment
+ 122 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 124 | ERROR | [ ] Missing @return tag in function comment
+ 139 | ERROR | [ ] Doc comment for parameter "$request" missing
+ 141 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DMIN\dev\php-projekt\src\AppBundle\DataFixtures\LoadBookData.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Book.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+ 212 | ERROR | [ ] Missing doc comment for function __construct()
+ 396 | ERROR | [ ] Doc comment for parameter "$count" missing
+ 399 | ERROR | [ ] Doc comment for parameter $numberOfCopies does not
+     |       |     match actual variable name $count
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Loan.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 48 | ERROR | [ ] Missing doc comment for function __construct()
+ 53 | ERROR | [ ] Missing doc comment for function isExpired()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...s\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Reservation.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 48 | ERROR | [ ] Missing doc comment for function __construct()
+ 53 | ERROR | [ ] Missing doc comment for function isExpired()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\php-projekt\src\AppBundle\EventListener\CoverUploadListener.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 13 | ERROR | [ ] You must use "/**" style comments for a class
+    |       |     comment
+ 17 | ERROR | [ ] Missing doc comment for function __construct()
+ 22 | ERROR | [ ] Missing doc comment for function prePersist()
+ 29 | ERROR | [ ] Missing doc comment for function preUpdate()
+ 36 | ERROR | [ ] Missing doc comment for function uploadFile()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Form\BookType.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 29 | ERROR | [ ] Missing doc comment for function __construct()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...BM_ADMIN\dev\php-projekt\src\AppBundle\Form\RegistrationType.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  9 | ERROR | [ ] Missing doc comment for class RegistrationType
+ 11 | ERROR | [ ] Missing doc comment for function buildForm()
+ 36 | ERROR | [ ] Missing doc comment for function getParent()
+ 41 | ERROR | [ ] Missing doc comment for function getBlockPrefix()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Repository\BooksRepository.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 20 | ERROR | [ ] You must use "/**" style comments for a function
+    |       |     comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DMIN\dev\php-projekt\src\AppBundle\Repository\LoanRepository.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 18 | ERROR | [ ] You must use "/**" style comments for a function
+    |       |     comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...v\php-projekt\src\AppBundle\Repository\ReservationRepository.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 18 | ERROR | [ ] You must use "/**" style comments for a function
+    |       |     comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\BooksManager.php
+----------------------------------------------------------------------
+FOUND 16 ERRORS AFFECTING 16 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  12 | ERROR | [ ] Missing doc comment for class BooksManager
+  26 | ERROR | [ ] Missing doc comment for function getRepository()
+  31 | ERROR | [ ] Missing doc comment for function makeReservation()
+  47 | ERROR | [ ] Missing doc comment for function hasReservation()
+  52 | ERROR | [ ] Missing doc comment for function
+     |       |     canMakeReservation()
+  57 | ERROR | [ ] Missing doc comment for function
+     |       |     cancelReservation()
+  70 | ERROR | [ ] Missing doc comment for function canLoan()
+  75 | ERROR | [ ] Missing doc comment for function hasLoan()
+  80 | ERROR | [ ] Missing doc comment for function makeALoan()
+ 100 | ERROR | [ ] Missing doc comment for function returnBook()
+ 108 | ERROR | [ ] Missing doc comment for function createBook()
+ 114 | ERROR | [ ] Missing doc comment for function updateBook()
+ 120 | ERROR | [ ] Missing doc comment for function deleteBook()
+ 126 | ERROR | [ ] Missing doc comment for function findReservation()
+ 137 | ERROR | [ ] Missing doc comment for function findLoan()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\FileUploader.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  8 | ERROR | [ ] You must use "/**" style comments for a class
+    |       |     comment
+ 12 | ERROR | [ ] Missing doc comment for function __construct()
+ 17 | ERROR | [ ] Missing doc comment for function upload()
+ 26 | ERROR | [ ] Missing doc comment for function
+    |       |     getTargetDirectory()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\UsersManager.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 12 | ERROR | [ ] Missing doc comment for class UsersManager
+ 18 | ERROR | [ ] Doc comment for parameter "$fosUserManager" missing
+ 30 | ERROR | [ ] You must use "/**" style comments for a function
+    |       |     comment
+ 60 | ERROR | [ ] Missing doc comment for function getAllUsers()
+ 65 | ERROR | [ ] Missing doc comment for function updateUser()
+ 70 | ERROR | [ ] Missing doc comment for function deleteUser()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...:\Users\IBM_ADMIN\dev\php-projekt\src\UserBundle\Entity\User.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 89 | ERROR | [ ] Missing doc comment for function __construct()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...-projekt\src\UserBundle\EventListener\PasswordChangeListener.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 20 | ERROR | [ ] Missing doc comment for function __construct()
+ 26 | ERROR | [ ] Missing doc comment for function
+    |       |     getSubscribedEvents()
+ 33 | ERROR | [ ] Missing doc comment for function
+    |       |     onPasswordChangeSuccess()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...hp-projekt\src\UserBundle\EventListener\RegistrationListener.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 14 | ERROR | [ ] You must use "/**" style comments for a class
+    |       |     comment
+ 19 | ERROR | [ ] Missing doc comment for function __construct()
+ 37 | ERROR | [ ] Missing doc comment for function
+    |       |     onRegistrationSuccess()
+ 44 | ERROR | [ ] Missing doc comment for function stopEvent()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\dev\php-projekt\src\UserBundle\Handler\LogoutSuccessHandler.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 11 | ERROR | [ ] Missing doc comment for class LogoutSuccessHandler
+ 16 | ERROR | [ ] Missing doc comment for function __construct()
+ 22 | ERROR | [ ] Missing doc comment for function onLogoutSuccess()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\UserBundle\UserBundle.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 7 | ERROR | [ ] Missing doc comment for class UserBundle
+ 9 | ERROR | [ ] Missing doc comment for function getParent()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+Time: 4.15 secs; Memory: 6Mb
+

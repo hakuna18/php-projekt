@@ -1,0 +1,440 @@
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\AppBundle.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\AdminController.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 47 | ERROR | [x] Whitespace found at end of line
+ 49 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\BooksController.php
+----------------------------------------------------------------------
+FOUND 35 ERRORS AFFECTING 30 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  56 | ERROR | [x] Whitespace found at end of line
+  59 | ERROR | [x] Expected 34 spaces after parameter type; 1 found
+  59 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+  60 | ERROR | [x] Whitespace found at end of line
+  95 | ERROR | [x] Whitespace found at end of line
+ 117 | ERROR | [x] Whitespace found at end of line
+ 119 | ERROR | [x] Whitespace found at end of line
+ 120 | ERROR | [x] Expected 20 spaces after parameter type; 1 found
+ 120 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+ 121 | ERROR | [x] Whitespace found at end of line
+ 122 | ERROR | [x] Whitespace found at end of line
+ 124 | ERROR | [x] Whitespace found at end of line
+ 143 | ERROR | [x] Whitespace found at end of line
+ 145 | ERROR | [x] Whitespace found at end of line
+ 146 | ERROR | [x] Expected 20 spaces after parameter type; 1 found
+ 146 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+ 147 | ERROR | [x] Whitespace found at end of line
+ 149 | ERROR | [x] Whitespace found at end of line
+ 172 | ERROR | [x] Whitespace found at end of line
+ 174 | ERROR | [x] Whitespace found at end of line
+ 175 | ERROR | [x] Expected 13 spaces after parameter type; 1 found
+ 176 | ERROR | [x] Whitespace found at end of line
+ 178 | ERROR | [x] Whitespace found at end of line
+ 195 | ERROR | [x] Whitespace found at end of line
+ 197 | ERROR | [x] Whitespace found at end of line
+ 198 | ERROR | [x] Expected 20 spaces after parameter type; 1 found
+ 199 | ERROR | [x] Whitespace found at end of line
+ 201 | ERROR | [x] Whitespace found at end of line
+ 253 | ERROR | [x] Whitespace found at end of line
+ 256 | ERROR | [x] Expected 21 spaces after parameter type; 1 found
+ 256 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+ 290 | ERROR | [x] Expected 21 spaces after parameter type; 1 found
+ 290 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+ 291 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 35 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\IndexController.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 12 | ERROR | [x] Whitespace found at end of line
+ 14 | ERROR | [x] Whitespace found at end of line
+ 21 | ERROR | [x] Whitespace found at end of line
+ 23 | ERROR | [x] Whitespace found at end of line
+ 25 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Controller\UsersController.php
+----------------------------------------------------------------------
+FOUND 28 ERRORS AFFECTING 24 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+  39 | ERROR | [x] Whitespace found at end of line
+  42 | ERROR | [x] Expected 34 spaces after parameter type; 1 found
+  42 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+  76 | ERROR | [x] Whitespace found at end of line
+  78 | ERROR | [x] Whitespace found at end of line
+  79 | ERROR | [x] Expected 19 spaces after parameter type; 1 found
+  79 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+  80 | ERROR | [x] Whitespace found at end of line
+  82 | ERROR | [x] Whitespace found at end of line
+  95 | ERROR | [x] Whitespace found at end of line
+  97 | ERROR | [x] Whitespace found at end of line
+  98 | ERROR | [x] Expected 19 spaces after parameter type; 1 found
+  98 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+  99 | ERROR | [x] Whitespace found at end of line
+ 101 | ERROR | [x] Whitespace found at end of line
+ 132 | ERROR | [x] Whitespace found at end of line
+ 134 | ERROR | [x] Whitespace found at end of line
+ 135 | ERROR | [x] Expected 19 spaces after parameter type; 1 found
+ 135 | ERROR | [x] Expected 4 spaces after parameter name; 1 found
+ 136 | ERROR | [x] Whitespace found at end of line
+ 138 | ERROR | [x] Whitespace found at end of line
+ 155 | ERROR | [x] Whitespace found at end of line
+ 157 | ERROR | [x] Whitespace found at end of line
+ 159 | ERROR | [x] Whitespace found at end of line
+ 178 | ERROR | [x] Whitespace found at end of line
+ 180 | ERROR | [x] Whitespace found at end of line
+ 182 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 28 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DMIN\dev\php-projekt\src\AppBundle\DataFixtures\LoadBookData.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Book.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Loan.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 58 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...s\IBM_ADMIN\dev\php-projekt\src\AppBundle\Entity\Reservation.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 58 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\php-projekt\src\AppBundle\EventListener\CoverUploadListener.php
+----------------------------------------------------------------------
+FOUND 8 ERRORS AFFECTING 8 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 13 | ERROR | [x] Whitespace found at end of line
+ 15 | ERROR | [x] Whitespace found at end of line
+ 23 | ERROR | [x] Whitespace found at end of line
+ 32 | ERROR | [x] Whitespace found at end of line
+ 33 | ERROR | [x] Whitespace found at end of line
+ 45 | ERROR | [x] Whitespace found at end of line
+ 57 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 8 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\Users\IBM_ADMIN\dev\php-projekt\src\AppBundle\Form\BookType.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 31 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...BM_ADMIN\dev\php-projekt\src\AppBundle\Form\RegistrationType.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 16 | ERROR | [x] Whitespace found at end of line
+ 18 | ERROR | [x] Whitespace found at end of line
+ 19 | ERROR | [x] Expected 39 spaces after parameter type; 40 found
+ 19 | ERROR | [x] Whitespace found at end of line
+ 48 | ERROR | [x] Whitespace found at end of line
+ 58 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...MIN\dev\php-projekt\src\AppBundle\Repository\BooksRepository.php
+----------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 22 | ERROR | [x] Whitespace found at end of line
+ 23 | ERROR | [x] Expected 4 spaces after parameter type; 1 found
+ 24 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...DMIN\dev\php-projekt\src\AppBundle\Repository\LoanRepository.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 19 | ERROR | [x] Whitespace found at end of line
+ 21 | ERROR | [x] Whitespace found at end of line
+ 22 | ERROR | [x] Expected 4 spaces after parameter type; 1 found
+ 23 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...v\php-projekt\src\AppBundle\Repository\ReservationRepository.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 17 | ERROR | [x] Whitespace found at end of line
+ 19 | ERROR | [x] Whitespace found at end of line
+ 21 | ERROR | [x] Whitespace found at end of line
+ 22 | ERROR | [x] Expected 4 spaces after parameter type; 1 found
+ 23 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\BooksManager.php
+----------------------------------------------------------------------
+FOUND 46 ERRORS AFFECTING 46 LINES
+----------------------------------------------------------------------
+   1 | ERROR | [x] End of line character is invalid; expected "\n"
+     |       |     but found "\r\n"
+   4 | ERROR | [x] There must be one blank line after the namespace
+     |       |     declaration
+  31 | ERROR | [x] Whitespace found at end of line
+  33 | ERROR | [x] Whitespace found at end of line
+  34 | ERROR | [x] Whitespace found at end of line
+  43 | ERROR | [x] Whitespace found at end of line
+  45 | ERROR | [x] Whitespace found at end of line
+  46 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+  47 | ERROR | [x] Whitespace found at end of line
+  48 | ERROR | [x] Whitespace found at end of line
+  49 | ERROR | [x] Whitespace found at end of line
+  69 | ERROR | [x] Whitespace found at end of line
+  71 | ERROR | [x] Whitespace found at end of line
+  72 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+  73 | ERROR | [x] Whitespace found at end of line
+  83 | ERROR | [x] Whitespace found at end of line
+  85 | ERROR | [x] Whitespace found at end of line
+  86 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+  87 | ERROR | [x] Whitespace found at end of line
+  97 | ERROR | [x] Whitespace found at end of line
+  99 | ERROR | [x] Whitespace found at end of line
+ 100 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+ 101 | ERROR | [x] Whitespace found at end of line
+ 119 | ERROR | [x] Whitespace found at end of line
+ 121 | ERROR | [x] Whitespace found at end of line
+ 122 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+ 123 | ERROR | [x] Whitespace found at end of line
+ 133 | ERROR | [x] Whitespace found at end of line
+ 135 | ERROR | [x] Whitespace found at end of line
+ 136 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+ 137 | ERROR | [x] Whitespace found at end of line
+ 147 | ERROR | [x] Whitespace found at end of line
+ 149 | ERROR | [x] Whitespace found at end of line
+ 174 | ERROR | [x] Whitespace found at end of line
+ 176 | ERROR | [x] Whitespace found at end of line
+ 189 | ERROR | [x] Whitespace found at end of line
+ 200 | ERROR | [x] Whitespace found at end of line
+ 211 | ERROR | [x] Whitespace found at end of line
+ 222 | ERROR | [x] Whitespace found at end of line
+ 224 | ERROR | [x] Whitespace found at end of line
+ 225 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+ 226 | ERROR | [x] Whitespace found at end of line
+ 242 | ERROR | [x] Whitespace found at end of line
+ 244 | ERROR | [x] Whitespace found at end of line
+ 245 | ERROR | [x] Expected 2 spaces after parameter type; 1 found
+ 246 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 46 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\FileUploader.php
+----------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+  7 | ERROR | [x] Whitespace found at end of line
+ 15 | ERROR | [ ] Doc comment for parameter "$targetDirectory"
+    |       |     missing
+ 17 | ERROR | [x] Whitespace found at end of line
+ 26 | ERROR | [x] Whitespace found at end of line
+ 28 | ERROR | [x] Whitespace found at end of line
+ 42 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...IBM_ADMIN\dev\php-projekt\src\AppBundle\Service\UsersManager.php
+----------------------------------------------------------------------
+FOUND 18 ERRORS AFFECTING 17 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 24 | ERROR | [x] Expected 16 spaces after parameter type; 1 found
+ 24 | ERROR | [x] Expected 13 spaces after parameter name; 1 found
+ 25 | ERROR | [x] Whitespace found at end of line
+ 36 | ERROR | [x] Whitespace found at end of line
+ 38 | ERROR | [x] Whitespace found at end of line
+ 40 | ERROR | [x] Whitespace found at end of line
+ 41 | ERROR | [x] Expected 4 spaces after parameter type; 1 found
+ 42 | ERROR | [x] Whitespace found at end of line
+ 43 | ERROR | [x] Expected 4 spaces after parameter type; 1 found
+ 44 | ERROR | [x] Whitespace found at end of line
+ 79 | ERROR | [ ] Missing @return tag in function comment
+ 85 | ERROR | [x] Whitespace found at end of line
+ 86 | ERROR | [x] Whitespace found at end of line
+ 87 | ERROR | [x] Whitespace found at end of line
+ 95 | ERROR | [x] Whitespace found at end of line
+ 96 | ERROR | [x] Whitespace found at end of line
+ 97 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 17 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...:\Users\IBM_ADMIN\dev\php-projekt\src\UserBundle\Entity\User.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...-projekt\src\UserBundle\EventListener\PasswordChangeListener.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 22 | ERROR | [x] Whitespace found at end of line
+ 24 | ERROR | [x] Whitespace found at end of line
+ 25 | ERROR | [x] Expected 10 spaces after parameter type; 1 found
+ 35 | ERROR | [ ] Missing @return tag in function comment
+ 45 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...hp-projekt\src\UserBundle\EventListener\RegistrationListener.php
+----------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 6 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 24 | ERROR | [x] Whitespace found at end of line
+ 26 | ERROR | [x] Whitespace found at end of line
+ 27 | ERROR | [x] Expected 10 spaces after parameter type; 1 found
+ 49 | ERROR | [x] Whitespace found at end of line
+ 61 | ERROR | [x] Whitespace found at end of line
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 6 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: ...\dev\php-projekt\src\UserBundle\Handler\LogoutSuccessHandler.php
+----------------------------------------------------------------------
+FOUND 8 ERRORS AFFECTING 8 LINES
+----------------------------------------------------------------------
+  1 | ERROR | [x] End of line character is invalid; expected "\n" but
+    |       |     found "\r\n"
+ 21 | ERROR | [x] Whitespace found at end of line
+ 23 | ERROR | [x] Whitespace found at end of line
+ 24 | ERROR | [x] Expected 10 spaces after parameter type; 1 found
+ 34 | ERROR | [x] Whitespace found at end of line
+ 36 | ERROR | [x] Whitespace found at end of line
+ 37 | ERROR | [x] Whitespace found at end of line
+ 38 | ERROR | [ ] Missing @return tag in function comment
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: C:\Users\IBM_ADMIN\dev\php-projekt\src\UserBundle\UserBundle.php
+----------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 1 | ERROR | [x] End of line character is invalid; expected "\n" but
+   |       |     found "\r\n"
+ 7 | ERROR | [ ] Missing doc comment for class UserBundle
+ 9 | ERROR | [ ] Missing doc comment for function getParent()
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+Time: 3.97 secs; Memory: 6Mb
+

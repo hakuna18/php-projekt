@@ -16,7 +16,14 @@ use Pagerfanta\Adapter\ArrayAdapter;
  */
 class BooksRepository extends EntityRepository
 {
-    // Looks for books with title/author/genre mathching given regex pattern.
+    /** Looks for books with title/author/genre mathching given regex pattern.
+     *
+     * @param string $pattern
+     * 
+     * @param int $page
+     * 
+     * @return Pagerfanta\Pagerfanta
+    */
     public function query($pattern, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';

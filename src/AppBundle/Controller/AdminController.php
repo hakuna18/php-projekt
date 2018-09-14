@@ -30,6 +30,12 @@ class AdminController extends Controller
 
     protected $booksManager = null;
 
+/**
+* AdminController constructor.
+*
+* @param \AppBundle\Service\UsersManager $usersManager Users manager service
+* @param \AppBundle\Service\BooksManager $booksManager Books manager service
+*/
     public function __construct(UsersManager $usersManager, BooksManager $booksManager)
     {
         $this->usersManager = $usersManager;
@@ -38,6 +44,10 @@ class AdminController extends Controller
 
     /**
      * @Route("/panel", name="admin_panel")
+     * 
+     * @param Symfony\Component\HttpFoundation\Request $request
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function adminPanelAction(Request $request)
     {
