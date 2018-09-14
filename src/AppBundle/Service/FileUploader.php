@@ -4,7 +4,7 @@ namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/** 
+/**
  * https://symfony.com/doc/3.4/controller/upload_file.html
  * Class FileUplodaer
  */
@@ -14,7 +14,7 @@ class FileUploader
     
     /**
      * FileUploader constructor
-     * 
+     *
      * @param string $targetDirectory
      */
     public function __construct($targetDirectory)
@@ -24,9 +24,9 @@ class FileUploader
 
     /**
      * Upload file
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\File\UploadedFile $file UploadedFile
-     * 
+     *
      * @return string File name
      */
     public function upload(UploadedFile $file)
@@ -40,7 +40,7 @@ class FileUploader
 
     /**
      * Get Target Directory
-     * 
+     *
      * @return string Target directory
      */
     public function getTargetDirectory()

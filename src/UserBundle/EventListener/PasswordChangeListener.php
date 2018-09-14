@@ -9,7 +9,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-// https://symfony.com/doc/master/bundles/FOSUserBundle/controller_events.html
+/**
+ * Class for listening to the password change success event.
+ * Created to redirect to the \logout after password change
+ * https://symfony.com/doc/master/bundles/FOSUserBundle/controller_events.html
+*/
 class PasswordChangeListener implements EventSubscriberInterface
 {
     private $router;
@@ -17,10 +21,10 @@ class PasswordChangeListener implements EventSubscriberInterface
 
     /**
      * PasswordChangeListener constructor
-     * 
+     *
      * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
-     * 
-     * @param Symfony\Component\HttpFoundation\Session\Session $session
+     *
+     * @param Symfony\Component\HttpFoundation\Session\Session          $session
      */
     public function __construct(UrlGeneratorInterface $router, Session $session)
     {
@@ -40,7 +44,7 @@ class PasswordChangeListener implements EventSubscriberInterface
 
     /**
      * On Password Change Succes
-     * 
+     *
      * @param FOS\UserBundle\Event\FormEvent $event
      */
     public function onPasswordChangeSuccess(FormEvent $event)

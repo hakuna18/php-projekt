@@ -18,10 +18,10 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 
     /**
      * LogoutSuccessHandler constructor
-     * 
+     *
      * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
-     * 
-     * @param Symfony\Component\HttpFoundation\Session\Session $session
+     *
+     * @param Symfony\Component\HttpFoundation\Session\Session          $session
      */
     public function __construct(UrlGeneratorInterface $router, Session $session)
     {
@@ -31,9 +31,9 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 
     /**
      * On Logout Success
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request Request
-     * 
+     *
      * @return Symfony\Component\HttpFoundation\RedirectResponse Redirect Response
      */
     public function onLogoutSuccess(Request $request)

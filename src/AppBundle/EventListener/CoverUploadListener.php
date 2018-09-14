@@ -10,9 +10,9 @@ use AppBundle\Service\FileUploader;
 use AppBundle\Entity\Book;
 
 /** https://symfony.com/doc/3.4/controller/upload_file.html
- * 
+ *
  * Class CoverUploadListener
- * 
+ *
  * */
 class CoverUploadListener
 {
@@ -20,7 +20,7 @@ class CoverUploadListener
 
     /**
      * CoverUploadListener constructor.
-     * 
+     *
      * @param AppBundle\Service\FileUploader $uploader File uploader
      */
     public function __construct(FileUploader $uploader)
@@ -29,8 +29,8 @@ class CoverUploadListener
     }
 
     /**
-     * PrePersist 
-     * 
+     * PrePersist
+     *
      * @param Doctrine\ORM\Event\LifecycleEventArgs $args
      */
     public function prePersist(LifecycleEventArgs $args)
@@ -42,7 +42,7 @@ class CoverUploadListener
 
     /**
      * PreUpdate
-     * 
+     *
      * @param Doctrine\ORM\Event\PreUpdateEventArgs $args
      */
     public function preUpdate(PreUpdateEventArgs $args)
@@ -54,7 +54,7 @@ class CoverUploadListener
 
     /**
      * UploadFile
-     * 
+     *
      * @param AppBundle\Entity\Book $entity
      */
     private function uploadFile($entity)

@@ -19,9 +19,9 @@ class BooksRepository extends EntityRepository
     /** Looks for books with ISBN/title/author/genre mathching given regex pattern.
      *
      * @param string $pattern
-     * 
-     * @param int $page
-     * 
+     *
+     * @param int    $page
+     *
      * @return Pagerfanta\Pagerfanta
     */
     public function query($pattern, $page = 1)

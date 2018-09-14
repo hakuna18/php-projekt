@@ -2,6 +2,7 @@
 
 // src/AppBundle/Service/BooksManager.php
 namespace AppBundle\Service;
+
 use UserBundle\Entity\User;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\Reservation;
@@ -28,10 +29,10 @@ class BooksManager
 
     /**
      * Get repository
-     * 
+     *
      * @param string $entityClass
-     * 
-     * @return Doctrine\ORM\EntityManagerInterface 
+     *
+     * @return Doctrine\ORM\EntityManagerInterface
      */
     public function getRepository($entityClass)
     {
@@ -40,13 +41,13 @@ class BooksManager
 
     /**
      * Make reservation
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
-     * @return AppBundle\Entity\Reservation 
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
+     * @return AppBundle\Entity\Reservation
+     *
      */
     public function makeReservation($user, $book)
     {
@@ -66,11 +67,11 @@ class BooksManager
 
     /**
      * Whether user has reservations
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return bool
      */
     public function hasReservation($user, $book)
@@ -80,11 +81,11 @@ class BooksManager
 
     /**
      * Whether can make a reservation
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return bool
      */
     public function canMakeReservation($user, $book)
@@ -94,11 +95,11 @@ class BooksManager
 
     /**
      * Cancel reservation
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return bool
      */
     public function cancelReservation($user, $book)
@@ -116,11 +117,11 @@ class BooksManager
 
     /**
      * Whether can loan
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return bool
      */
     public function canLoan($user, $book)
@@ -130,11 +131,11 @@ class BooksManager
 
     /**
      * whether has a loan
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return bool
      */
     public function hasLoan($user, $book)
@@ -144,9 +145,9 @@ class BooksManager
 
     /**
      * Make a loan
-     * 
+     *
      * @param AppBundle\Entity\Reservation $reservation
-     * 
+     *
      * @return AppBundle\Entity\Loan or null
      */
     public function makeALoan($reservation)
@@ -171,9 +172,9 @@ class BooksManager
 
     /**
      * Return a book
-     * 
+     *
      * @param AppBundle\Entity\Loan $loan Loan
-     * 
+     *
      * @return bool
      */
     public function returnBook($loan)
@@ -186,7 +187,7 @@ class BooksManager
 
     /**
      * Create book
-     * 
+     *
      * @param AppBundle\Entity\Book $book Book
      */
     public function createBook($book)
@@ -197,7 +198,7 @@ class BooksManager
 
     /**
      * Update book
-     * 
+     *
      * @param AppBundle\Entity\Book $book Book
      */
     public function updateBook($book)
@@ -208,7 +209,7 @@ class BooksManager
 
     /**
      * Delete book
-     * 
+     *
      * @param AppBundle\Entity\Book $book Book
      */
     public function deleteBook($book)
@@ -219,11 +220,11 @@ class BooksManager
 
     /**
      * Find reservation
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return AppBundle\Entity\Reservation Reservation
      */
     private function findReservation($user, $book)
@@ -239,11 +240,11 @@ class BooksManager
 
     /**
      * Find loan
-     * 
+     *
      * @param UserBundle\Entity\User $user User
-     * 
-     * @param AppBundle\Entity\Book $book Book
-     * 
+     *
+     * @param AppBundle\Entity\Book  $book Book
+     *
      * @return AppBundle\Entity\Loan Loan
      */
     private function findLoan($user, $book)

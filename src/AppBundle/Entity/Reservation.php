@@ -55,7 +55,7 @@ class Reservation
 
     /**
      * Whether this reservation is expired
-     * 
+     *
      * @return bool
      */
     public function isExpired()

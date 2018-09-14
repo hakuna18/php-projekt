@@ -13,10 +13,10 @@ class RegistrationType extends AbstractType
 {
     /**
      * BuildForm
-     * 
+     *
      * @param Symfony\Component\Form\FormBuilderInterface $builder Form builder
-     * 
-     * @param array                                        $options Options 
+     *
+     * @param array                                       $options Options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -45,7 +45,7 @@ class RegistrationType extends AbstractType
 
     /**
      * GetParent
-     * 
+     *
      * @return string
      */
     public function getParent()
@@ -55,7 +55,7 @@ class RegistrationType extends AbstractType
 
     /**
      * GetBlockPrefix
-     * 
+     *
      * @return string
      */
     public function getBlockPrefix()

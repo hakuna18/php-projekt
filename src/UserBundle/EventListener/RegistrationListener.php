@@ -21,10 +21,10 @@ class RegistrationListener implements EventSubscriberInterface
 
      /**
      * RegistrationListener constructor
-     * 
+     *
      * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
-     * 
-     * @param Symfony\Component\HttpFoundation\Session\Session $session
+     *
+     * @param Symfony\Component\HttpFoundation\Session\Session          $session
      */
     public function __construct(UrlGeneratorInterface $router, Session $session)
     {
@@ -46,7 +46,7 @@ class RegistrationListener implements EventSubscriberInterface
 
     /**
      * On Registration Success
-     * 
+     *
      * @param FOS\UserBundle\Event\FormEvent $event
      */
     public function onRegistrationSuccess(FormEvent $event)
@@ -58,7 +58,7 @@ class RegistrationListener implements EventSubscriberInterface
 
     /**
      * Stop Event
-     * 
+     *
      * @param FOS\UserBundle\Event\FilterUserResponseEvent $event
      */
     public function stopEvent(FilterUserResponseEvent $event)

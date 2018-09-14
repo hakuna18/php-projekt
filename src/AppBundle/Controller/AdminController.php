@@ -44,9 +44,9 @@ class AdminController extends Controller
 
     /**
      * @Route("/panel", name="admin_panel")
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function adminPanelAction(Request $request)

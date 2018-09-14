@@ -21,8 +21,8 @@ class UsersManager
     /**
      * BooksManager constructor.
      *
-     * @param Doctrine\ORM\EntityManager $em Entity Manager
-     * 
+     * @param Doctrine\ORM\EntityManager                $em             Entity Manager
+     *
      * @param FOS\UserBundle\Model\UserManagerInterface $fosUserManager FOS User Manager
      */
     public function __construct(EntityManagerInterface $em, UserManagerInterface $fosUserManager)
@@ -33,15 +33,15 @@ class UsersManager
 
     /**
      * Find by pattern
-     * 
+     *
      * Looks for users with name/surname/email mathching given regex pattern.
-     * 
+     *
      * @param string $pattern
-     * 
-     * @param bol $includeAdmins
-     * 
-     * @param int $page
-     * 
+     *
+     * @param bol    $includeAdmins
+     *
+     * @param int    $page
+     *
      * @return Pagerfanta\Pagerfanta
      */
     public function findByPattern($pattern, $includeAdmins = false, $page = 1)
@@ -76,7 +76,7 @@ class UsersManager
 
     /**
      * Get all users
-     * 
+     *
      * @return array
      */
     public function getAllUsers()
@@ -84,9 +84,9 @@ class UsersManager
         return $this->fosUserManager->findUsers();
     }
 
-    /** 
-     * Update user 
-     * 
+    /**
+     * Update user
+     *
      * @param UserBundle\Entity\User $user User
      */
     public function updateUser($user)
@@ -94,9 +94,9 @@ class UsersManager
         $this->fosUserManager->updateUser($user);
     }
 
-    /** 
-     * Delete user 
-     * 
+    /**
+     * Delete user
+     *
      * @param UserBundle\Entity\User $user User
      */
     public function deleteUser($user)

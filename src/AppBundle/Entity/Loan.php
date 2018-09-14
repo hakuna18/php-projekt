@@ -55,7 +55,7 @@ class Loan
 
     /**
      * Is expired
-     * 
+     *
      * @return bool
      */
     public function isExpired()

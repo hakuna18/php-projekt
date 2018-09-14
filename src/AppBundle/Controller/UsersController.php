@@ -36,10 +36,10 @@ class UsersController extends Controller
 
     /**
      * Index action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
      *
-     * @param integer $page Current page number
+     * @param integer                                  $page    Current page number
      *
      * @Route(
      *     "/",
@@ -73,13 +73,13 @@ class UsersController extends Controller
 
     /**
      * View single user action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
-     * @param UserBundle\Entity\User $user User
-     * 
+     *
+     * @param UserBundle\Entity\User                   $user    User
+     *
      * @Route("/view/{id}", name="user_view")
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function viewAction(Request $request, User $user)
@@ -92,13 +92,13 @@ class UsersController extends Controller
 
     /**
      * Edit user action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
-     * @param UserBundle\Entity\User $user User
-     *  
+     *
+     * @param UserBundle\Entity\User                   $user    User
+     *
      * @Route("/edit/{id}", name="user_edit")
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function editAction(Request $request, User $user)
@@ -129,13 +129,13 @@ class UsersController extends Controller
 
     /**
      * Delete user action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
-     * @param UserBundle\Entity\User $user User
-     * 
+     *
+     * @param UserBundle\Entity\User                   $user    User
+     *
      * @Route("/delete/{id}", name="user_delete")
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function deleteAction(Request $request, User $user)
@@ -146,7 +146,7 @@ class UsersController extends Controller
             throw $this->createAccessDeniedException("You cannot access this page!");
         }
 
-        $this->usersManager->deleteUser($user); 
+        $this->usersManager->deleteUser($user);
         $this->addFlash(
             'notice',
             'user_deleted.confirmation'
@@ -157,11 +157,11 @@ class UsersController extends Controller
 
     /**
      * View panel action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
+     *
      * @Route("/panel", name="user_panel")
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function panelAction(Request $request)
@@ -180,11 +180,11 @@ class UsersController extends Controller
 
     /**
      * Change mail action.
-     * 
+     *
      * @param Symfony\Component\HttpFoundation\Request $request
-     * 
+     *
      * @Route("/change_mail", name="user_change_mail")
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function changeMailAction(Request $request)
