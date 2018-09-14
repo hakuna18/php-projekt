@@ -18,6 +18,10 @@
                 <source>genre.no_digits</source>
                 <target>Gatunek nie może zawierać cyfr</target>
             </trans-unit>
+            <trans-unit id="isbn.unique">
+                <source>isbn.unique</source>
+                <target>Książka o podanym ISBN znajduje się już w katalogu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

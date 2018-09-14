@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(
  *     repositoryClass="AppBundle\Repository\BooksRepository"
  * )
+ * @UniqueEntity("isbn", message="isbn.unique")
  */
 class Book
 {
