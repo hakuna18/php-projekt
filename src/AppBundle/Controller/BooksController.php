@@ -99,10 +99,8 @@ class BooksController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function viewAction($id)
+    public function viewAction(Book $book)
     {
-        $book = $this->booksRepository->findOneById($id);
-
         return $this->render(
             'books/view.html.twig',
             ['book' => $book]
