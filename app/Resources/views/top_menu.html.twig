@@ -3,38 +3,35 @@
     {% set current_route = app.request.attributes.get('_route') %}
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-        |
-        <a href="{{ path('fos_user_security_logout') }}"><b>{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</b></a>
-        ||          
+        <b>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</b>
+        <a href="{{ path('fos_user_security_logout') }}" class="btn btn-primary">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+        |     
         {% if is_granted("ROLE_ADMIN") %}
             {% if current_route != 'admin_panel' %}
-                <a href="{{ path('admin_panel') }}">{{ 'page.admin_panel'|trans }}</a>
-                |
+                <a href="{{ path('admin_panel') }}" class="btn btn-info">{{ 'page.admin_panel'|trans }}</a>
             {% endif %}
             {% if current_route != 'books_add' %}
-                <a href="{{ path('books_add') }}">{{ 'page.books_add'|trans }}</a>
-                |
+                <a href="{{ path('books_add') }}" class="btn btn-primary">{{ 'page.books_add'|trans }}</a>
             {% endif %}
             {% if current_route != 'fos_user_registration_register' %}
-                <a href="{{ path('fos_user_registration_register') }}">{{ 'page.register_user'|trans }}</a>
-                |
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'page.register_user'|trans }}</a>
             {% endif %}
         {% else %}
             {% if current_route != 'user_panel' %}
-                <a href="{{ path('user_panel') }}">{{ 'page.user_panel'|trans }}</a>
-                |
+                <a href="{{ path('user_panel') }}" class="btn btn-info">{{ 'page.user_panel'|trans }}</a>
             {% endif %}
         {% endif %}
     {% else %}
         {% if current_route != 'fos_user_security_login' %}
-            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
         {% endif %}
     {% endif %} {# is_granted("IS_AUTHENTICATED_REMEMBERED") #}
 
     {% if current_route != 'books_catalogue' and current_route != 'books_catalogue_paginated' %}
-        <a href="{{ path('books_catalogue') }}"><b>{{ 'books_catalogue'|trans }}</b></a>           
+        <a href="{{ path('books_catalogue') }}" class="btn btn-info">{{ 'books_catalogue'|trans }}</a>           
     {% endif %}
+
+    <hr>
     
     {# Display flash messages #}
     {% for label, messages in app.flashes %}

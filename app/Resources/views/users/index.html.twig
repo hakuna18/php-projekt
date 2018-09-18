@@ -10,7 +10,7 @@
 
     {{ form_start(form, { method: 'post', action: url('users') }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
-    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default pull-right" />
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-secondary" />
     {{ form_end(form) }}
     
     {% if users is defined and users|length %}
@@ -28,6 +28,9 @@
                         <a href="{{ path('user_view', { 'id': user.id }) }}">
                             {{ user.name }} {{ user.surname }}
                         </a>
+                        {% if user.hasRole('ROLE_ADMIN') %}
+                            [admin]
+                        {% endif %}
                     </td>
                     <td style="border-bottom:1px solid black">{{ user.email }}</td>
                     <td style="border-bottom:1px solid black">{{ user.lastLogin|date('Y-m-d') }}</td>

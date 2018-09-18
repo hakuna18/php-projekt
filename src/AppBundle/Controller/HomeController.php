@@ -1,6 +1,6 @@
 <?php
 /**
- * IndexController.
+ * HomeController.
  */
 namespace AppBundle\Controller;
 
@@ -10,16 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
- * Index controller.
+ * Home controller.
  *
  * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
  *
  * @return \Symfony\Component\HttpFoundation\Response HTTP Response
  */
-class IndexController extends Controller
+class HomeController extends Controller
 {
     /**
-     * Index action.
+     * Homepage action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
      *
@@ -27,7 +27,7 @@ class IndexController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
-    public function indexAction(Request $request)
+    public function homepageAction(Request $request)
     {
         return $this->redirectToRoute('books_catalogue');
     }

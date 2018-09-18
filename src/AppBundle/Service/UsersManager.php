@@ -52,7 +52,7 @@ class UsersManager
      *
      * @return Pagerfanta\Pagerfanta
      */
-    public function findByPattern($pattern, $includeAdmins = false, $page = 1)
+    public function query($pattern, $roles, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';
         $result = array();
@@ -69,11 +69,13 @@ class UsersManager
             }
         }
 
-        if (!$includeAdmins) {
-            $result = array_filter($result, function ($user) {
-                return !in_array("ROLE_SUPER_ADMIN", $user->getRoles());
-            });
-        }
+        // must have any role defined by "$roles"
+        $result = array_filter($result, function ($user) use ($roles) {
+            foreach ($roles as $role) {
+                if ($user->hasRole($role)) return true;
+            }
+            return false;
+        });
 
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(User::NUM_ITEMS);

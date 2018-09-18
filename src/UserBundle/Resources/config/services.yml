@@ -1,7 +1,7 @@
 services:
     user.registration:
         class: UserBundle\EventListener\RegistrationListener
-        arguments: ['@router', '@session']
+        arguments: ['@router', '@session', '@security.authorization_checker']
         tags:
             - { name: kernel.event_subscriber }
 

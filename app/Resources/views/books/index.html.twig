@@ -11,7 +11,7 @@
 
     {{ form_start(form, { method: 'post' }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query }}) }}
-    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default"/>
+    <input type="submit" value={{ 'form.search'|trans }} class="btn btn-secondary"/>
     {{ form_end(form) }}
     
     {% if books is defined and books|length %}
@@ -37,11 +37,11 @@
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
                         {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN") %}
                             <td style="border-bottom:1px solid black">
-                                <a href="{{ path('book_view', {'id': book.id}) }}">{{ 'book.details'|trans }}</a>
+                                <a href="{{ path('book_view', {'id': book.id}) }}" class="btn btn-info">{{ 'book.details'|trans }}</a>
                             </td>
                             {% if booksManager.hasReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}">{{'book.cancel_reservation'|trans}}</a>
+                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}" class="btn btn-warning">{{'book.cancel_reservation'|trans}}</a>
                                 </td>
                             {% elseif booksManager.hasLoan(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
@@ -49,13 +49,15 @@
                                 </td>
                             {% elseif booksManager.canMakeReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('make_reservation', { 'id': book.id }) }}">{{ 'book.make_reservation'|trans }}</a>
+                                    <a href="{{ path('make_reservation', { 'id': book.id }) }}" class="btn btn-success">{{ 'book.make_reservation'|trans }}</a>
                                 </td>
+                            {% else %}
+                                <td style="border-bottom:1px solid black"></td>
                             {% endif %}
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") %}
                         <td style="border-bottom:1px solid black">
-                            <a href="{{ path('admin_panel', { 'search': book.ISBN }) }}">{{ 'book.reservations_and_loans'|trans }}</a>
+                            <a href="{{ path('admin_panel', { 'search': book.ISBN }) }}" class="btn btn-info">{{ 'book.reservations_and_loans'|trans }}</a>
                         </td>
                         {% endif %}
                     </tr>                      

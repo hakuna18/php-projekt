@@ -61,7 +61,11 @@ class UsersController extends Controller
     public function indexAction(Request $request, $page)
     {
         $searchQuery = $request->request->get('form')['search'];
-        $matchedUsers = $this->usersManager->findByPattern($searchQuery, false, $page);
+        $queryRoles = ['ROLE_READER'];
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $queryRoles[] = 'ROLE_ADMIN';
+        }
+        $matchedUsers = $this->usersManager->query($searchQuery, $queryRoles, $page);
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();
@@ -145,9 +149,12 @@ class UsersController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        // Prevent deletion of another user by non-admin
-        $isCurrentUserAdmin = $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN');
-        if (!$isCurrentUserAdmin && $user !== $this->getUser()) {
+        // Can delete only self or role lower in the hierarchy
+        $authChecker = $this->get('security.authorization_checker');
+        if ($this->getUser() != $user && 
+            (($authChecker->isGranted('ROLE_ADMIN') && ($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_SUPER_ADMIN')))
+            || $authChecker->isGranted('ROLE_READER'))
+            ) {
             throw $this->createAccessDeniedException("You cannot access this page!");
         }
 

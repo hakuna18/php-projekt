@@ -5,7 +5,6 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -31,19 +30,18 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }       
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: ROLE_ADMIN }     
-        - { path: ^/admin, role: ROLE_ADMIN }   
-        - { path: ^/books/add, role: ROLE_ADMIN }
-        - { path: ^/books/edit, role: ROLE_ADMIN }
-        - { path: ^/books/delete, role: ROLE_ADMIN }
-        - { path: ^/books/loan, role: ROLE_ADMIN }
-        - { path: ^/books/details, role: ROLE_ADMIN }
-        - { path: ^/users/change_mail, role: ROLE_USER }
-        - { path: ^/users/panel, role: ROLE_USER }
-        - { path: ^/users/delete, role: ROLE_USER }
-        - { path: ^/users, role: ROLE_ADMIN }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }       
+        - { path: ^/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: ROLE_ADMIN }     
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/books/add, roles: ROLE_ADMIN }
+        - { path: ^/books/edit, roles: ROLE_ADMIN }
+        - { path: ^/books/delete, roles: ROLE_ADMIN }
+        - { path: ^/books/loan, roles: ROLE_ADMIN }
+        - { path: ^/books/details, roles: ROLE_ADMIN }
+        - { path: ^/users/panel, roles: ROLE_READER }
+        - { path: ^/users/delete, roles: [ROLE_READER, ROLE_ADMIN] }
+        - { path: ^/users$, roles: ROLE_ADMIN }
         
         
             # activate different ways to authenticate
