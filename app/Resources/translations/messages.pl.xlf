@@ -418,6 +418,10 @@
                 <source>num_copies_greater_than_%num_copies%</source>
                 <target>Ze względu na obecne rezerwacje/wypożyczenia, dopuszczalna minimalna liczba kopii to %num_copies%</target>
             </trans-unit>
+            <trans-unit id="are.you.sure">
+                <source>are you sure?</source>
+                <target>Czy na pewno?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

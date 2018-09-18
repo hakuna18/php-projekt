@@ -39,7 +39,7 @@
                 {% if user.loans|length %}
                     <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
                 {% else %}
-                    <input type="submit" style="color:red" value="{{'action.user_delete'|trans}}" class="btn btn-default"/>
+                    <input type="submit" value="{{'action.user_delete'|trans}}" class="btn btn-danger" onclick="return confirm('{{'are you sure?'|trans}}')"/>
                 {% endif %}
             </form>
             </td>

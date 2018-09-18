@@ -73,7 +73,7 @@
                         <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('book_return', { 'id': loan.id }) }}">{{'book.return'|trans}}</a>
+                        <a href="{{ path('book_return', { 'id': loan.id }) }}" onclick="return confirm('{{'are you sure?'|trans}}')">{{'book.return'|trans}}</a>
                     </td>
                 </tr>             
             {% endfor %}
