@@ -39,7 +39,7 @@
                         <td style="border-bottom:1px solid black">{{ book.currentlyAvailable }}</td>
                         <td style="border-bottom:1px solid black">
                             <form action="{{ path('book_edit', { 'id': book.id }) }}">
-                                <input type="submit" value="{{ 'action.edit_book'|trans }}"/>
+                                <input type="submit" value="{{ 'action.edit_book'|trans }}" class="btn btn-primary"/>
                             </form>
                         </td>
                         <td style="border-bottom:1px solid black">
@@ -47,7 +47,7 @@
                                 {% if book.loans|length %}
                                     <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
                                 {% else %}
-                                    <input type="submit" style="color:red" value="{{'action.delete_book'|trans}}"/>
+                                    <input type="submit" value="{{'action.delete_book'|trans}}" class="btn btn-danger"/>
                                 {% endif %}
                             </form>
                         </td>
