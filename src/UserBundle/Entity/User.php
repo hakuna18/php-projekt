@@ -95,14 +95,16 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
+
+        $this->setRole("ROLE_READER");
+
         $this->reservations = new ArrayCollection();
         $this->loans = new ArrayCollection();
 
         // This is a work-around for a case when the user is created from the FOS user create CLI.
         $this->name = "empty";
         $this->surname = "empty";
-
-        parent::__construct();
     }
 
     /**
@@ -180,7 +182,7 @@ class User extends BaseUser
      */
     public function getRole()
     {
-        foreach ($this->getRoles() as $role) {
+        foreach (parent::getRoles() as $role) {
             if ("ROLE_USER" !== $role) {
                 return $role;
             }
@@ -198,8 +200,19 @@ class User extends BaseUser
      */
     public function setRole($role)
     {
-        $this->setRoles([$role]);
+        parent::setRoles([$role]);
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSuperAdmin($boolean)
+    {
+        // super admin cant be a reader
+        parent::removeRole("ROLE_READER");
+
+        parent::setSuperAdmin($boolean);
     }
 }

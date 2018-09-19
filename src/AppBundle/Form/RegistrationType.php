@@ -71,8 +71,6 @@ class RegistrationType extends AbstractType
                     ],
                     'expanded' => true,
                     'required' => true,
-                    // set default to reader
-                    'data' => 'ROLE_READER',
                 ]
             );
         }
