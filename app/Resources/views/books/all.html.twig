@@ -45,7 +45,7 @@
                         <td style="border-bottom:1px solid black">
                             <form action="{{ path('book_delete', { 'id': book.id }) }}">
                                 {% if book.loans|length %}
-                                    <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
+                                    <span style="color:red">{{'info.cant_delete_book_has_loans'|trans}}</span>
                                 {% else %}
                                     <input type="submit" value="{{'action.delete_book'|trans}}" class="btn btn-danger"/>
                                 {% endif %}

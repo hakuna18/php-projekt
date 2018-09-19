@@ -56,7 +56,7 @@
                             <a href="{{ path('book_view', { 'id': reservation.book.id }) }}">{{ reservation.book.title }}</a>
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <font color= {{ reservation.expired? 'red' : 'black' }}{{ reservation.creationDate|date('Y-m-d') }}</font>                     
+                            <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                         </td>
                         <td style="border-bottom:1px solid black">
                             <a href="{{ path('cancel_reservation', { 'id': reservation.book.id, 'userId': reservation.user.id }) }}">{{'book.cancel_reservation'|trans}}</a>

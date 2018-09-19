@@ -172,4 +172,34 @@ class User extends BaseUser
     {
         return $this->loans;
     }
+
+    /**
+     * Get this user's role that is not the default "ROLE_USER".
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        foreach ($this->getRoles() as $role) {
+            if ("ROLE_USER" !== $role) {
+                return $role;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->setRoles([$role]);
+
+        return $this;
+    }
 }

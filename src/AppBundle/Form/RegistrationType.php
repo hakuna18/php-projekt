@@ -7,12 +7,29 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class RegistrationType.
  */
 class RegistrationType extends AbstractType
 {
+    /**
+     * Authorization checker
+     */
+    private $authChecker;
+
+    /**
+     * BookType constructor
+     *
+     * @param Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authChecker
+     */
+    public function __construct(AuthorizationCheckerInterface $authChecker)
+    {
+        $this->authChecker = $authChecker;
+    }
+
     /**
      * BuildForm
      *
@@ -43,6 +60,22 @@ class RegistrationType extends AbstractType
                 ],
             ]
         );
+        if ($this->authChecker->isGranted('ROLE_SUPER_ADMIN')) {
+            $builder->add(
+                'role',
+                ChoiceType::class,
+                [
+                    'choices'  => [
+                        'role.reader' => 'ROLE_READER',
+                        'role.admin' => 'ROLE_ADMIN',
+                    ],
+                    'expanded' => true,
+                    'required' => true,
+                    // set default to reader
+                    'data' => 'ROLE_READER',
+                ]
+            );
+        }
     }
 
     /**
