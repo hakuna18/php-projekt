@@ -41,7 +41,7 @@ security:
         - { path: ^/books/details, roles: ROLE_ADMIN }
         - { path: ^/users/panel, roles: ROLE_READER }
         - { path: ^/users/delete, roles: [ROLE_READER, ROLE_ADMIN] }
-        - { path: ^/users$, roles: ROLE_ADMIN }
+        - { path: ^/users, roles: ROLE_ADMIN }
         
         
             # activate different ways to authenticate

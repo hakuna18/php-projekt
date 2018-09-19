@@ -149,11 +149,19 @@ class UsersController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        // Can delete only self or role lower in the hierarchy
-        if ($this->getUser() !== $user &&
-            (($this->getUser()->hasRole('ROLE_ADMIN') && ($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_SUPER_ADMIN')))
-            || $this->getUser()->hasRole('ROLE_READER'))
-            ) {
+        // 1) Only reader can delete self
+        // 2) Admin can delete a reader
+        // 3) Super admin can delete an admin or reader
+        $allowed = false;
+        $attempsToDeleteSelf = $this->getUser() === $user;
+        if ($this->getUser()->hasRole('ROLE_READER')) {
+            $allowed = $attempsToDeleteSelf;
+        } else if ($this->getUser()->hasRole('ROLE_ADMIN')) {
+            $allowed = $user->hasRole('ROLE_READER');
+        } else if ($this->getUser()->hasRole('ROLE_SUPER_ADMIN')) {
+            $allowed = !$user->hasRole('ROLE_SUPER_ADMIN');
+        }
+        if (!$allowed) {
             throw $this->createAccessDeniedException("You cannot access this page!");
         }
 
