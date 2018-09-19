@@ -156,9 +156,9 @@ class UsersController extends Controller
         $attempsToDeleteSelf = $this->getUser() === $user;
         if ($this->getUser()->hasRole('ROLE_READER')) {
             $allowed = $attempsToDeleteSelf;
-        } else if ($this->getUser()->hasRole('ROLE_ADMIN')) {
+        } elseif ($this->getUser()->hasRole('ROLE_ADMIN')) {
             $allowed = $user->hasRole('ROLE_READER');
-        } else if ($this->getUser()->hasRole('ROLE_SUPER_ADMIN')) {
+        } elseif ($this->getUser()->hasRole('ROLE_SUPER_ADMIN')) {
             $allowed = !$user->hasRole('ROLE_SUPER_ADMIN');
         }
         if (!$allowed) {
