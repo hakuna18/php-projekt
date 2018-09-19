@@ -1,5 +1,4 @@
 <?php
-
 /**
  * UsersManager.
  */
@@ -44,11 +43,11 @@ class UsersManager
      *
      * Looks for users with name/surname/email mathching given regex pattern.
      *
-     * @param string $pattern
+     * @param string     $pattern
      *
-     * @param bol    $includeAdmins
+     * @param array|null $roles
      *
-     * @param int    $page
+     * @param int        $page
      *
      * @return Pagerfanta\Pagerfanta
      */
@@ -70,12 +69,17 @@ class UsersManager
         }
 
         // must have any role defined by "$roles"
-        $result = array_filter($result, function ($user) use ($roles) {
-            foreach ($roles as $role) {
-                if ($user->hasRole($role)) return true;
-            }
-            return false;
-        });
+        if ($roles) {
+            $result = array_filter($result, function ($user) use ($roles) {
+                foreach ($roles as $role) {
+                    if ($user->hasRole($role)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+        }
 
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(User::NUM_ITEMS);

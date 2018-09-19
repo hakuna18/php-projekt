@@ -1,0 +1,5 @@
+{%- block submit_widget -%}
+    {%- set type = type|default('submit') -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ 'btn btn-primary')|trim}) -%}
+    {{ block('button_widget') }}
+{%- endblock submit_widget -%}

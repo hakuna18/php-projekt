@@ -151,7 +151,7 @@ class UsersController extends Controller
     {
         // Can delete only self or role lower in the hierarchy
         $authChecker = $this->get('security.authorization_checker');
-        if ($this->getUser() != $user && 
+        if ($this->getUser() !== $user &&
             (($authChecker->isGranted('ROLE_ADMIN') && ($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_SUPER_ADMIN')))
             || $authChecker->isGranted('ROLE_READER'))
             ) {

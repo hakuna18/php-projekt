@@ -46,7 +46,7 @@ class BooksController extends Controller
      * @var \AppBundle\Repository\ReservationRepository|null
      */
     protected $reservationsRepository = null;
-    
+
     /**
      * Books manager.
      *

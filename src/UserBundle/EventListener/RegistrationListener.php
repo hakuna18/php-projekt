@@ -37,11 +37,11 @@ class RegistrationListener implements EventSubscriberInterface
      /**
      * RegistrationListener constructor
      *
-     * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
+     * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface                   $router
      *
-     * @param Symfony\Component\HttpFoundation\Session\Session          $session
-     * 
-     * @param Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface          $authChecker
+     * @param Symfony\Component\HttpFoundation\Session\Session                            $session
+     *
+     * @param Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authChecker
      */
     public function __construct(UrlGeneratorInterface $router, Session $session, AuthorizationCheckerInterface $authChecker)
     {
