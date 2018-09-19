@@ -325,6 +325,7 @@ class BooksController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->booksManager->updateBook($book);
             $this->addFlash('success', 'operation_successful');
+            return $this->redirectToRoute('books_details');
         }
 
         return $this->render(
