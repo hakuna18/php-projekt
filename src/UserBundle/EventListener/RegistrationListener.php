@@ -10,7 +10,7 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class RegistrationListener
@@ -33,10 +33,10 @@ class RegistrationListener implements EventSubscriberInterface
      *
      * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
      *
-     * @param Symfony\Component\HttpFoundation\Session\Session          $session
+     * @param Symfony\Component\HttpFoundation\Session\SessionInterface          $session
      *
      */
-    public function __construct(UrlGeneratorInterface $router, Session $session)
+    public function __construct(UrlGeneratorInterface $router, SessionInterface $session)
     {
         $this->router = $router;
         $this->session = $session;

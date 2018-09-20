@@ -98,13 +98,8 @@ class User extends BaseUser
         parent::__construct();
 
         $this->setRole("ROLE_READER");
-
         $this->reservations = new ArrayCollection();
         $this->loans = new ArrayCollection();
-
-        // This is a work-around for a case when the user is created from the FOS user create CLI.
-        $this->name = "empty";
-        $this->surname = "empty";
     }
 
     /**
