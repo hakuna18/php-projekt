@@ -60,7 +60,7 @@ class RegistrationType extends AbstractType
                 ],
             ]
         );
-        if ($this->authChecker->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->authChecker->isGranted('ROLE_ADMIN')) {
             $builder->add(
                 'role',
                 ChoiceType::class,

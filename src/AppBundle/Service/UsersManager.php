@@ -88,6 +88,14 @@ class UsersManager
         return $paginator;
     }
 
+    public function findUsersByRole($role)
+    {
+        $users = $this->fosUserManager->findUsers();
+        return array_filter($users, function ($user) use ($role) {
+            return $user->hasRole($role);
+        });
+    }
+
     /**
      * Get all users
      *

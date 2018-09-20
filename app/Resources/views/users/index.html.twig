@@ -22,19 +22,20 @@
                         <th style="padding-bottom:20px">{{ 'user.last_login'|trans }}</th>
                     </tr>
                 {% for user in users %}
-
-                    <tr>                     
-                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('user_view', { 'id': user.id }) }}">
-                            {{ user.name }} {{ user.surname }}
-                        </a>
-                        {% if user.hasRole('ROLE_ADMIN') %}
-                            [admin]
-                        {% endif %}
-                    </td>
-                    <td style="border-bottom:1px solid black">{{ user.email }}</td>
-                    <td style="border-bottom:1px solid black">{{ user.lastLogin|date('Y-m-d') }}</td>
-                    </tr>             
+                    {% if user != app.user %}
+                        <tr>                     
+                        <td style="border-bottom:1px solid black">
+                            <a href="{{ path('user_view', { 'id': user.id }) }}">
+                                {{ user.name }} {{ user.surname }}
+                            </a>
+                            {% if user.hasRole('ROLE_ADMIN') %}
+                                [admin]
+                            {% endif %}
+                        </td>
+                        <td style="border-bottom:1px solid black">{{ user.email }}</td>
+                        <td style="border-bottom:1px solid black">{{ user.lastLogin|date('Y-m-d') }}</td>
+                        </tr>
+                    {% endif %}          
                 {% endfor %}
             </tbody>
         </table>

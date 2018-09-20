@@ -23,18 +23,25 @@
             </form>
             </td>
             <td>
-            <form action="{{ path('users') }}">
-                <input type="submit" value="{{'show.users'|trans}}" class="btn btn-info"/>
-            </form>
-            </td>
-            <td>
-            <form action="{{ path('books_details') }}">
-                <input type="submit" value="{{'show.books_details'|trans}}" class="btn btn-info"/>
+            <form action="{{ path('user_delete', {'id': app.user.id}) }}">
+                {% if cant_delete_last_admin %}
+                    <span style="color:red">{{'info.cant_delete_account_last_admin'|trans}}</span>
+                {% else %}
+                    <input type="submit" value="{{'action.user_delete'|trans}}" class="btn btn-danger" onclick="return confirm('{{'are you sure?'|trans}}')"/>
+                {% endif %}
             </form>
             </td>
         </tr>
         </tbody>
     </table>
+    <hr>
+    <form action="{{ path('users') }}">
+        <input type="submit" value="{{'show.users'|trans}}" class="btn btn-info"/>
+    </form>
+    <br>
+    <form action="{{ path('books_details') }}">
+        <input type="submit" value="{{'show.books_details'|trans}}" class="btn btn-info"/>
+    </form>
 
 <hr>
 {% include 'admin/reservations_loans_content.html.twig' %}

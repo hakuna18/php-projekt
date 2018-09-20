@@ -75,6 +75,7 @@ class AdminController extends Controller
             ->add('search', TextType::class)
             ->getForm();
 
+        $cantDeleteLastAdmin = count($this->usersManager->findUsersByRole('ROLE_ADMIN')) == 1;
         return $this->render(
             'admin/panel.html.twig',
             [
@@ -82,6 +83,7 @@ class AdminController extends Controller
                 'loans' => $loans,
                 'form' => $form->createView(),
                 'search_query' => $searchQuery,
+                'cant_delete_last_admin' => $cantDeleteLastAdmin
             ]
         );
     }

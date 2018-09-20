@@ -24,7 +24,7 @@ services:
 
     UserBundle\:
         resource: '../../src/UserBundle/*'
-        exclude: '../../src/UserBundle/{Entity,Repository,Tests}'
+        exclude: '../../src/UserBundle/{Entity,Repository,Tests,EventListener}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services

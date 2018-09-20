@@ -434,6 +434,10 @@
                 <source>role.admin</source>
                 <target>Administrator</target>
             </trans-unit>
+            <trans-unit id="info.cant_delete_account_last_admin">
+                <source>info.cant_delete_account_last_admin</source>
+                <target>Nie można usunąć konta ostatniego Administratora</target>
+            </trans-unit>          
         </body>
     </file>
 </xliff>

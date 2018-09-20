@@ -61,11 +61,7 @@ class UsersController extends Controller
     public function indexAction(Request $request, $page)
     {
         $searchQuery = $request->request->get('form')['search'];
-        $queryRoles = ['ROLE_READER'];
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
-            $queryRoles[] = 'ROLE_ADMIN';
-        }
-        $matchedUsers = $this->usersManager->query($searchQuery, $queryRoles, $page);
+        $matchedUsers = $this->usersManager->query($searchQuery, ['ROLE_READER', 'ROLE_ADMIN'], $page);
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();
@@ -150,17 +146,14 @@ class UsersController extends Controller
     public function deleteAction(Request $request, User $user)
     {
         // 1) Only reader can delete self
-        // 2) Admin can delete a reader
-        // 3) Super admin can delete an admin or reader
+        // 2) Admin can delete until there is one admin left
         $allowed = false;
-        $attempsToDeleteSelf = $this->getUser() === $user;
         if ($this->getUser()->hasRole('ROLE_READER')) {
-            $allowed = $attempsToDeleteSelf;
+            // attempts to delete self - OK
+            $allowed = $this->getUser() === $user;
         } elseif ($this->getUser()->hasRole('ROLE_ADMIN')) {
-            $allowed = $user->hasRole('ROLE_READER');
-        } elseif ($this->getUser()->hasRole('ROLE_SUPER_ADMIN')) {
-            $allowed = !$user->hasRole('ROLE_SUPER_ADMIN');
-        }
+            $allowed = count($this->usersManager->findUsersByRole('ROLE_ADMIN')) > 1;
+        } 
         if (!$allowed) {
             throw $this->createAccessDeniedException("You cannot access this page!");
         }

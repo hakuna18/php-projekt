@@ -349,7 +349,7 @@ class BooksController extends Controller
     *     "/delete/{id}",
     *     name="book_delete",
     * )
-    * @Method({"GET", "POST"})
+    * @Method({"POST"})
     *
     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
     */
