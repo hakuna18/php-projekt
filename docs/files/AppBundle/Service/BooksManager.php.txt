@@ -219,6 +219,9 @@ class BooksManager
      */
     public function deleteBook($book)
     {
+        foreach ($book->getReservations() as $reservation) {
+            $this->entityManager->remove($reservation);
+        }
         $this->entityManager->remove($book);
         $this->entityManager->flush();
     }
