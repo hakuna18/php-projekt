@@ -349,15 +349,25 @@ class BooksController extends Controller
     *     "/delete/{id}",
     *     name="book_delete",
     * )
-    * @Method({"POST"})
     *
     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
     */
     public function deleteAction(Request $request, Book $book)
     {
-        $this->booksManager->deleteBook($book);
-        $this->addFlash('success', 'book_deleted.confirmation');
-
-        return $this->redirectToRoute('books_details');
+        // forward to the confirmation Controller
+        $args = [
+            'message' => $this->get('translator')->trans(
+                'Are you sure you want to delete book: %title% (isbn: %isbn%)?',
+                ['%title%' => $book->getTitle(), '%isbn%' => $book->getISBN()]
+            ),
+            'targetUrl' => $this->generateUrl('books_details'),
+            'cancelUrl' => $request->headers->get('referer'),
+            'confirmCallback' => function($book) {
+                $this->booksManager->deleteBook($book);
+                $this->addFlash('success', 'book_deleted.confirmation');
+            },
+            'confirmCallbackArgs' => $book
+        ];
+        return $this->forward('AppBundle:Confirm:confirm', ['args' => $args]);
     }
 }

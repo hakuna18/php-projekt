@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.confirmation_page'|trans }}
+{% endblock %}
+
+{% block body %}
+    <center>
+    <h2>{{ message }}</h2>
+    {{ form_start(form, { method: 'post'}) }}
+    <table><tbody><tr>
+    <td>
+        {{ form_widget(form) }}
+    </td>
+    <td>
+        <a href={{cancel_url}} class='btn btn-secondary'>{{ 'cancel'|trans }}</a>
+    </td>
+    </tr></tbody></table>
+    {{ form_end(form) }}
+    </center>
+{% endblock %}

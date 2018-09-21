@@ -437,7 +437,23 @@
             <trans-unit id="info.cant_delete_account_last_admin">
                 <source>info.cant_delete_account_last_admin</source>
                 <target>Nie można usunąć konta ostatniego Administratora</target>
-            </trans-unit>          
+            </trans-unit>
+            <trans-unit id="confirmation.message.delete.book">
+                <source>Are you sure you want to delete book: %title% (isbn: %isbn%)?</source>
+                <target>Czy na pewno chcesz usunąć książkę: %title% (isbn: %isbn%)?</target>
+            </trans-unit>  
+            <trans-unit id="title.confirmation_page">
+                <source>title.confirmation_page</source>
+                <target>Potwierdź</target>
+            </trans-unit> 
+            <trans-unit id="action.confirm">
+                <source>action.confirm</source>
+                <target>Potwierdzam</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>cancel</source>
+                <target>Anuluj</target>
+            </trans-unit> 
         </body>
     </file>
 </xliff>
