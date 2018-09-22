@@ -9,7 +9,7 @@
 
     <h1>{{ 'books.catalogue'|trans }}</h1>
 
-    {{ form_start(form, { method: 'post' }) }}   
+    {{ form_start(form, { method: 'GET' }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query }}) }}
     <input type="submit" value={{ 'form.search'|trans }} class="btn btn-secondary"/>
     {{ form_end(form) }}
@@ -41,7 +41,9 @@
                             </td>
                             {% if booksManager.hasReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('cancel_reservation', { 'id': book.id }) }}" class="btn btn-warning">{{'book.cancel_reservation'|trans}}</a>
+                                <form action="{{ path('cancel_reservation', { 'id': book.id }) }}" method="POST">
+                                    <input type="submit" class="btn btn-warning" value="{{'book.cancel_reservation'|trans}}"/a>
+                                </form>
                                 </td>
                             {% elseif booksManager.hasLoan(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
@@ -49,7 +51,9 @@
                                 </td>
                             {% elseif booksManager.canMakeReservation(app.user, book) %}
                                 <td style="border-bottom:1px solid black">
-                                    <a href="{{ path('make_reservation', { 'id': book.id }) }}" class="btn btn-success">{{ 'book.make_reservation'|trans }}</a>
+                                    <form action="{{ path('make_reservation', { 'id': book.id }) }}" method="POST">
+                                    <input type="submit" class="btn btn-success" value="{{ 'book.make_reservation'|trans }}"/>
+                                    </form>
                                 </td>
                             {% else %}
                                 <td style="border-bottom:1px solid black"></td>

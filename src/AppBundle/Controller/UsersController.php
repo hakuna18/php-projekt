@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-use AppBundle\Repository\UsersRepository;
 use UserBundle\Entity\User;
 use AppBundle\Service\UsersManager;
 
@@ -56,12 +55,14 @@ class UsersController extends Controller
      *     requirements={"page": "[1-9]\d*"},
      *     name="users_paginated",
      *)
+     * @Method({"GET"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function indexAction(Request $request, $page)
     {
         $searchQuery = $request->request->get('form')['search'];
-        $matchedUsers = $this->usersManager->query($searchQuery, ['ROLE_READER', 'ROLE_ADMIN'], $page);
+        $matchedUsers = $this->usersManager->query($searchQuery, $page);
         $form = $this->createFormBuilder(null)
             ->add('search', TextType::class)
             ->getForm();
@@ -85,6 +86,8 @@ class UsersController extends Controller
      *
      * @Route("/view/{id}", name="user_view")
      *
+     * @Method({"GET"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function viewAction(Request $request, User $user)
@@ -103,6 +106,8 @@ class UsersController extends Controller
      * @param UserBundle\Entity\User                   $user    User
      *
      * @Route("/edit/{id}", name="user_edit")
+     *
+     * @Method({"GET, POST"})
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
@@ -141,30 +146,44 @@ class UsersController extends Controller
      *
      * @Route("/delete/{id}", name="user_delete")
      *
+     * @Method({"POST"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function deleteAction(Request $request, User $user)
     {
         // 1) Only reader can delete self
-        // 2) Admin can delete until there is one admin left
-        $allowed = false;
-        if ($this->getUser()->hasRole('ROLE_READER')) {
-            // attempts to delete self - OK
-            $allowed = $this->getUser() === $user;
-        } elseif ($this->getUser()->hasRole('ROLE_ADMIN')) {
-            $allowed = count($this->usersManager->findUsersByRole('ROLE_ADMIN')) > 1;
-        } 
-        if (!$allowed) {
-            throw $this->createAccessDeniedException("You cannot access this page!");
+        // 2) Admin can delete admins until there is one admin left
+        if (($this->getUser()->hasRole('ROLE_READER') && $this->getUser() !== $user)
+            || ($this->getUser()->hasRole('ROLE_ADMIN') && $user->hasRole('ROLE_ADMIN') && count($this->usersManager->findUsersByRole('ROLE_ADMIN')) === 1)
+            ) {
+                throw $this->createAccessDeniedException("You cannot access this page!");
         }
 
-        $this->usersManager->deleteUser($user);
-        $this->addFlash(
-            'notice',
-            'user_deleted.confirmation'
-        );
+        // forward to the confirmation Controller
+        $message = '';
+        if ($this->getUser() === $user) {
+            $message =  $this->get('translator')->trans('Are you sure you want to delete your account?');
+        } else {
+            $message = $this->get('translator')->trans(
+                'Are you sure you want to delete user: %username% (%name% %surname%)?',
+                ['%username%' => $user->getUsername(), '%name%' => $user->getName(), '%surname%' => $user->getSurname()]
+            );
+        }
+        // if deleting self redirect to /login, otherwise to /users
+        $targetPath = $this->getUser() === $user? 'fos_user_security_login' : 'users';
+        $args = [
+            'message' => $message,
+            'targetUrl' => $this->generateUrl($targetPath),
+            'cancelUrl' => $request->headers->get('referer'),
+            'confirmCallback' => function ($user) {
+                $this->usersManager->deleteUser($user);
+                $this->addFlash('notice', 'user_deleted.confirmation');
+            },
+            'confirmCallbackArgs' => $user,
+        ];
 
-        return $this->redirectToRoute('users');
+        return $this->forward('AppBundle:Confirm:confirm', ['args' => $args]);
     }
 
     /**
@@ -173,6 +192,8 @@ class UsersController extends Controller
      * @param Symfony\Component\HttpFoundation\Request $request
      *
      * @Route("/panel", name="user_panel")
+     *
+     * @Method({"GET"})
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
@@ -196,6 +217,8 @@ class UsersController extends Controller
      * @param Symfony\Component\HttpFoundation\Request $request
      *
      * @Route("/change_mail", name="user_change_mail")
+     *
+     * @Method({"GET, POST"})
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */

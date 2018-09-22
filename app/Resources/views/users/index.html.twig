@@ -8,7 +8,7 @@
     {% include 'top_menu.html.twig' %}
     <h1>{{ 'page.users'|trans }}</h1>
 
-    {{ form_start(form, { method: 'post', action: url('users') }) }}   
+    {{ form_start(form, { method: 'GET', action: url('users') }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
     <input type="submit" value={{ 'form.search'|trans }} class="btn btn-secondary" />
     {{ form_end(form) }}

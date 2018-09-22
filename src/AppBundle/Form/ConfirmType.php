@@ -1,5 +1,9 @@
 <?php
+/**
+ * ConfirmType.
+ */
 namespace AppBundle\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +21,7 @@ class ConfirmType extends AbstractType
     {
         // Add submit button that confirms requested action.
         $builder->add('confirm', SubmitType::class, [
-            'label' => 'action.confirm'
+            'label' => 'action.confirm',
         ]);
     }
 }

@@ -5,7 +5,6 @@
 namespace AppBundle\Service;
 
 use UserBundle\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
@@ -16,11 +15,6 @@ use Pagerfanta\Adapter\ArrayAdapter;
 class UsersManager
 {
     /**
-     * Entity manager
-     */
-    protected $entityManager = null;
-
-    /**
      * FOS User Manager
      */
     protected $fosUserManager = null;
@@ -28,13 +22,10 @@ class UsersManager
     /**
      * BooksManager constructor.
      *
-     * @param Doctrine\ORM\EntityManager                $em             Entity Manager
-     *
      * @param FOS\UserBundle\Model\UserManagerInterface $fosUserManager FOS User Manager
      */
-    public function __construct(EntityManagerInterface $em, UserManagerInterface $fosUserManager)
+    public function __construct(UserManagerInterface $fosUserManager)
     {
-        $this->entityManager = $em;
         $this->fosUserManager = $fosUserManager;
     }
 
@@ -43,15 +34,13 @@ class UsersManager
      *
      * Looks for users with name/surname/email mathching given regex pattern.
      *
-     * @param string     $pattern
+     * @param string $pattern
      *
-     * @param array|null $roles
-     *
-     * @param int        $page
+     * @param int    $page
      *
      * @return Pagerfanta\Pagerfanta
      */
-    public function query($pattern, $roles, $page = 1)
+    public function query($pattern, $page = 1)
     {
         $pattern = '/'.strtoupper(trim($pattern)).'/';
         $result = array();
@@ -68,19 +57,6 @@ class UsersManager
             }
         }
 
-        // must have any role defined by "$roles"
-        if ($roles) {
-            $result = array_filter($result, function ($user) use ($roles) {
-                foreach ($roles as $role) {
-                    if ($user->hasRole($role)) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
-        }
-
         $paginator = new Pagerfanta(new ArrayAdapter($result));
         $paginator->setMaxPerPage(User::NUM_ITEMS);
         $paginator->setCurrentPage($page);
@@ -88,22 +64,20 @@ class UsersManager
         return $paginator;
     }
 
-    public function findUsersByRole($role)
-    {
-        $users = $this->fosUserManager->findUsers();
-        return array_filter($users, function ($user) use ($role) {
-            return $user->hasRole($role);
-        });
-    }
-
     /**
-     * Get all users
+     * Find users with given role
+     *
+     * @param string $role Role
      *
      * @return array
      */
-    public function getAllUsers()
+    public function findUsersByRole($role)
     {
-        return $this->fosUserManager->findUsers();
+        $users = $this->fosUserManager->findUsers();
+
+        return array_filter($users, function ($user) use ($role) {
+            return $user->hasRole($role);
+        });
     }
 
     /**
@@ -123,10 +97,6 @@ class UsersManager
      */
     public function deleteUser($user)
     {
-        foreach ($user->getReservations() as $reservation) {
-            $this->entityManager->remove($reservation);
-        }
         $this->fosUserManager->deleteUser($user);
-        $this->entityManager->flush();
     }
 }

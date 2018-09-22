@@ -27,33 +27,11 @@ use AppBundle\Service\BooksManager;
 class BooksController extends Controller
 {
     /**
-     * Books repository.
-     *
-     * @var \AppBundle\Repository\BooksRepository|null
-     */
-    protected $booksRepository = null;
-
-    /**
-     * Loans repository.
-     *
-     * @var \AppBundle\Repository\LoansRepository|null
-     */
-    protected $loansRepository = null;
-
-    /**
-     * Reservations repository.
-     *
-     * @var \AppBundle\Repository\ReservationRepository|null
-     */
-    protected $reservationsRepository = null;
-
-    /**
      * Books manager.
      *
      * @var \AppBundle\Service\BooksManager|null
      */
     protected $booksManager = null;
-
 
     /**
      * BooksController constructor.
@@ -62,9 +40,6 @@ class BooksController extends Controller
      */
     public function __construct(BooksManager $booksManager)
     {
-        $this->booksRepository = $booksManager->getRepository(Book::class);
-        $this->loansRepository = $booksManager->getRepository(Loan::class);
-        $this->reservationsRepository = $booksManager->getRepository(Reservation::class);
         $this->booksManager = $booksManager;
     }
 
@@ -86,6 +61,8 @@ class BooksController extends Controller
      *     requirements={"page": "[1-9]\d*"},
      *     name="books_catalogue_paginated",
      *)
+     * @Method({"GET"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function indexAction(Request $request, $page = 1)
@@ -98,7 +75,7 @@ class BooksController extends Controller
         return $this->render(
             'books/index.html.twig',
             [
-                'books' => $this->booksRepository->query($searchQuery, $page),
+                'books' => $this->booksManager->getBookRepository()->query($searchQuery, $page),
                 'form' => $form->createView(),
                 'booksManager' => $this->booksManager,
                 'search_query' => $searchQuery,
@@ -126,6 +103,8 @@ class BooksController extends Controller
      *     name="books_details_paginated",
      * )
      *
+     * @Method({"GET"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function viewDetailsAction(Request $request, $page = 1)
@@ -138,7 +117,7 @@ class BooksController extends Controller
         return $this->render(
             'books/all.html.twig',
             [
-                'books' => $this->booksRepository->query($searchQuery, $page),
+                'books' => $this->booksManager->getBookRepository()->query($searchQuery, $page),
                 'form' => $form->createView(),
                 'search_query' => $searchQuery,
             ]
@@ -175,8 +154,9 @@ class BooksController extends Controller
      *
      * @param AppBundle\Entity\Book                    $book    Book
      *
-     *
      * @Route("/reservation/make/{id}", name="make_reservation")
+     *
+     * @Method("POST")
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
@@ -202,6 +182,8 @@ class BooksController extends Controller
      * @param AppBundle\Entity\Book                    $book    Book
      *
      * @Route("/reservation/cancel/{id}", name="cancel_reservation")
+     *
+     * @Method("POST")
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
@@ -232,6 +214,8 @@ class BooksController extends Controller
      *
      * @Route("/loan/make/{id}", name="make_loan")
      *
+     * @Method({"POST"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function loanAction(Request $request, Reservation $reservation)
@@ -254,6 +238,8 @@ class BooksController extends Controller
      * @param AppBundle\Entity\Loan                    $loan
      *
      * @Route("/loan/return/{id}", name="book_return")
+     *
+     * @Method({"POST"})
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
@@ -349,6 +335,7 @@ class BooksController extends Controller
     *     "/delete/{id}",
     *     name="book_delete",
     * )
+    * @Method({"POST"})
     *
     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
     */
@@ -362,12 +349,13 @@ class BooksController extends Controller
             ),
             'targetUrl' => $this->generateUrl('books_details'),
             'cancelUrl' => $request->headers->get('referer'),
-            'confirmCallback' => function($book) {
+            'confirmCallback' => function ($book) {
                 $this->booksManager->deleteBook($book);
                 $this->addFlash('success', 'book_deleted.confirmation');
             },
-            'confirmCallbackArgs' => $book
+            'confirmCallbackArgs' => $book,
         ];
+
         return $this->forward('AppBundle:Confirm:confirm', ['args' => $args]);
     }
 }

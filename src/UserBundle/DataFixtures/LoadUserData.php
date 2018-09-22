@@ -16,10 +16,22 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class LoadUserData extends Fixture
 {
+    /**
+     * User manager
+     */
     private $userManager;
 
+    /**
+     * Encoder
+     */
     private $encoder;
 
+    /**
+     * Constructor
+     *
+     * @param FOS\UserBundle\Model\UserManagerInterface                            $userManager User manager
+     * @param Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder     Encoder
+     */
     public function __construct(UserManagerInterface $userManager, UserPasswordEncoderInterface $encoder)
     {
         $this->userManager = $userManager;
@@ -40,7 +52,7 @@ class LoadUserData extends Fixture
                 'password' => 'asdf',
                 'role' => 'ROLE_ADMIN',
                 'name' => 'Admin',
-                'surname' => 'Adminowski'
+                'surname' => 'Adminowski',
             ],
             [
                 'username' => 'user1',
@@ -48,7 +60,7 @@ class LoadUserData extends Fixture
                 'password' => 'asdf',
                 'role' => 'ROLE_READER',
                 'name' => 'Jan',
-                'surname' => 'Nowak'
+                'surname' => 'Nowak',
             ],
         ];
 
@@ -56,11 +68,11 @@ class LoadUserData extends Fixture
             $user = $this->userManager->createUser();
             $user->setUsername($userData['username']);
             $user->setEmail($userData['email']);
-            $user->setPassword($this->encoder->encodePassword($user, $userData['password']));        
+            $user->setPassword($this->encoder->encodePassword($user, $userData['password']));
             $user->setRole($userData['role']);
             $user->setName($userData['name']);
             $user->setSurname($userData['surname']);
-            
+
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
         }

@@ -48,4 +48,26 @@ class ReservationRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+
+    /**
+     * Save reservation to the repository
+     *
+     * @param AppBundle\Entity\Reservation $reservation Reservation
+     */
+    public function save(Reservation $reservation)
+    {
+        $this->getEntityManager()->persist($reservation);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete reservation from the repository
+     *
+     * @param AppBundle\Entity\Reservation $reservation Reservation
+     */
+    public function delete(Reservation $reservation)
+    {
+        $this->getEntityManager()->remove($reservation);
+        $this->getEntityManager()->flush();
+    }
 }

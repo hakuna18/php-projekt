@@ -5,11 +5,13 @@
  */
 namespace AppBundle\Service;
 
-use UserBundle\Entity\User;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\Reservation;
 use AppBundle\Entity\Loan;
-use Doctrine\ORM\EntityManagerInterface;
+use UserBundle\Entity\User;
+use AppBundle\Repository\BookRepository;
+use AppBundle\Repository\ReservationRepository;
+use AppBundle\Repository\LoanRepository;
 use \Datetime;
 
 /**
@@ -18,30 +20,62 @@ use \Datetime;
 class BooksManager
 {
     /**
-     * Entity manager
+     * Book repository
      */
-    protected $entityManager = null;
+    private $bookRepository = null;
+
+    /**
+     * Reservation repository
+     */
+    private $reservationRepository = null;
+
+    /**
+     * Loan repository
+     */
+    private $loanRepository = null;
 
     /**
      * BooksManager constructor.
      *
-     * @param Doctrine\ORM\EntityManagerInterface $em Entity Manager
+     * @param AppBundle\Repository\BookRepository        $bookRepository        Book repository
+     * @param AppBundle\Repository\ReservationRepository $reservationRepository Reservation repository
+     * @param AppBundle\Repository\LoanRepository        $loanRepository        Loan repository
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(BookRepository $bookRepository, ReservationRepository $reservationRepository, LoanRepository $loanRepository)
     {
-        $this->entityManager = $em;
+        $this->bookRepository = $bookRepository;
+        $this->reservationRepository = $reservationRepository;
+        $this->loanRepository = $loanRepository;
     }
 
     /**
-     * Get repository
+     * Get Book Entity repository
      *
-     * @param string $entityClass
-     *
-     * @return Doctrine\ORM\EntityManagerInterface
+     * @return AppBundle\Repository\BookRepository
      */
-    public function getRepository($entityClass)
+    public function getBookRepository()
     {
-        return $this->entityManager->getRepository($entityClass);
+        return $this->bookRepository;
+    }
+
+    /**
+     * Get Reservation Entity repository
+     *
+     * @return AppBundle\Repository\ReservationRepository
+     */
+    public function getReservationRepository()
+    {
+        return $this->reservationRepository;
+    }
+
+    /**
+     * Get Loan Entity repository
+     *
+     * @return AppBundle\Repository\LoanRepository
+     */
+    public function getLoanRepository()
+    {
+        return $this->loanRepository;
     }
 
     /**
@@ -61,8 +95,7 @@ class BooksManager
             $reservation->setUser($user);
             $reservation->setBook($book);
 
-            $this->entityManager->persist($reservation);
-            $this->entityManager->flush();
+            $this->reservationRepository->save($reservation);
 
             return $reservation;
         }
@@ -111,8 +144,7 @@ class BooksManager
     {
         $reservation = $this->findReservation($user, $book);
         if ($reservation) {
-            $this->entityManager->remove($reservation);
-            $this->entityManager->flush();
+            $this->reservationRepository->delete($reservation);
 
             return true;
         }
@@ -163,11 +195,9 @@ class BooksManager
             $loan = new Loan();
             $loan->setUser($reservation->getUser());
             $loan->setBook($reservation->getBook());
-            $this->entityManager->persist($loan);
-
+            $this->loanRepository->save($loan);
             // usun rezerwacje
-            $this->entityManager->remove($reservation);
-            $this->entityManager->flush();
+            $this->reservationRepository->delete($reservation);
 
             return $loan;
         }
@@ -184,8 +214,7 @@ class BooksManager
      */
     public function returnBook($loan)
     {
-        $this->entityManager->remove($loan);
-        $this->entityManager->flush();
+        $this->loanRepository->delete($loan);
 
         return true;
     }
@@ -197,8 +226,7 @@ class BooksManager
      */
     public function createBook($book)
     {
-        $this->entityManager->persist($book);
-        $this->entityManager->flush();
+        $this->bookRepository->save($book);
     }
 
     /**
@@ -208,8 +236,7 @@ class BooksManager
      */
     public function updateBook($book)
     {
-        $this->entityManager->persist($book);
-        $this->entityManager->flush();
+        $this->bookRepository->save($book);
     }
 
     /**
@@ -219,11 +246,7 @@ class BooksManager
      */
     public function deleteBook($book)
     {
-        foreach ($book->getReservations() as $reservation) {
-            $this->entityManager->remove($reservation);
-        }
-        $this->entityManager->remove($book);
-        $this->entityManager->flush();
+        $this->bookRepository->delete($book);
     }
 
     /**
@@ -237,8 +260,7 @@ class BooksManager
      */
     private function findReservation($user, $book)
     {
-        $reservationsRepo = $this->entityManager->getRepository(Reservation::class);
-        $reservations = $reservationsRepo->findBy(array(
+        $reservations = $this->reservationRepository->findBy(array(
             'user' => $user,
             'book' => $book,
         ));
@@ -257,8 +279,7 @@ class BooksManager
      */
     private function findLoan($user, $book)
     {
-        $loansRepo = $this->entityManager->getRepository(Loan::class);
-        $loans = $loansRepo->findBy(array(
+        $loans = $this->loanRepository->findBy(array(
             'user' => $user,
             'book' => $book,
         ));

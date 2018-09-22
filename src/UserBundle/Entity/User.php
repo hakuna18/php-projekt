@@ -75,7 +75,8 @@ class User extends BaseUser
      *
      * @ORM\OneToMany(
      * targetEntity="AppBundle\Entity\Reservation",
-     * mappedBy="user"
+     * mappedBy="user",
+     * cascade={"remove"},
      * )
      */
     private $reservations;

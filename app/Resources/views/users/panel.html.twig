@@ -39,7 +39,7 @@
                 {% if user.loans|length %}
                     <span style="color:red">{{'info.cant_delete_account_has_loans'|trans}}</span>
                 {% else %}
-                    <input type="submit" value="{{'action.user_delete'|trans}}" class="btn btn-danger" onclick="return confirm('{{'are you sure?'|trans}}')"/>
+                    <input type="submit" value="{{'action.user_delete'|trans}}" class="btn btn-danger"/>
                 {% endif %}
             </form>
             </td>
@@ -64,7 +64,9 @@
                             <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <a href="{{ path('cancel_reservation', { 'id': reservation.book.id }) }}" class="btn btn-warning">{{'book.cancel_reservation'|trans}}</a>
+                        <form action="{{ path('cancel_reservation', { 'id':reservation.book.id }) }}" method="POST">
+                            <input type="submit" class="btn btn-warning" value="{{'book.cancel_reservation'|trans}}"/a>
+                        </form>
                         </td>
                     </tr>             
                 {% endfor %}

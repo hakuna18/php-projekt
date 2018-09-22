@@ -39,11 +39,23 @@ services:
     #         $someArgument: 'some_value'
     # app/config/services.yml
 
-    app.books_manager:
-        class: AppBundle\Service\BooksManager
+    # app.books_manager:
+    #     class: AppBundle\Service\BooksManager
 
-    app.users_manager:
-        class: AppBundle\Service\UsersManager
+    # app.users_manager:
+    #     class: AppBundle\Service\UsersManager
+
+    AppBundle\Repository\BookRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\Book']
+
+    AppBundle\Repository\ReservationRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\Reservation']
+
+    AppBundle\Repository\LoanRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\Loan']
 
     # autowiring doesnt work for FileUploader's 'string' parameter, set manually
     AppBundle\Service\FileUploader:

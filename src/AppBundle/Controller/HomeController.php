@@ -25,6 +25,8 @@ class HomeController extends Controller
      *
      * @Route("/", name="homepage")
      *
+     * @Method({"GET"})
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function homepageAction(Request $request)

@@ -33,7 +33,7 @@ class PasswordChangeListener implements EventSubscriberInterface
      *
      * @param Symfony\Component\Routing\Generator\UrlGeneratorInterface $router
      *
-     * @param Symfony\Component\HttpFoundation\Session\SessionInterface          $session
+     * @param Symfony\Component\HttpFoundation\Session\SessionInterface $session
      */
     public function __construct(UrlGeneratorInterface $router, SessionInterface $session)
     {

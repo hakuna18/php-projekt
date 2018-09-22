@@ -9,7 +9,7 @@
 
     <h1>{{ 'title.catalogue.details'|trans }}</h1>
     
-    {{ form_start(form, { method: 'post', action: app.request.uri }) }}   
+    {{ form_start(form, { method: 'GET', action: app.request.uri }) }}   
     {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
     <input type="submit" value={{ 'form.search'|trans }} class="btn btn-default" />
     {{ form_end(form) }}
@@ -43,7 +43,7 @@
                             </form>
                         </td>
                         <td style="border-bottom:1px solid black">
-                            <form action="{{ path('book_delete', { 'id': book.id }) }}">
+                            <form action="{{ path('book_delete', { 'id': book.id }) }}" method="POST">
                                 {% if book.loans|length %}
                                     <span style="color:red">{{'info.cant_delete_book_has_loans'|trans}}</span>
                                 {% else %}

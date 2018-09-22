@@ -4,7 +4,7 @@
 
 <h2>{{ 'book.reservations_and_loans'|trans }}</h2>
 
-{{ form_start(form, { method: 'post', action: app.request.uri }) }}   
+{{ form_start(form, { method: 'GET', action: app.request.uri }) }}   
 {{  form_widget(form.search, {'attr': {'class': 'form-control search-query', 'value': search_query}}) }}
 <input type="submit" value={{ 'form.search'|trans }} class="btn btn-secondary" />
 {{ form_end(form) }}
@@ -32,10 +32,14 @@
                         <font color= {{ reservation.expired? 'red' : 'black' }}>{{ reservation.creationDate|date('Y-m-d') }}</font>                     
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('cancel_reservation', { 'id': reservation.book.id, 'userId': reservation.user.id }) }}" class="btn btn-warning">{{'book.cancel_reservation'|trans}}</a>
+                        <form action="{{ path('cancel_reservation', { 'id': reservation.book.id, 'userId': reservation.user.id }) }}" method="POST">
+                            <input type="submit" class="btn btn-warning" value="{{'book.cancel_reservation'|trans}}"/a>
+                        </form>
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('make_loan', { 'id': reservation.id }) }}" class="btn btn-success">{{'book.loan'|trans}}</a>
+                        <form action="{{ path('make_loan', { 'id': reservation.id }) }}" method="POST">
+                            <input type="submit" class="btn btn-success" value="{{'book.loan'|trans}}"/>
+                        </form>
                     </td>
                 </tr>             
             {% endfor %}
@@ -73,7 +77,9 @@
                         <font color= {{ loan.expired? 'red' : 'black' }}>{{ loan.loanDate|date('Y-m-d') }}</font>                     
                     </td>
                     <td style="border-bottom:1px solid black">
-                        <a href="{{ path('book_return', { 'id': loan.id }) }}" onclick="return confirm('{{'are you sure?'|trans}}')">{{'book.return'|trans}}</a>
+                        <form action="{{ path('book_return', { 'id': loan.id }) }}" method="POST">
+                            <input type="submit" class="btn btn-warning" value="{{'book.return'|trans}}"/>
+                        </form>
                     </td>
                 </tr>             
             {% endfor %}

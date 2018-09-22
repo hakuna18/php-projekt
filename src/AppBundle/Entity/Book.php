@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *     name="books"
  * )
  * @ORM\Entity(
- *     repositoryClass="AppBundle\Repository\BooksRepository"
+ *     repositoryClass="AppBundle\Repository\BookRepository"
  * )
  * @UniqueEntity("isbn", message="isbn.unique")
  */
@@ -220,7 +220,7 @@ class Book
     /**
      * Reservations of this book
      *
-     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book")
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="book", cascade={"remove"})
      */
     private $reservations;
 

@@ -48,4 +48,26 @@ class LoanRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+
+    /**
+     * Save loan to the repository
+     *
+     * @param AppBundle\Entity\Loan $loan Loan
+     */
+    public function save(Loan $loan)
+    {
+        $this->getEntityManager()->persist($loan);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Delete loan from the repository
+     *
+     * @param AppBundle\Entity\Loan $loan Loan
+     */
+    public function delete(Loan $loan)
+    {
+        $this->getEntityManager()->remove($loan);
+        $this->getEntityManager()->flush();
+    }
 }
